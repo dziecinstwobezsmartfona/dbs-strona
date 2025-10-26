@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -46,7 +47,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-4 left-[5%] right-[5%] bg-white shadow-lg z-50 rounded-3xl border-b border-gray-200">
+    <header className="fixed top-4 left-[5%] right-[5%] bg-inherit shadow-lg z-50 rounded-3xl border-b border-gray-200">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-4 mx-auto">
         {/* Left: Hamburger for mobile + Desktop menus */}
         <div className="justify-self-start flex items-center">
@@ -94,10 +95,23 @@ const Header: React.FC = () => {
 
         {/* Center: Logo and Organization Name */}
         <div className="justify-self-center flex items-center space-x-2 md:space-x-3">
+          {/*
           <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">L</span> {/* Placeholder logo */}
+            <span className="text-white font-bold text-sm">L</span>
           </div>
           <span className="text-lg md:text-xl font-bold text-gray-900">MyOrg</span>
+          */}
+
+            <Link href="/" className="inline-block">
+              <Image
+                src="https://cdn.prod.website-files.com/67c6c3a4d27cc65012ee864b/68e4d17a562c5d3c1512f761_sfc-logo.svg"
+                loading="lazy"
+                alt=""
+                width={180}
+                height={60}
+              />
+            </Link>
+
         </div>
 
         {/* Right: Desktop links + Search icon */}
