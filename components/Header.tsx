@@ -47,7 +47,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-4 left-[5%] right-[5%] bg-inherit shadow-lg z-50 rounded-3xl border-b border-gray-200">
+    <header className="fixed top-4 left-[5%] right-[5%] bg-(--background) shadow-lg z-50 rounded-3xl">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-4 mx-auto">
         {/* Left: Hamburger for mobile + Desktop menus */}
         <div className="justify-self-start flex items-center">

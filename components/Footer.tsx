@@ -13,7 +13,7 @@ export default function Footer() {
             {/* Left column: Heading and description */}
             <div className="mb-6 pr-2 lg:mb-0 lg:w-1/2">
               <h3 className="text-4xl font-bold mb-2">Razem mamy siłę</h3>
-              <div className="text-base">Zapisz się do newslettera Dzieciństwo Bez Smartfona, jeśli chcesz otrzymywać inspirujące historie, pomocne zasoby i aktualności naszego ruchu.</div>
+              <div className="text-base">Zapisz się do newslettera Dzieciństwo Bez Smartfona, jeśli chcesz od nas otrzymywać inspirujące historie, pomocne zasoby i aktualności.</div>
             </div>
             {/* Right column: Signup form */}
             <div className="pl-2 lg:w-1/2">
