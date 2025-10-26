@@ -19,6 +19,32 @@ const Header: React.FC = () => {
 
   const rightLinks = ['Zaangażuj się', 'Podpisz PAKT', 'Wesprzyj finansowo'];
 
+  const slugify = (text: string): string => {
+    const polishMap: { [key: string]: string } = {
+      'ą': 'a', 'Ą': 'a',
+      'ć': 'c', 'Ć': 'c',
+      'ę': 'e', 'Ę': 'e',
+      'ł': 'l', 'Ł': 'l',
+      'ń': 'n', 'Ń': 'n',
+      'ó': 'o', 'Ó': 'o',
+      'ś': 's', 'Ś': 's',
+      'ź': 'z', 'Ź': 'z',
+      'ż': 'z', 'Ż': 'z',
+    };
+
+    return text
+      .split('')
+      .map(char => polishMap[char] || char)
+      .join('')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  };
+
   return (
     <header className="fixed top-4 left-[5%] right-[5%] bg-white shadow-lg z-50 rounded-3xl border-b border-gray-200">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-4 mx-auto">
@@ -53,7 +79,7 @@ const Header: React.FC = () => {
                   {menu.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <Link
-                        href={`/${link.toLowerCase()}`}
+                        href={`/${slugify(link)}`}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
                       >
                         {link}
@@ -80,7 +106,7 @@ const Header: React.FC = () => {
             {rightLinks.map((link, index) => (
               <Link
                 key={index}
-                href={`/${link.toLowerCase()}`}
+                href={`/${slugify(link)}`}
                 className="font-medium text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors"
               >
                 {link}
@@ -117,7 +143,7 @@ const Header: React.FC = () => {
                 {menu.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
-                      href={`/${link.toLowerCase()}`}
+                      href={`/${slugify(link)}`}
                       className="block text-sm text-gray-700 hover:text-gray-900 transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -132,7 +158,7 @@ const Header: React.FC = () => {
             {rightLinks.map((link, index) => (
               <Link
                 key={index}
-                href={`/${link.toLowerCase()}`}
+                href={`/${slugify(link)}`}
                 className="block font-medium text-gray-700 hover:text-gray-900 py-2 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
