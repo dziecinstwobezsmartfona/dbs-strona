@@ -3,6 +3,7 @@
 :root {
   --background: #EDFFDD;
   --foreground: #0E3B3B;
+  --main-accent: #CEFFA8;
 }
 
 @theme inline {
@@ -13,7 +14,7 @@
 }
 
 body {
-  background: var(--background);
+  background: white;
   color: var(--foreground);
   font-family: Montserrat, Arial, sans-serif;
 }
