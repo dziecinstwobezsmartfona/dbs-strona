@@ -2,18 +2,22 @@
 
 :root {
   --background: #EDFFDD;
+  --secondary-background: #0A6880;
   --foreground: #0E3B3B;
+  --main-accent: #CEFFA8;
+  --secondary-accent: #ECFF87;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
+  --font-title: var(--font-anton);
+  --font-menu: var(--font-victor);
 }
 
 body {
-  background: var(--background);
+  background: white;
   color: var(--foreground);
-  font-family: Montserrat, Arial, sans-serif;
 }
