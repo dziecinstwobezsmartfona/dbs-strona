@@ -47,8 +47,8 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-4 left-[4%] right-[4%] bg-(--background) shadow-lg z-50 rounded-3xl">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-2 mx-auto">
+    <header className="fixed top-4.5 left-[4%] right-[4%] bg-(--background) shadow-lg z-50 rounded-3xl">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-3 mx-auto">
         {/* Left: Hamburger for mobile + Desktop menus */}
         <div className="justify-self-start flex items-center">
           <button
@@ -95,11 +95,13 @@ const Header: React.FC = () => {
 
         {/* Center: Logo and Organization Name */}
         <div className="flex flex-row justify-center items-center space-x-2 md:space-x-3">
-          <Image src="/images/logo1.png" alt="" width={70} height={70} />
-          <div className="flex flex-col justify-center items-left">
-            <p className="text-lg md:text-3xl font-title">DZIECIŃSTWO</p>
-            <p className="text-lg md:text-3xl font-title">BEZ SMARTFONA</p>
-          </div>
+          {/* <Image src="/images/logo1.png" alt="" width={70} height={70} /> */}
+          <Link href="/">
+            <div className="flex flex-col justify-center items-center">
+              <p className="text-lg md:text-[2.2rem]/8 font-title">DZIECIŃSTWO</p>
+              <p className="text-lg md:text-[2.2rem]/8 font-title">BEZ SMARTFONA</p>
+            </div>
+          </Link>
         </div>
 
         {/* Right: Desktop links + Search icon */}
