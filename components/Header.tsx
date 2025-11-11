@@ -13,12 +13,12 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const menus: MenuItem[] = [
-    { title: 'O Nas', links: ['Nasza Misja', 'Nasz Wpływ', 'Nasza Historia', 'Nasz Zespół'] },
-    { title: 'Zagadnienie', links: ['Problem', 'Rozwiązanie', 'Dane'] },
-    { title: 'Zasoby', links: ['Pytania', 'Narzędzia', 'DBS Blog', 'DBS Poleca'] }
+    { title: 'O NAS', links: ['Nasza Misja', 'Nasz Wpływ', 'Nasza Historia', 'Nasz Zespół'] },
+    { title: 'DEFINICJA PROBLEMU', links: ['Sytuacja', 'Rozwiązanie', 'Dane'] },
+    // { title: 'Materiały', links: ['Dla rodziców', 'Dla nauczycieli'] }
   ];
 
-  const rightLinks = ['Zaangażuj się', 'Podpisz PAKT', 'Wesprzyj finansowo'];
+  const rightLinks = ['CO MOGĘ ZROBIĆ?', 'CZYM JEST PAKT?'];
 
   const slugify = (text: string): string => {
     const polishMap: { [key: string]: string } = {
@@ -47,8 +47,8 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-4 left-[5%] right-[5%] bg-(--background) shadow-lg z-50 rounded-3xl">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-4 mx-auto">
+    <header className="fixed top-4 left-[4%] right-[4%] bg-(--background) shadow-lg z-50 rounded-3xl">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 md:px-6 py-2 mx-auto">
         {/* Left: Hamburger for mobile + Desktop menus */}
         <div className="justify-self-start flex items-center">
           <button
@@ -73,10 +73,10 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-2 md:space-x-4 lg:space-x-6">
             {menus.map((menu, index) => (
               <div key={index} className="group relative">
-                <div className="cursor-pointer font-medium text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors">
+                <div className="cursor-pointer font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors">
                   {menu.title}
                 </div>
-                <ul className="absolute left-0 top-full bg-white shadow-xl rounded-lg border border-gray-200 min-w-[150px] py-2 z-10 hidden group-hover:block">
+                <ul className="font-menu font-bold absolute left-0 top-full bg-white shadow-xl rounded-lg border border-gray-200 min-w-[150px] py-2 z-10 hidden group-hover:block">
                   {menu.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <Link
@@ -94,24 +94,12 @@ const Header: React.FC = () => {
         </div>
 
         {/* Center: Logo and Organization Name */}
-        <div className="justify-self-center flex items-center space-x-2 md:space-x-3">
-          {/*
-          <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">L</span>
+        <div className="flex flex-row justify-center items-center space-x-2 md:space-x-3">
+          <Image src="/images/logo1.png" alt="" width={70} height={70} />
+          <div className="flex flex-col justify-center items-left">
+            <p className="text-lg md:text-3xl font-title">DZIECIŃSTWO</p>
+            <p className="text-lg md:text-3xl font-title">BEZ SMARTFONA</p>
           </div>
-          <span className="text-lg md:text-xl font-bold text-gray-900">MyOrg</span>
-          */}
-
-            <Link href="/" className="inline-block">
-              <Image
-                src="https://cdn.prod.website-files.com/67c6c3a4d27cc65012ee864b/68e4d17a562c5d3c1512f761_sfc-logo.svg"
-                loading="lazy"
-                alt=""
-                width={180}
-                height={60}
-              />
-            </Link>
-
         </div>
 
         {/* Right: Desktop links + Search icon */}
@@ -121,13 +109,14 @@ const Header: React.FC = () => {
               <Link
                 key={index}
                 href={`/${slugify(link)}`}
-                className="font-medium text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors"
+                className="font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors"
               >
                 {link}
               </Link>
             ))}
           </nav>
           {/* Search Icon */}
+          {/*
           <button className="p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">
             <svg
               className="w-5 h-5"
@@ -144,6 +133,7 @@ const Header: React.FC = () => {
               />
             </svg>
           </button>
+          */}
         </div>
       </div>
 
@@ -152,7 +142,7 @@ const Header: React.FC = () => {
         <div className="md:hidden bg-white shadow-xl border-t border-gray-200 px-4 md:px-6 py-4">
           {menus.map((menu, index) => (
             <div key={index} className="mb-4">
-              <div className="font-medium text-gray-900 py-2">{menu.title}</div>
+              <div className="font-menu text-gray-900 py-2">{menu.title}</div>
               <ul className="space-y-2">
                 {menu.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
@@ -173,7 +163,7 @@ const Header: React.FC = () => {
               <Link
                 key={index}
                 href={`/${slugify(link)}`}
-                className="block font-medium text-gray-700 hover:text-gray-900 py-2 transition-colors"
+                className="block font-menu text-gray-700 hover:text-gray-900 py-2 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link}
