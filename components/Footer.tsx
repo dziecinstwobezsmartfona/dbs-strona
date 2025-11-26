@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-(--background)">
-      <div className="bg-(--foreground) text-white pt-16 pb-8 rounded-t-3xl">
+      <div className="bg-(--foreground) text-white pt-16 pb-8">
         {/* Inner container for content width and padding */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Newsletter signup section with light lime background and rounded corners */}

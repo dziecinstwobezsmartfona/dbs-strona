@@ -13,7 +13,7 @@ interface TagProps {
 }
 
 const defaultClasses =
-  "inline-flex items-center px-3 py-1 rounded-full text-sm font-menu font-medium transition-colors";
+  "inline-flex items-center px-5 py-2 rounded-full text-sm font-menu font-medium transition-colors";
 
 const Tag: React.FC<TagProps> = ({ children, className = "", as = "span", href, onClick }) => {
   const classes = `${defaultClasses} ${className}`.trim();
