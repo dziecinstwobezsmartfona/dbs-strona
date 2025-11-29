@@ -13,8 +13,8 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const menus: MenuItem[] = [
-    { title: 'O NAS', links: ['Nasza Misja', 'Nasz Wpływ', 'Nasza Historia', 'Nasz Zespół'] },
-    { title: 'DEFINICJA PROBLEMU', links: ['Sytuacja', 'Rozwiązanie', 'Dane'] },
+    { title: 'O NAS', links: ['Nasza Misja', 'Nasz Wpływ'] },
+    { title: 'CO ROBIMY', links: ['Sytuacja', 'Rozwiązanie'] },
     // { title: 'Materiały', links: ['Dla rodziców', 'Dla nauczycieli'] }
   ];
 

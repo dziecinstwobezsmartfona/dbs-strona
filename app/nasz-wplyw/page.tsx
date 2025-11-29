@@ -6,7 +6,7 @@ export default function NaszaWplyw() {
     return (
         <main className="bg-(--main-accent) min-h-screen flex flex-col items-center justify-top pt-45">
             <header className="flex flex-col w-3/4 md:w-1/2 mx-auto items-center justify-center text-center">
-                <Tag className="bg-black/10 text-foreground mb-12">Nasza Wpływ</Tag>
+                <Tag className="bg-black/10 text-foreground mb-12">Nasz Wpływ</Tag>
                 <p className="text-5xl/16 md:text-8xl/32 font-title mb-12">Zmiana jest zaraźliwa</p>
                 <p className="text-lg md:text-xl mb-8">„Dzieciństwo Bez Smartfona” to nie kampania – to <b>zmiana kulturowa</b>, która zyskuje popularność na całym świecie.</p>
                 <p className="text-lg md:text-xl mb-8">Rodziny stawiają opór, co zmienia charakter rozmów, a <b>presja</b>, by dać dzieciom smartfona, „bo wszyscy inni go mają”, <b>w końcu zaczyna ustępować</b>.</p>
