@@ -36,7 +36,7 @@ export default function NaszaWplyw() {
                 <section className="flex flex-col w-full p-8 md:p-16 text-center text-3xl md:text-5xl/16 font-title">
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">
-                        <p>✍️ Ponad 160 000 podpisanych Paktów Rodzicielskich</p>
+                        <p>✍️ Ponad 160 000 podpisanych Paktów Rodziców</p>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">

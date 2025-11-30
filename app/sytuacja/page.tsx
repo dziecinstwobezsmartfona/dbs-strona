@@ -78,7 +78,7 @@ export default function NaszWplyw() {
             <section className="w-3/4 md:w-1/2 mx-auto text-center mt-24">
                 <p className="text-lg md:text-xl mb-8 font-bold">Zamiast dorastać w odpowiednim tempie, dzieci są zbyt szybko wciągane w świat wirtualny, który jest zaprojektowany tak, aby nie mogły się już z niego wydostać.</p>
                 <p className="text-lg md:text-xl mb-8">Ma to ogromny wpływ na ich rozwój, psychikę i relacje z innymi. Nie możemy już dłużej udawać, że problem nie istnieje.</p>
-                <p className="text-lg md:text-xl mb-8 font-bold">Oto niektóre z najważniejszych problemów:</p>
+                <p className="text-lg md:text-xl mb-8 font-bold">Oto niektóre z najważniejszych czynników:</p>
             </section>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-36">
                 <div className="flex flex-col w-full md:p-16 text-center text-3xl md:text-5xl/16 font-title">
