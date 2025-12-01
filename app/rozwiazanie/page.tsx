@@ -55,7 +55,7 @@ export default function NaszaMisja() {
                         <p className="text-3xl md:text-5xl/16 font-title mb-12">Nie jesteśmy przeciwnikami technologii, jesteśmy <i>zwolennikami dobrego dzieciństwa</i></p>
                         <p className="text-lg md:text-xl mb-6 font-sans">Wiemy, że technologia ułatwia wiele obszarów życia człowieka i przyczynia się do rozwoju ludzkości. Ważne jest to, jak z niej korzystamy. Chcemy, aby nasze dzieci dorastały z przekonaniem, że technologia jest narzędziem, a nie czymś, od czego zależy ich samopoczucie.</p>
                         <p className="text-lg md:text-xl mb-6 font-sans">Wierzymy w stopniowe, rozsądne budowanie kompetencji cyfrowych i dawanie dzieciom przestrzeni na to, by mogły po prostu być dziećmi. Bo świat online i tak stanie się kiedyś częścią ich życia.</p>
-                        <p className="text-lg md:text-xl mb-12 font-sans">Dzieciństwo Bez Smartfona to droga "złotego środka", równowagi w zdrowym korzystaniu z technologii, a nie zakazów.</p>
+                        <p className="text-lg md:text-xl mb-12 font-sans">Dzieciństwo Bez Smartfona to droga "złotego środka", równowagi w zdrowym korzystaniu z technologii, a nie zakazów i nakazów.</p>
                         <p className="text-lg md:text-xl font-sans font-bold">Poniżej przedstawiamy model, który sprawdza się u wielu rodzin:</p>
                     </div>
                     <div className="w-full px-8 md:px-16"><div className="w-full border-b border-gray-300"></div></div>
@@ -120,7 +120,7 @@ export default function NaszaMisja() {
                     <p className="text-3xl md:text-5xl/16 font-title pb-8">Pamiętaj – każdy ma tu swoją rolę</p>
                     <p className="text-base md:text-lg font-sans pb-8">Każdy z nas współtworzy przyszłość kolejnych pokoleń: rodzice, nauczyciele, pracownicy ochrony zdrowia, dziadkowie, osoby z życia publicznego, a także sami młodzi ludzie.</p>
                     <p className="text-base md:text-lg font-sans pb-8">Razem możemy odrzucić fałszywe przekonanie, że dzieciństwo musi odbywać się w towarzystwie ekranów i algorytmów.</p>
-                    <p className="text-base md:text-lg font-sans font-bold">Im więcej z nas włączy się w ten ruch, tym szybciej nasze dzieci odzyskają radosne dzieciństwo.</p>
+                    <p className="text-base md:text-lg font-sans font-bold">Im więcej z nas włączy się w ten ruch, tym szybciej nasze dzieci odzyskają dobre dzieciństwo.</p>
                 </div>
                 <div className="order-1 md:order-2 w-full mb-12 md:mb-0 md:w-1/2">
                     <Image

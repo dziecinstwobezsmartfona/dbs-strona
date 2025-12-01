@@ -38,8 +38,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center justify-top bg-[url(/images/card-bg-01.webp)] bg-auto bg-top text-(--secondary-accent) w-full m-8 p-8 rounded-3xl">
             <p className="text-3xl md:text-5xl font-title pb-8">Dołącz na Whatsapp</p>
-            <p className="text-sm md:text-xl font-sans text-white">Nasze lokalne grupy WhatsApp DBS to najlepszy sposób na połączenie się z innymi rodzicami w Twojej okolicy. Są one miejscem do dzielenia się pomysłami, zadawania pytań i dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
-            <Link className="flex justify-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 py-4 hover:bg-(--background)" href="czym-jest-pakt">
+            <p className="text-sm md:text-xl font-sans text-white">Nasza grupa na WhatsApp to najlepszy sposób na połączenie się z innymi rodzicami myślącymi podobnie. Są one miejscem do dzielenia się pomysłami, zadawania pytań i dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
+            <Link className="flex justify-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 py-4 hover:bg-(--background)" href="https://chat.whatsapp.com/KKSz0wyUNaGJQD50908mGz?mode=r_c&source_surface=23">
               <span className="text-lg md:text-2xl font-title text-(--foreground)">Nasza społeczność Whatsapp</span>
             </Link>
           </div>

@@ -14,7 +14,11 @@ export default function NaszaMisja() {
                     <span className="text-lg md:text-2xl font-title text-(--foreground)">PODPISZ PAKT! (JUŻ WKRÓTCE)</span>
                 </Link>
                 <p className="text-lg md:text-xl mb-12">Podpisanie Rodzicielskiego Paktu zajmuje 30 sekund, a im więcej z nas to zrobi, tym szybciej zmienimy normy społeczne. Możliwość podpisania Rodzicielskiego Paktu już wkrótce zostanie udostępniona.</p>
-                <p className="text-lg md:text-xl mb-12">Ideą Paktu Rodzicielskiego jest ułatwienie lokalnego, wspólnego działania. <i>W tym miejscu będziemy wprowadzać aktualne dane dotyczące liczby podpisanych Paktów, dzięki czemu będzie można zobaczyć, ile rodzin w Waszej szkole i powiecie podpisało Pakt.</i></p>
+                <p className="text-lg md:text-xl mb-24">Ideą Paktu Rodzicielskiego jest ułatwienie lokalnego, wspólnego działania. <i>W tym miejscu będziemy wprowadzać aktualne dane dotyczące liczby podpisanych Paktów, dzięki czemu będzie można zobaczyć, ile rodzin w Waszej szkole i powiecie podpisało Pakt.</i></p>
+                <Link className="flex justify-center bg-(--foreground) text-(--secondary-accent) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white hover:text-(--foreground)" href="co-moge-zrobic">
+                    <span className="text-lg md:text-2xl font-title">Co jeszcze mogę zrobić?</span>
+                </Link>
+
             </header>
         </main>
     );
