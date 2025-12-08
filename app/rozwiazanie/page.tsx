@@ -10,16 +10,16 @@ export default function NaszaMisja() {
                 <p className="text-lg md:text-xl mb-12 font-bold">Wspólnymi siłami możemy dokonać kulturowej zmiany.</p>
             </header>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-16">
-                <div className="flex flex-col md:flex-row items-center justify-center w-full">
-                    <div className="text-left order-2 md:order-1 w-full p-8 md:p-16">
-                        <p className="text-3xl md:text-5xl/16 font-title pb-8">Odsuwamy w czasie, razem</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">Smartfony to “klucze do królestwa” mediów społecznościowych i całego internetu.</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">Jak wielką ulgę poczulibyśmy wiedząc, że nareszcie to wszystko nie ma dostępu do naszych dzieci przez 24 godziny na dobę, 7 dni w tygodniu?</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">To możliwe. Naszym celem jest opóźnienie momentu w życiu dziecka, w którym dostaje ono swój pierwszy smartfon.</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">Im później wręczymy go dziecku, tym więcej czasu zyskamy, by nauczyć je, jak radzić sobie z działaniem algorytmów, jak unikać negatywnego wpływu mediów społecznościowych i jak budować odporność psychiczną, zwłaszcza w obszarze narastających lęków.</p>
-                        <p className="text-sm md:text-lg font-sans font-bold">Dlatego dziś mówimy jasno: razem opóźnijmy ten moment.</p>
+                <div className="flex flex-col lg:flex-row items-center justify-center w-full">
+                    <div className="text-left order-2 lg:order-1 w-full p-8 lg:p-16">
+                        <p className="text-3xl xl:text-5xl/16 font-title pb-8">Odsuwamy w czasie, razem</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">Smartfony to “klucze do królestwa” mediów społecznościowych i całego internetu.</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">Jak wielką ulgę poczulibyśmy wiedząc, że nareszcie to wszystko nie ma dostępu do naszych dzieci przez 24 godziny na dobę, 7 dni w tygodniu?</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">To możliwe. Naszym celem jest opóźnienie momentu w życiu dziecka, w którym dostaje ono swój pierwszy smartfon.</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">Im później wręczymy go dziecku, tym więcej czasu zyskamy, by nauczyć je, jak radzić sobie z działaniem algorytmów, jak unikać negatywnego wpływu mediów społecznościowych i jak budować odporność psychiczną, zwłaszcza w obszarze narastających lęków.</p>
+                        <p className="text-sm xl:text-lg font-sans font-bold">Dlatego dziś mówimy jasno: razem opóźnijmy ten moment.</p>
                     </div>
-                    <div className="order-1 md:order-2 w-full p-16">
+                    <div className="order-1 lg:order-2 w-full p-16">
                         <Image
                             src="/images/klucze.png"
                             alt=""
@@ -30,14 +30,14 @@ export default function NaszaMisja() {
                         />
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-center justify-center w-full">
-                    <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
-                        <p className="text-3xl md:text-5xl/16 font-title pb-8">Właśnie po to powstał Pakt Rodziców</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">Doskonale wiemy, że gdy jeden rodzic mówi „nie”, może czuć się osamotniony, jednak kiedy robimy to wspólnie – w rodzinie, w społeczności szkolnej czy w lokalnej grupie –  staje się to dużo prostsze.</p>
-                        <p className="text-sm md:text-lg font-sans pb-4">I właśnie o to chodzi w pakcie: o wspólne zobowiązanie, że nie dajemy dzieciom smartfonów przed 14-tym, a dostępu do mediów społecznościowych przed 16-tym rokiem życia.</p>
-                        <p className="text-sm md:text-lg font-sans">Inicjatywa opiera się na społecznościach szkolnych – im więcej z nas dołączy, tym większą siłę zyskujemy i tym silniejszy jest nasz głos.</p>
+                <div className="flex flex-col lg:flex-row items-center justify-center w-full">
+                    <div className="text-left order-2 lg:order-2 w-full p-8 lg:p-16">
+                        <p className="text-3xl xl:text-5xl/16 font-title pb-8">Właśnie po to powstał Pakt Rodziców</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">Doskonale wiemy, że gdy jeden rodzic mówi „nie”, może czuć się osamotniony, jednak kiedy robimy to wspólnie – w rodzinie, w społeczności szkolnej czy w lokalnej grupie –  staje się to dużo prostsze.</p>
+                        <p className="text-sm xl:text-lg font-sans pb-4">I właśnie o to chodzi w pakcie: o wspólne zobowiązanie, że nie dajemy dzieciom smartfonów przed 14-tym, a dostępu do mediów społecznościowych przed 16-tym rokiem życia.</p>
+                        <p className="text-sm xl:text-lg font-sans">Inicjatywa opiera się na społecznościach szkolnych – im więcej z nas dołączy, tym większą siłę zyskujemy i tym silniejszy jest nasz głos.</p>
                     </div>
-                    <div className="order-1 md:order-1 w-full p-16">
+                    <div className="order-1 lg:order-1 w-full p-16">
                         <Image
                             src="/images/pakt-rodzicow.png"
                             alt=""
@@ -59,7 +59,7 @@ export default function NaszaMisja() {
                         <p className="text-lg md:text-xl font-sans font-bold">Poniżej przedstawiamy model, który sprawdza się u wielu rodzin:</p>
                     </div>
                     <div className="w-full px-8 md:px-16"><div className="w-full border-b border-gray-300"></div></div>
-                    <div className="flex flex-col md:flex-row w-full items-center md:items-start justify-between p-8 md:p-16">
+                    <div className="flex flex-col xl:flex-row w-full items-center xl:items-start justify-between p-8 xl:p-16">
                         {/* Wiek 0-11 */}
                         <div className="flex flex-col items-center justify-start w-full mb-12 px-4">
                             <Image
@@ -115,14 +115,14 @@ export default function NaszaMisja() {
                     </div>
                 </div>
             </section>
-            <section className="flex flex-col md:flex-row bg-white rounded-3xl items-center md:items-start justify-between w-3/4 mx-auto mb-32">
-                <div className="text-left order-2 md:order-1 w-full md:pr-32">
+            <section className="flex flex-col lg:flex-row bg-white rounded-3xl items-center lg:items-start justify-between w-3/4 mx-auto mb-32">
+                <div className="text-left order-2 lg:order-1 w-full lg:pr-32">
                     <p className="text-3xl md:text-5xl/16 font-title pb-8">Pamiętaj – każdy ma tu swoją rolę</p>
                     <p className="text-base md:text-lg font-sans pb-8">Każdy z nas współtworzy przyszłość kolejnych pokoleń: rodzice, nauczyciele, pracownicy ochrony zdrowia, dziadkowie, osoby z życia publicznego, a także sami młodzi ludzie.</p>
                     <p className="text-base md:text-lg font-sans pb-8">Razem możemy odrzucić fałszywe przekonanie, że dzieciństwo musi odbywać się w towarzystwie ekranów i algorytmów.</p>
                     <p className="text-base md:text-lg font-sans font-bold">Im więcej z nas włączy się w ten ruch, tym szybciej nasze dzieci odzyskają dobre dzieciństwo.</p>
                 </div>
-                <div className="order-1 md:order-2 w-full mb-12 md:mb-0 md:w-1/2">
+                <div className="order-1 lg:order-2 w-full mb-12 lg:mb-0 lg:w-1/2">
                     <Image
                         src="/images/role-to-play2.jpg"
                         alt=""

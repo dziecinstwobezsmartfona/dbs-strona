@@ -81,165 +81,156 @@ export default function NaszWplyw() {
                 <p className="text-lg md:text-xl mb-8 font-bold">Oto niektóre z najważniejszych czynników:</p>
             </section>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-36">
-                <div className="flex flex-col w-full md:p-16 text-center text-3xl md:text-5xl/16 font-title">
+                <div className="flex flex-col w-full 2xl:p-16 text-center text-3xl md:text-5xl/16 font-title">
                     {/* Coś za coś */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Coś za coś</p>
                             <p className="text-sm md:text-lg font-sans">Dzieci dorastające w erze smartfonów spędzają mniej czasu na zewnątrz, mniej się bawią, mniej czytają, mniej się ruszają – a zdecydowanie więcej przewijają ekran, często w samotności.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/opportunity-costs.jpg"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Szkodliwe treści */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Szkodliwe treści</p>
                             <p className="text-sm md:text-lg font-sans">Dzieci korzystające ze smartfonów mogą w każdej chwili natrafić na nieodpowiednie dla siebie treści podsunięte przez algorytmy. To, co dziecko zobaczy w Internecie zostaje w jego głowie na zawsze.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/harmful-content.webp"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Zdrowie psychiczne */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Zdrowie psychiczne</p>
                             <p className="text-sm md:text-lg font-sans">Coraz więcej badań wskazuje na wyraźny związek między wczesnym posiadaniem smartfona a pogorszeniem zdrowia psychicznego. Od 2010 roku, czyli od czasu, gdy smartfony zaczęły trafiać do rąk dzieci, liczba nastolatków cierpiących na lęki, depresję czy mających problem z samookaleczeniem mocno wzrosła.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/mental-health.jpg"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Uzależnienie */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Uzależnienie</p>
                             <p className="text-sm md:text-lg font-sans">Model biznesowy firm technologicznych jest prosty: im dłużej dzieci korzystają z aplikacji, tym większy zysk dla tych firm. Nic dziwnego, że aplikacje są projektowane tak, by trudno było się od nich oderwać. Dzieci przywiązują się do nich błyskawicznie.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/addiction.jpg"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Uwaga i skupienie */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Uwaga i skupienie</p>
                             <p className="text-sm md:text-lg font-sans">Pojawiające się bardzo często powiadomienia, przyciągają uwagę dzieci i uniemożliwiają skoncentrowanie się na  lekcjach, pasjach czy rozmowach z przyjaciółmi. W dzisiejszym świecie nikogo nie dziwi już to, że młodzi ludzie mają dużą trudność w skupieniu uwagi.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/attention.webp"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Rodzina */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Rodzina</p>
                             <p className="text-sm md:text-lg font-sans">Smartfony wkradły się do naszych domów i zawładnęły tym, jak żyjemy. Codziennie powodują napięcie między domownikami - pojawiają się kłótnie, negocjacje o czas przed ekranem, a wspólne spędzanie czasu bez ciągłego zerkania na telefon staje się coraz trudniejsze. Czas spędzany wspólnie jako rodzina staje się dla dzieci nieatrakcyjny.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/family-life.webp"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Cyberprzemoc */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Cyberprzemoc</p>
                             <p className="text-sm md:text-lg font-sans">Kiedyś konflikty między rówieśnikami kończyły się wraz “z ostatnim dzwonkiem”. Dziś podążają za dziećmi do domu, świecą na ekranach przez całą dobę i nie dają wytchnienia. Dom przestaje być bezpiecznym miejscem, w którym można ochłonąć i odciąć się od napięć.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/cyberprzemoc.png"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Sen */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Sen</p>
                             <p className="text-sm md:text-lg font-sans">Niebieskie światło emitowane przez ekrany hamuje wydzielanie melatoniny i w konsekwencji utrudnia zasypianie. Dodatkowo emocje wynikające z niekończącego się przewijania i wyskakujących na ekranie powiadomień nie pozwalają dzieciom się wyciszyć i zasnąć spokojnie.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/sleep.webp"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     {/* Grooming, czyli „uwodzenie” */}
-                    <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-3/4 mx-auto">
-                        <div className="text-left order-2 md:order-2 w-full p-8 md:p-16">
+                    <div className="flex flex-col md:flex-row items-center justify-center w-full 2xl:w-3/4 mx-auto">
+                        <div className="text-left order-2 md:order-2 w-full p-8 2xl:p-16">
                             <p className="text-3xl md:text-5xl/16 font-title pb-4 md:pb-8">Grooming, czyli „uwodzenie”</p>
                             <p className="text-sm md:text-lg font-sans">TikTok, Snapchat czy Roblox, przez wielu uznawane za niegroźne platformy pozwalające dzieciom fajnie spędzić czas, to również miejsca, do których logują się osoby o złych zamiarach. Dzieci, które dopiero uczą się poruszać w cyfrowym świecie, są dla nich łatwym celem.</p>
                         </div>
-                        <div className="order-1 md:order-1 w-full p-8 md:p-16 mx-auto">
+                        <div className="order-1 md:order-1 w-full p-8 2xl:p-16 mx-auto">
                             <Image
                                 src="/images/grooming.webp"
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="rounded-3xl w-[80%] h-auto mx-auto"
-                                sizes="(max-width: 200px) 100vw, 50vw"
+                                className="rounded-3xl w-[200px] sm:w-[300px] h-auto mx-auto"
                             />
                         </div>
                     </div>
