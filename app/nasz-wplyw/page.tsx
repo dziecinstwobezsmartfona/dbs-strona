@@ -19,7 +19,6 @@ export default function NaszaWplyw() {
                     <div className="text-left order-2 lg:order-1 w-full p-8 lg:p-16">
                         <p className="text-3xl xl:text-5xl/16 font-title pb-8">Rodzice działają razem</p>
                         <p className="text-sm xl:text-lg font-sans pb-6">Rodzice opóźniają wręczenie smartfonów swoim dzieciom, dając im szansę na dorastanie we właściwym dla nich tempie. Właśnie w ten sposób można zmienić normy społeczne – nie za jednym zamachem, ale dzięki tysiącom rodzin sukcesywnie jednoczących się w podejmowaniu tego samego wyboru.</p>
-                        <p className="text-sm xl:text-lg font-sans">W Polsce dopiero rozpoczynamy, ale w Wielkiej Brytanii, gdzie "Dzieciństwo Bez Smartfona" się narodziło, statystyki wyglądają następująco:</p>
                     </div>
                     <div className="order-1 lg:order-2 w-full p-16">
                         <Image
@@ -34,6 +33,7 @@ export default function NaszaWplyw() {
                 </div>
                 {/* Statystyki */}
                 <section className="flex flex-col w-full p-8 lg:p-16 text-center text-3xl md:text-4xl xl:text-5xl/16 font-title">
+                    <p className="text-sm xl:text-lg font-sans py-b lg:pb-16"><b>W Polsce dopiero rozpoczynamy, ale w Wielkiej Brytanii, gdzie "Dzieciństwo Bez Smartfona" się narodziło, statystyki wyglądają następująco:</b></p>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">
                         <p>✍️ Ponad 160 000 podpisanych Paktów Rodziców</p>
