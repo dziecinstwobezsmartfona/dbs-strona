@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Anton, Victor_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const font = Montserrat({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const anton = Anton({ weight: '400', subsets: ['latin'], variable: '--font-anton' });
+const victor = Victor_Mono({ subsets: ['latin'], variable: '--font-victor' });
 
 export const metadata: Metadata = {
   title: "Dzieciństwo Bez Smartfona",
@@ -17,8 +19,8 @@ export default function RootLayout ({
   children:React.ReactNode;
 }) {
   return (
-    <html lang="pl">
-      <body className={font.className}>
+    <html lang="pl" className={`${montserrat.variable} ${anton.variable} ${victor.variable}`}>
+      <body>
         <Header />
         {children}
         <Footer />
