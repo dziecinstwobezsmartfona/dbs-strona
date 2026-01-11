@@ -38,7 +38,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-01.webp)] bg-auto bg-top text-(--secondary-accent) w-full h-auto mx-auto my-8 lg:mx-8 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Dołącz na Whatsapp</p>
-            <p className="text-sm lg:text-xl font-sans text-white">Nasza grupa na WhatsApp to najlepszy sposób na połączenie się z&nbsp;innymi rodzicami myślącymi podobnie. Są one miejscem do dzielenia się pomysłami, zadawania pytań i&nbsp;dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
+            <p className="text-sm lg:text-xl font-sans text-white">Nasza grupa na WhatsApp to najlepszy sposób na połączenie się z&nbsp;innymi rodzicami myślącymi podobnie. Jest ona miejscem do dzielenia się pomysłami, zadawania pytań i&nbsp;dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
             <Link className="flex justify-center items-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://chat.whatsapp.com/KKSz0wyUNaGJQD50908mGz?mode=r_c&source_surface=23">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Ogólnopolska społeczność DBS na Whatsapp</span>
             </Link>
