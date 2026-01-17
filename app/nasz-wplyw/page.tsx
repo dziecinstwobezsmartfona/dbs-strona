@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Tag from '@/components/Tag';
 
-export default function NaszaWplyw() {
+export default function NaszWplyw() {
     return (
         <main className="bg-(--main-accent) min-h-screen flex flex-col items-center justify-top pt-45">
             <header className="flex flex-col w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center">
