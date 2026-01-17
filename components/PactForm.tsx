@@ -5,12 +5,29 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+// School component
+function School({ school, onRemove }: { school: any, onRemove: () => void }) {
+  return (
+    <div className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
+      <span>{school.school} ({school.county}, {school.district}, {school.voivodship})</span>
+      <button
+        type="button"
+        onClick={onRemove}
+        className="bg-red-500 text-white px-2 py-1 rounded text-sm"
+      >
+        Usuń
+      </button>
+    </div>
+  );
+}
+
 // Define validation schema with Zod
 const schema = z.object({
   firstName: z.string().min(1, 'Imię jest wymagane'),
   lastName: z.string().min(1, 'Nazwisko jest wymagane'),
   email: z.string().email('Nieprawidłowy email').min(1, 'Email jest wymagany'),
   schools: z.array(z.object({
+    id: z.string(),
     voivodship: z.string(),
     district: z.string(),
     county: z.string(),
@@ -95,7 +112,8 @@ export default function PactForm() {
   // Handle adding a school
   const addSchool = () => {
     if (currentVoivodship && currentDistrict && currentCounty && currentSchool) {
-      const newSchools = [...selectedSchools, { voivodship: currentVoivodship, district: currentDistrict, county: currentCounty, school: currentSchool }];
+      const newSchool = { id: `${Date.now()}-${Math.random()}`, voivodship: currentVoivodship, district: currentDistrict, county: currentCounty, school: currentSchool };
+      const newSchools = [...selectedSchools, newSchool];
       setSelectedSchools(newSchools);
       setValue('schools', newSchools); // Update form value for validation
 
@@ -103,6 +121,13 @@ export default function PactForm() {
       setCurrentSchool('');
       setShowAddAndSubmit(false);
     }
+  };
+
+  // Handle removing a school
+  const removeSchool = (id: string) => {
+    const newSchools = selectedSchools.filter(school => school.id !== id);
+    setSelectedSchools(newSchools);
+    setValue('schools', newSchools); // Update form value for validation
   };
 
   // Watch consent for submit button
@@ -115,68 +140,67 @@ export default function PactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
-      {/* Name and Email */}
-      <div>
-        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Imię</label>
-        <input id="firstName" {...register('firstName')} className="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-        {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Nazwisko</label>
-        <input id="lastName" {...register('lastName')} className="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-        {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-        <input id="email" type="email" {...register('email')} className="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-      </div>
-
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full p-6 space-y-4">
       {/* Schools Selection */}
       <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Dodaj szkoły</h3>
 
-        {/* Voivodship */}
-        <select
-          value={currentVoivodship}
-          onChange={(e) => setCurrentVoivodship(e.target.value)}
-          className="block w-full border border-gray-300 rounded-md p-2"
-        >
-          <option value="">Wybierz Województwo</option>
-          {voivodships.map((v) => <option key={v} value={v}>{v}</option>)}
-        </select>
-
-        {/* District (show if voivodship selected) */}
-        {currentVoivodship && (
-          <select
-            value={currentDistrict}
-            onChange={(e) => setCurrentDistrict(e.target.value)}
-            className="block w-full border border-gray-300 rounded-md p-2"
-          >
-            <option value="">Wybierz Powiat</option>
-            {districts.map((d) => <option key={d} value={d}>{d}</option>)}
-          </select>
+        {/* Display selected schools */}
+        {selectedSchools.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold">Dodane szkoły:</h3>
+            <div className="space-y-2">
+              {selectedSchools.map((school) => (
+                <School key={school.id} school={school} onRemove={() => removeSchool(school.id)} />
+              ))}
+            </div>
+          </div>
         )}
+        {errors.schools && <p className="text-red-500 text-sm">{errors.schools.message}</p>}
 
-        {/* County (show if district selected) */}
-        {currentDistrict && (
+        <h3 className="text-lg font-semibold">Dodaj szkołę</h3>
+
+        <div className="flex flex-col lg:flex-row gap-2">
+          {/* Voivodship */}
           <select
-            value={currentCounty}
-            onChange={(e) => setCurrentCounty(e.target.value)}
-            className="block w-full border border-gray-300 rounded-md p-2"
+            value={currentVoivodship}
+            onChange={(e) => setCurrentVoivodship(e.target.value)}
+            className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
           >
-            <option value="">Wybierz Gminę</option>
-            {counties.map((c) => <option key={c} value={c}>{c}</option>)}
+            <option value="">Wybierz Województwo</option>
+            {voivodships.map((v) => <option key={v} value={v}>{v}</option>)}
           </select>
-        )}
+
+          {/* District (show if voivodship selected) */}
+          {currentVoivodship && (
+            <select
+              value={currentDistrict}
+              onChange={(e) => setCurrentDistrict(e.target.value)}
+              className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
+            >
+              <option value="">Wybierz Powiat</option>
+              {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+            </select>
+          )}
+
+          {/* County (show if district selected) */}
+          {currentDistrict && (
+            <select
+              value={currentCounty}
+              onChange={(e) => setCurrentCounty(e.target.value)}
+              className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
+            >
+              <option value="">Wybierz Gminę</option>
+              {counties.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+          )}
+        </div>
 
         {/* School (show if county selected) */}
         {currentCounty && (
           <select
             value={currentSchool}
             onChange={(e) => setCurrentSchool(e.target.value)}
-            className="block w-full border border-gray-300 rounded-md p-2"
+            className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
           >
             <option value="">Wybierz Szkołę</option>
             {schools.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -186,19 +210,26 @@ export default function PactForm() {
         {/* Buttons (show if school selected) */}
         {showAddAndSubmit && (
           <div className="flex space-x-2">
-            <button type="button" onClick={addSchool} className="bg-blue-500 text-white px-4 py-2 rounded-md">Dodaj kolejną szkołę</button>
+            <button type="button" onClick={addSchool} className="bg-(--secondary-accent) text-white px-4 py-4 rounded-3xl">Dodaj</button>
           </div>
         )}
 
-        {/* Display selected schools */}
-        {selectedSchools.length > 0 && (
-          <ul className="list-disc pl-5 space-y-1">
-            {selectedSchools.map((school, idx) => (
-              <li key={idx}>{school.school} ({school.county}, {school.district}, {school.voivodship})</li>
-            ))}
-          </ul>
-        )}
-        {errors.schools && <p className="text-red-500 text-sm">{errors.schools.message}</p>}
+      </div>
+
+      {/* Name and Email */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <input id="firstName" {...register('firstName')} placeholder="Imię" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
+          {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
+        </div>
+        <div>
+          <input id="lastName" {...register('lastName')} placeholder="Nazwisko" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
+          {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
+        </div>
+        <div className="md:col-span-2 lg:col-span-1">
+          <input id="email" type="email" {...register('email')} placeholder="Email" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+        </div>
       </div>
 
       {/* Consent */}
@@ -211,7 +242,7 @@ export default function PactForm() {
               type="checkbox"
               checked={field.value}
               onChange={(e) => field.onChange(e.target.checked)}
-              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+              className="h-4 w-4 bg-white text-blue-600 border-gray-300 rounded"
             />
           )}
         />
@@ -223,7 +254,7 @@ export default function PactForm() {
       <button
         type="submit"
         disabled={!consent}
-        className={`w-full bg-green-500 text-white px-4 py-2 rounded-md ${!consent ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`w-full bg-(--secondary-accent) text-white px-4 py-2 rounded-md ${!consent ? 'bg-(--secondary-accent) opacity-50 cursor-not-allowed' : ''}`}
       >
         Podpisuję Pakt
       </button>
