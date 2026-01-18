@@ -15,27 +15,8 @@ export default function PodpiszPakt() {
                 <p className="text-lg md:text-base xl:text-xl mb-8">Dzięki podpisaniu Paktu będziemy mogli przedstawiać informacje na temat liczby rodziców, którzy podpisali Pakt w danej szkole, gminie, powiecie, aby ułatwić rodzicom myślącym podobnie odnalezienie się i dodawać im odwagi w podejmowaniu decyzji opóźnienia wręczenia smartfona swoim dzieciom.</p>
                 <p className="text-lg md:text-base xl:text-xl mb-24"><b>Twój głos ma ogromną moc</b>⚡⚡⚡</p>
             </header>
-            <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-16 p-8">
+            <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-40 p-8">
                 <PactForm />
-            </section>
-            <section className="relative w-screen overflow-hidden">
-                {/* Background Image */}
-                <Image
-                    src="/images/the-beginning.jpg"
-                    alt=""
-                    width={1168}
-                    height={764}
-                    className="absolute w-full h-full object-cover"
-                    sizes="100vw, 50vw"
-                />
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-white opacity-70"></div>
-
-                {/* Content */}
-                <div className="relative z-10 flex flex-col items-center justify-center w-3/4 lg:w-1/2 h-full mx-auto text-center text-(--foreground) px-4">
-                    <p className="text-3xl md:text-4xl xl:text-5xl/16 font-title mt-16 mb-8">To dopiero początek</p>
-                    <p className="text-sm md:text-base xl:text-lg font-bold mb-24">Widzimy rosnące zainteresowanie ze strony rodziców. Nasze wspólne zaangażowanie i determinacja mogą wiele zmienić. Ty też masz wpływ. Już wkrótce znajdziesz tutaj informacje, jak możesz pomóc.</p>
-                </div>
             </section>
         </main>
     );

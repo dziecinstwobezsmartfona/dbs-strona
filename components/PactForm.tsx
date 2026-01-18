@@ -1,62 +1,68 @@
 'use client'; // Mark as client-side for interactivity
 
 import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-// School component
-function School({ school, onRemove }: { school: any, onRemove: () => void }) {
-  return (
-    <div className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
-      <span>{school.school} ({school.county}, {school.district}, {school.voivodship})</span>
-      <button
-        type="button"
-        onClick={onRemove}
-        className="bg-red-500 text-white px-2 py-1 rounded text-sm"
-      >
-        Usuń
-      </button>
-    </div>
-  );
-}
+
 
 // Define validation schema with Zod
 const schema = z.object({
-  firstName: z.string().min(1, 'Imię jest wymagane'),
-  lastName: z.string().min(1, 'Nazwisko jest wymagane'),
-  email: z.string().email('Nieprawidłowy email').min(1, 'Email jest wymagany'),
-  schools: z.array(z.object({
-    id: z.string(),
-    voivodship: z.string(),
-    district: z.string(),
-    county: z.string(),
-    school: z.string(),
-  })).min(1, 'Dodaj co najmniej jedną szkołę'),
-  consent: z.boolean().refine((val) => val === true, 'Zgoda jest wymagana'),
+  firstName: z.string().min(1, 'Proszę podaj Imię'),
+  lastName: z.string().min(1, 'Proszę podaj Nazwisko'),
+  email: z.string().email('Proszę wprowadź prawidłowy Email').min(1, 'Proszę podaj Email'),
+  voivodship: z.string().min(1, 'Proszę podaj Województwo'),
+  district: z.string().min(1, 'Proszę podaj Powiat'),
+  county: z.string().min(1, 'Proszę podaj Gminę'),
+  schoolName: z.string().min(1, 'Proszę podaj Szkołę'),
+  schoolId: z.string(),
+  schoolVoivodship: z.string(),
+  schoolDistrict: z.string(),
+  schoolCounty: z.string(),
+  school: z.string(),
+  consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych'),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function PactForm() {
+  const router = useRouter();
   const [schoolsData, setSchoolsData] = useState<any[]>([]); // Raw data from JSON
-  const [currentVoivodship, setCurrentVoivodship] = useState('');
-  const [currentDistrict, setCurrentDistrict] = useState('');
-  const [currentCounty, setCurrentCounty] = useState('');
-  const [currentSchool, setCurrentSchool] = useState('');
-  const [selectedSchools, setSelectedSchools] = useState<FormData['schools']>([]);
-  const [showAddAndSubmit, setShowAddAndSubmit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
-  const { register, handleSubmit, control, formState: { errors }, setValue, watch } = useForm<FormData>({
+  const { register, handleSubmit, control, formState: { errors }, setValue, watch, trigger } = useForm<FormData>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       firstName: '',
       lastName: '',
       email: '',
-      schools: [],
+      voivodship: '',
+      district: '',
+      county: '',
+      schoolName: '',
+      schoolId: '',
+      schoolVoivodship: '',
+      schoolDistrict: '',
+      schoolCounty: '',
+      school: '',
       consent: false,
     },
   });
+
+  // Watch fields for submit button and cascading
+  const consent = watch('consent');
+  const selectedSchool = watch('school');
+  const firstName = watch('firstName');
+  const lastName = watch('lastName');
+  const email = watch('email');
+  const watchedVoivodship = watch('voivodship');
+  const watchedDistrict = watch('district');
+  const watchedCounty = watch('county');
+  const watchedSchoolName = watch('schoolName');
 
   // Fetch schools data
   useEffect(() => {
@@ -70,73 +76,94 @@ export default function PactForm() {
   const voivodships = useMemo(() => [...new Set(schoolsData.map((item) => item['Województwo']))].sort(), [schoolsData]);
 
   const districts = useMemo(() => {
-    if (!currentVoivodship) return [];
-    return [...new Set(schoolsData.filter((item) => item['Województwo'] === currentVoivodship).map((item) => item['Powiat']))].sort();
-  }, [currentVoivodship, schoolsData]);
+    if (!watchedVoivodship) return [];
+    return [...new Set(schoolsData.filter((item) => item['Województwo'] === watchedVoivodship).map((item) => item['Powiat']))].sort();
+  }, [watchedVoivodship, schoolsData]);
 
   const counties = useMemo(() => {
-    if (!currentDistrict) return [];
-    return [...new Set(schoolsData.filter((item) => item['Województwo'] === currentVoivodship && item['Powiat'] === currentDistrict).map((item) => item['Gmina']))].sort();
-  }, [currentVoivodship, currentDistrict, schoolsData]);
+    if (!watchedDistrict) return [];
+    return [...new Set(schoolsData.filter((item) => item['Województwo'] === watchedVoivodship && item['Powiat'] === watchedDistrict).map((item) => item['Gmina']))].sort();
+  }, [watchedVoivodship, watchedDistrict, schoolsData]);
 
   const schools = useMemo(() => {
-    if (!currentCounty) return [];
-    return schoolsData.filter((item) => item['Województwo'] === currentVoivodship && item['Powiat'] === currentDistrict && item['Gmina'] === currentCounty).map((item) => item['Nazwa']).sort();
-  }, [currentVoivodship, currentDistrict, currentCounty, schoolsData]);
+    if (!watchedCounty) return [];
+    return schoolsData.filter((item) => item['Województwo'] === watchedVoivodship && item['Powiat'] === watchedDistrict && item['Gmina'] === watchedCounty).map((item) => item['Nazwa']).sort();
+  }, [watchedVoivodship, watchedDistrict, watchedCounty, schoolsData]);
 
   // Reset lower levels on change
   useEffect(() => {
-    setCurrentDistrict('');
-    setCurrentCounty('');
-    setCurrentSchool('');
-    setShowAddAndSubmit(false);
-  }, [currentVoivodship]);
+    setValue('district', '');
+    setValue('county', '');
+    setValue('schoolName', '');
+    setValue('school', '');
+  }, [watchedVoivodship]);
 
   useEffect(() => {
-    setCurrentCounty('');
-    setCurrentSchool('');
-    setShowAddAndSubmit(false);
-  }, [currentDistrict]);
+    setValue('county', '');
+    setValue('schoolName', '');
+    setValue('school', '');
+  }, [watchedDistrict]);
 
   useEffect(() => {
-    setCurrentSchool('');
-    setShowAddAndSubmit(false);
-  }, [currentCounty]);
+    setValue('schoolName', '');
+    setValue('school', '');
+  }, [watchedCounty]);
 
+  // Set school fields in form when fully selected
   useEffect(() => {
-    if (currentSchool) {
-      setShowAddAndSubmit(true);
+    if (watchedVoivodship && watchedDistrict && watchedCounty) {
+      // Always set 'school' to match 'schoolName' (empty string when placeholder selected)
+      setValue('school', watchedSchoolName);
+
+      // Find the selected school object from schoolsData only if a school is actually selected
+      if (watchedSchoolName) {
+        const selectedSchoolData = schoolsData.find((item) =>
+          item['Województwo'] === watchedVoivodship &&
+          item['Powiat'] === watchedDistrict &&
+          item['Gmina'] === watchedCounty &&
+          item['Nazwa'] === watchedSchoolName
+        );
+
+        setValue('schoolId', selectedSchoolData ? selectedSchoolData['Numer RSPO'] : '');
+        setValue('schoolVoivodship', watchedVoivodship);
+        setValue('schoolDistrict', watchedDistrict);
+        setValue('schoolCounty', watchedCounty);
+      } else {
+        // Reset school fields when placeholder is selected
+        setValue('schoolId', '');
+        setValue('schoolVoivodship', '');
+        setValue('schoolDistrict', '');
+        setValue('schoolCounty', '');
+      }
     }
-  }, [currentSchool]);
+  }, [watchedVoivodship, watchedDistrict, watchedCounty, watchedSchoolName, setValue, schoolsData]);
 
-  // Handle adding a school
-  const addSchool = () => {
-    if (currentVoivodship && currentDistrict && currentCounty && currentSchool) {
-      const newSchool = { id: `${Date.now()}-${Math.random()}`, voivodship: currentVoivodship, district: currentDistrict, county: currentCounty, school: currentSchool };
-      const newSchools = [...selectedSchools, newSchool];
-      setSelectedSchools(newSchools);
-      setValue('schools', newSchools); // Update form value for validation
+  const isDisabled = !consent || !selectedSchool || !firstName || !lastName || !email;
 
-      // Prefill for next school with previous selections (except school)
-      setCurrentSchool('');
-      setShowAddAndSubmit(false);
+  // Handle form submission
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    try {
+      const { firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, school, consent } = data;
+      const response = await fetch('/api/pakty', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, schoolName: school, consent }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        router.push('/podpisz-pakt-dziekujemy');
+      } else {
+        setSubmitMessage(result.message || 'Błąd podczas podpisywania paktu');
+      }
+    } catch (error) {
+      setSubmitMessage('Błąd połączenia');
+    } finally {
+      setIsSubmitting(false);
     }
-  };
-
-  // Handle removing a school
-  const removeSchool = (id: string) => {
-    const newSchools = selectedSchools.filter(school => school.id !== id);
-    setSelectedSchools(newSchools);
-    setValue('schools', newSchools); // Update form value for validation
-  };
-
-  // Watch consent for submit button
-  const consent = watch('consent');
-
-  // Handle form submission (replace with your API call)
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    // e.g., fetch('/api/submit-pact', { method: 'POST', body: JSON.stringify(data) });
   };
 
   return (
@@ -144,77 +171,91 @@ export default function PactForm() {
       {/* Schools Selection */}
       <div className="space-y-2">
 
-        {/* Display selected schools */}
-        {selectedSchools.length > 0 && (
-          <div>
-            <h3 className="text-lg font-semibold">Dodane szkoły:</h3>
-            <div className="space-y-2">
-              {selectedSchools.map((school) => (
-                <School key={school.id} school={school} onRemove={() => removeSchool(school.id)} />
-              ))}
-            </div>
-          </div>
-        )}
-        {errors.schools && <p className="text-red-500 text-sm">{errors.schools.message}</p>}
-
-        <h3 className="text-lg font-semibold">Dodaj szkołę</h3>
+        <h3 className="text-lg font-semibold">1. Wybierz szkołę</h3>
 
         <div className="flex flex-col lg:flex-row gap-2">
           {/* Voivodship */}
-          <select
-            value={currentVoivodship}
-            onChange={(e) => setCurrentVoivodship(e.target.value)}
-            className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
-          >
-            <option value="">Wybierz Województwo</option>
-            {voivodships.map((v) => <option key={v} value={v}>{v}</option>)}
-          </select>
+          <div>
+            <Controller
+              name="voivodship"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
+                >
+                  <option value="">Wybierz Województwo</option>
+                  {voivodships.map((v) => <option key={v} value={v}>{v}</option>)}
+                </select>
+              )}
+            />
+            {errors.voivodship && <p className="text-red-500 text-sm">{errors.voivodship.message}</p>}
+          </div>
 
           {/* District (show if voivodship selected) */}
-          {currentVoivodship && (
-            <select
-              value={currentDistrict}
-              onChange={(e) => setCurrentDistrict(e.target.value)}
-              className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
-            >
-              <option value="">Wybierz Powiat</option>
-              {districts.map((d) => <option key={d} value={d}>{d}</option>)}
-            </select>
+          {watchedVoivodship && (
+            <div>
+              <Controller
+                name="district"
+                control={control}
+                render={({ field }) => (
+                  <select
+                    {...field}
+                    className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
+                  >
+                    <option value="">Wybierz Powiat</option>
+                    {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+                  </select>
+                )}
+              />
+              {errors.district && <p className="text-red-500 text-sm">{errors.district.message}</p>}
+            </div>
           )}
 
           {/* County (show if district selected) */}
-          {currentDistrict && (
-            <select
-              value={currentCounty}
-              onChange={(e) => setCurrentCounty(e.target.value)}
-              className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
-            >
-              <option value="">Wybierz Gminę</option>
-              {counties.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
+          {watchedDistrict && (
+            <div>
+              <Controller
+                name="county"
+                control={control}
+                render={({ field }) => (
+                  <select
+                    {...field}
+                    className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
+                  >
+                    <option value="">Wybierz Gminę</option>
+                    {counties.map((c) => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                )}
+              />
+              {errors.county && <p className="text-red-500 text-sm">{errors.county.message}</p>}
+            </div>
           )}
         </div>
 
         {/* School (show if county selected) */}
-        {currentCounty && (
-          <select
-            value={currentSchool}
-            onChange={(e) => setCurrentSchool(e.target.value)}
-            className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
-          >
-            <option value="">Wybierz Szkołę</option>
-            {schools.map((s) => <option key={s} value={s}>{s}</option>)}
-          </select>
-        )}
-
-        {/* Buttons (show if school selected) */}
-        {showAddAndSubmit && (
-          <div className="flex space-x-2">
-            <button type="button" onClick={addSchool} className="bg-(--secondary-accent) text-white px-4 py-4 rounded-3xl">Dodaj</button>
+        {watchedCounty && (
+          <div>
+            <Controller
+              name="schoolName"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
+                >
+                  <option value="">Wybierz Szkołę</option>
+                  {schools.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              )}
+            />
+            {errors.schoolName && <p className="text-red-500 text-sm">{errors.schoolName.message}</p>}
           </div>
         )}
 
       </div>
+
+      <h3 className="text-lg font-semibold mt-16">2. Podaj swoje imię, nazwisko oraz email</h3>
 
       {/* Name and Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -231,6 +272,8 @@ export default function PactForm() {
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
       </div>
+
+      <h3 className="text-lg font-semibold mt-16">3. Wyraź zgodę na przetwarzanie danych</h3>
 
       {/* Consent */}
       <div className="flex items-center">
@@ -250,14 +293,17 @@ export default function PactForm() {
       </div>
       {errors.consent && <p className="text-red-500 text-sm">{errors.consent.message}</p>}
 
+      <h3 className="text-lg font-semibold mt-16">4. Podpisz Pakt</h3>
+
       {/* Submit */}
       <button
         type="submit"
-        disabled={!consent}
-        className={`w-full bg-(--secondary-accent) text-white px-4 py-2 rounded-md ${!consent ? 'bg-(--secondary-accent) opacity-50 cursor-not-allowed' : ''}`}
+        disabled={isDisabled || isSubmitting}
+        className={`w-full bg-(--foreground) text-white px-4 py-2 rounded-3xl hover:opacity-80 transition-opacity ${isDisabled || isSubmitting ? 'bg-(--foreground) opacity-50 cursor-not-allowed' : ''}`}
       >
-        Podpisuję Pakt
+        {isSubmitting ? 'Podpisywanie...' : 'Podpisuję Pakt'}
       </button>
+      {submitMessage && <p className={`text-sm mt-2 ${submitMessage.includes('pomyślnie') ? 'text-green-600' : 'text-red-600'}`}>{submitMessage}</p>}
     </form>
   );
 }
