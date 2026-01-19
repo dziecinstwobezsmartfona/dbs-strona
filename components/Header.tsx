@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     // { title: 'Materiały', links: ['Dla rodziców', 'Dla nauczycieli'] }
   ];
 
-  const rightLinks = ['CO MOGĘ ZROBIĆ?', 'CZYM JEST PAKT?'];
+  const rightLinks = ['CO MOGĘ ZROBIĆ?', 'PAKT RODZICÓW'];
 
   const slugify = (text: string): string => {
     const polishMap: { [key: string]: string } = {
@@ -130,7 +130,11 @@ const Header: React.FC = () => {
               <Link
                 key={index}
                 href={`/${slugify(link)}`}
-                className="font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors"
+                className={
+                  link === 'PAKT RODZICÓW'
+                    ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--main-accent)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                    : "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                }
               >
                 {link}
               </Link>

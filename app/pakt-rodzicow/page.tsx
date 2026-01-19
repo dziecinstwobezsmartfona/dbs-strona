@@ -13,8 +13,8 @@ export default function NaszaMisja() {
                 <Link className="flex justify-center bg-(--background) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white" href="podpisz-pakt">
                     <span className="text-lg lg:text-2xl font-title text-(--foreground)">PODPISZ PAKT!</span>
                 </Link>
-                <p className="text-lg lg:text-xl mb-12">Podpisanie Paktu Rodziców zajmuje 30 sekund, a im więcej z nas to zrobi, tym szybciej zmienimy normy społeczne. Możliwość podpisania Paktu Rodziców już wkrótce zostanie udostępniona.</p>
-                <p className="text-lg lg:text-xl mb-24">Ideą Paktu Rodziców jest ułatwienie lokalnego, wspólnego działania. <i>W tym miejscu będziemy wprowadzać aktualne dane dotyczące liczby podpisanych Paktów, dzięki czemu będzie można zobaczyć, ile rodzin w Waszej szkole i powiecie podpisało Pakt.</i></p>
+                <p className="text-lg lg:text-xl mb-12">Podpisanie Paktu Rodziców zajmuje 30 sekund, a im więcej z nas to zrobi, tym szybciej zmienimy normy społeczne.</p>
+                <p className="text-lg lg:text-xl mb-24">Ideą Paktu Rodziców jest ułatwienie lokalnego, wspólnego działania. <i>Już wkrótce w tym miejscu będziemy przedstawiać aktualne dane dotyczące liczby podpisanych Paktów, dzięki czemu będzie można zobaczyć, ile rodzin w Waszej szkole i w Waszej okolicy podpisało Pakt.</i></p>
                 <Link className="flex justify-center bg-(--foreground) text-(--secondary-accent) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white hover:text-(--foreground)" href="co-moge-zrobic">
                     <span className="text-lg lg:text-2xl font-title">Co jeszcze mogę zrobić?</span>
                 </Link>
