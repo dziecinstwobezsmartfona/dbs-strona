@@ -11,8 +11,8 @@ export default function PodpiszPakt() {
                 <p className="text-3xl md:text-4xl xl:text-6xl font-title">Podpisz</p>
                 <p className="text-5xl/16 md:text-6xl/20 xl:text-8xl/32 font-title mb-12">PAKT RODZICÓW</p>
                 <p className="text-lg md:text-base xl:text-xl mb-8"><b>Podpisując ten Pakt, dołączasz do rosnącej społeczności rodziców, którzy decydują się poczekać z wręczeniem dziecku smartfona co najmniej do 14. roku życia, a dostępu do mediów społecznościowych do 16. roku życia.</b></p>
-                <p className="text-lg md:text-base xl:text-xl mb-8">Pakt jest anonimowy (nigdy nie udostępnimy publicznie Twoich danych). Im więcej z nas podpisze, tym większą siłę będzie miał w zmienianiu normy społecznej w naszej społeczności.</p>
-                <p className="text-lg md:text-base xl:text-xl mb-8">Dzięki podpisaniu Paktu będziemy mogli przedstawiać informacje na temat liczby rodziców, którzy podpisali Pakt w danej szkole, gminie, powiecie, aby ułatwić rodzicom myślącym podobnie odnalezienie się i dodawać im odwagi w podejmowaniu decyzji opóźnienia wręczenia smartfona swoim dzieciom.</p>
+                <p className="text-lg md:text-base xl:text-xl mb-8">Podpisanie Paktu nie jest jawne (nigdy nie udostępnimy publicznie żadnych Twoich danych bez Twojej zgody).</p>
+                <p className="text-lg md:text-base xl:text-xl mb-8">Dzięki podpisaniu Paktu będziemy mogli przedstawiać informacje na temat liczby rodziców, którzy podpisali Pakt w danej szkole, gminie, powiecie, aby ułatwić rodzicom myślącym podobnie odnalezienie się i dodawać im odwagi w podejmowaniu decyzji opóźnienia wręczenia smartfona swoim dzieciom. Im więcej z nas podpisze Pakt, tym większą będzie miał siłę w zmienianiu normy społecznej w naszej społeczności.</p>
                 <p className="text-lg md:text-base xl:text-xl mb-24"><b>Twój głos ma ogromną moc</b>⚡⚡⚡</p>
             </header>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-40 p-8">

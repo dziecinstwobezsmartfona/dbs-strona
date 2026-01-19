@@ -17,12 +17,13 @@ const schema = z.object({
   district: z.string().min(1, 'Proszę podaj Powiat'),
   county: z.string().min(1, 'Proszę podaj Gminę'),
   schoolName: z.string().min(1, 'Proszę podaj Szkołę'),
+  numberOfChildren: z.number().min(1, 'Minimum 1 dziecko').max(5, 'Maksymalnie 5 dzieci'),
   schoolId: z.string(),
   schoolVoivodship: z.string(),
   schoolDistrict: z.string(),
   schoolCounty: z.string(),
   school: z.string(),
-  consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych'),
+  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -44,17 +45,18 @@ export default function PactForm() {
       district: '',
       county: '',
       schoolName: '',
+      numberOfChildren: 1,
       schoolId: '',
       schoolVoivodship: '',
       schoolDistrict: '',
       schoolCounty: '',
       school: '',
-      consent: false,
+      gdpr_consent: false,
     },
   });
 
   // Watch fields for submit button and cascading
-  const consent = watch('consent');
+  const gdpr_consent = watch('gdpr_consent');
   const selectedSchool = watch('school');
   const firstName = watch('firstName');
   const lastName = watch('lastName');
@@ -138,20 +140,20 @@ export default function PactForm() {
     }
   }, [watchedVoivodship, watchedDistrict, watchedCounty, watchedSchoolName, setValue, schoolsData]);
 
-  const isDisabled = !consent || !selectedSchool || !firstName || !lastName || !email;
+  const isDisabled = !gdpr_consent || !selectedSchool || !firstName || !lastName || !email;
 
   // Handle form submission
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitMessage('');
     try {
-      const { firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, school, consent } = data;
+      const { firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent } = data;
       const response = await fetch('/api/pakty', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, schoolName: school, consent }),
+        body: JSON.stringify({ firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, schoolName: school, numberOfChildren, gdpr_consent }),
       });
       const result = await response.json();
       if (response.ok) {
@@ -253,6 +255,31 @@ export default function PactForm() {
           </div>
         )}
 
+        {/* Number of Children (show if school selected) */}
+        {watchedSchoolName && (
+          <div>
+            <label className="block text-sm font-medium mb-1">Liczba Twoich dzieci w tej szkole, dla których podpisujesz Pakt:</label>
+            <Controller
+              name="numberOfChildren"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                  className="block bg-white border border-gray-300 rounded-3xl p-4"
+                >
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <option key={num} value={num}>
+                      {num}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.numberOfChildren && <p className="text-red-500 text-sm">{errors.numberOfChildren.message}</p>}
+          </div>
+        )}
+
       </div>
 
       <h3 className="text-lg font-semibold mt-16">2. Podaj swoje imię, nazwisko oraz email</h3>
@@ -278,7 +305,7 @@ export default function PactForm() {
       {/* Consent */}
       <div className="flex items-center">
         <Controller
-          name="consent"
+          name="gdpr_consent"
           control={control}
           render={({ field }) => (
             <input
@@ -291,7 +318,7 @@ export default function PactForm() {
         />
         <label className="ml-2 text-sm text-gray-700">Wyrażam zgodę na przetwarzanie danych</label>
       </div>
-      {errors.consent && <p className="text-red-500 text-sm">{errors.consent.message}</p>}
+      {errors.gdpr_consent && <p className="text-red-500 text-sm">{errors.gdpr_consent.message}</p>}
 
       <h3 className="text-lg font-semibold mt-16">4. Podpisz Pakt</h3>
 

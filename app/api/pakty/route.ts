@@ -30,7 +30,8 @@ export async function POST(request: NextRequest) {
       schoolDistrict: body.schoolDistrict,
       schoolCounty: body.schoolCounty,
       schoolName: body.schoolName,
-      consent: body.consent,
+      numberOfChildren: body.numberOfChildren,
+      gdpr_consent: body.gdpr_consent,
     });
 
     // Save to database

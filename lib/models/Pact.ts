@@ -9,7 +9,8 @@ export interface IPact extends Document {
   schoolDistrict: string;
   schoolCounty: string;
   schoolName: string;
-  consent: boolean;
+  numberOfChildren: number;
+  gdpr_consent: boolean;
   createdAt: Date;
 }
 
@@ -22,9 +23,11 @@ const PactSchema: Schema = new Schema({
   schoolDistrict: { type: String, required: true },
   schoolCounty: { type: String, required: true },
   schoolName: { type: String, required: true },
-  consent: { type: Boolean, required: true },
+  numberOfChildren: { type: Number, required: true },
+  gdpr_consent: { type: Boolean, required: true },
 }, {
   timestamps: true,
 });
 
-export default mongoose.models.Pact || mongoose.model<IPact>('Pact', PactSchema);
+delete mongoose.models.Pact;
+export default mongoose.model<IPact>('Pact', PactSchema);
