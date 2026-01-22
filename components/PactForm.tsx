@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Link from 'next/link';
 
 
 
@@ -23,7 +24,7 @@ const schema = z.object({
   schoolDistrict: z.string(),
   schoolCounty: z.string(),
   school: z.string(),
-  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych'),
+  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych i zapisanie się na newsletter'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -173,7 +174,7 @@ export default function PactForm() {
       {/* Schools Selection */}
       <div className="space-y-2">
 
-        <h3 className="text-lg font-semibold">1. Wybierz szkołę</h3>
+        <h3 className="text-sm md:text-lg font-semibold">1. Wybierz szkołę</h3>
 
         <div className="flex flex-col lg:flex-row gap-2">
           {/* Voivodship */}
@@ -191,7 +192,7 @@ export default function PactForm() {
                 </select>
               )}
             />
-            {errors.voivodship && <p className="text-red-500 text-sm">{errors.voivodship.message}</p>}
+            {errors.voivodship && <p className="text-red-500 text-xs md:text-sm">{errors.voivodship.message}</p>}
           </div>
 
           {/* District (show if voivodship selected) */}
@@ -210,7 +211,7 @@ export default function PactForm() {
                   </select>
                 )}
               />
-              {errors.district && <p className="text-red-500 text-sm">{errors.district.message}</p>}
+              {errors.district && <p className="text-red-500 text-xs md:text-sm">{errors.district.message}</p>}
             </div>
           )}
 
@@ -230,7 +231,7 @@ export default function PactForm() {
                   </select>
                 )}
               />
-              {errors.county && <p className="text-red-500 text-sm">{errors.county.message}</p>}
+              {errors.county && <p className="text-red-500 text-xs md:text-sm">{errors.county.message}</p>}
             </div>
           )}
         </div>
@@ -251,14 +252,14 @@ export default function PactForm() {
                 </select>
               )}
             />
-            {errors.schoolName && <p className="text-red-500 text-sm">{errors.schoolName.message}</p>}
+            {errors.schoolName && <p className="text-red-500 text-xs md:text-sm">{errors.schoolName.message}</p>}
           </div>
         )}
 
         {/* Number of Children (show if school selected) */}
         {watchedSchoolName && (
           <div>
-            <label className="block text-sm font-medium mb-1">Liczba Twoich dzieci w tej szkole, dla których podpisujesz Pakt:</label>
+            <label className="block text-xs md:text-sm font-medium mb-1">Liczba Twoich dzieci w tej szkole, dla których podpisujesz Pakt:</label>
             <Controller
               name="numberOfChildren"
               control={control}
@@ -276,31 +277,31 @@ export default function PactForm() {
                 </select>
               )}
             />
-            {errors.numberOfChildren && <p className="text-red-500 text-sm">{errors.numberOfChildren.message}</p>}
+            {errors.numberOfChildren && <p className="text-red-500 text-xs md:text-sm">{errors.numberOfChildren.message}</p>}
           </div>
         )}
 
       </div>
 
-      <h3 className="text-lg font-semibold mt-16">2. Podaj swoje imię, nazwisko oraz email</h3>
+      <h3 className="text-sm md:text-lg font-semibold mt-16">2. Podaj swoje imię, nazwisko oraz email</h3>
 
       {/* Name and Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
           <input id="firstName" {...register('firstName')} placeholder="Imię" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
-          {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
+          {errors.firstName && <p className="text-red-500 text-xs md:text-sm">{errors.firstName.message}</p>}
         </div>
         <div>
           <input id="lastName" {...register('lastName')} placeholder="Nazwisko" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
-          {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
+          {errors.lastName && <p className="text-red-500 text-xs md:text-sm">{errors.lastName.message}</p>}
         </div>
         <div className="md:col-span-2 lg:col-span-1">
           <input id="email" type="email" {...register('email')} placeholder="Email" className="block bg-white w-full border border-gray-300 rounded-3xl p-2" />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+          {errors.email && <p className="text-red-500 text-xs md:text-sm">{errors.email.message}</p>}
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold mt-16">3. Wyraź zgodę na przetwarzanie danych</h3>
+      <h3 className="text-sm md:text-lg font-semibold mt-16">3. Wyraź zgodę na przetwarzanie danych</h3>
 
       {/* Consent */}
       <div className="flex items-center">
@@ -316,11 +317,11 @@ export default function PactForm() {
             />
           )}
         />
-        <label className="ml-2 text-sm text-gray-700">Wyrażam zgodę na przetwarzanie danych</label>
+        <label className="ml-2 text-xs md:text-sm text-gray-700">Wyrażam zgodę na przetwarzanie danych i zapisuję sie na newsletter (Zapoznaj się z <Link href="/polityka-prywatnosci" className="underline">Polityką prywatności</Link> oraz <Link href="/regulamin-newslettera" className="underline">Regulaminem newslettera</Link>)</label>
       </div>
-      {errors.gdpr_consent && <p className="text-red-500 text-sm">{errors.gdpr_consent.message}</p>}
+      {errors.gdpr_consent && <p className="text-red-500 text-xs md:text-sm">{errors.gdpr_consent.message}</p>}
 
-      <h3 className="text-lg font-semibold mt-16">4. Podpisz Pakt</h3>
+      <h3 className="text-sm md:text-lg font-semibold mt-16">4. Podpisz Pakt</h3>
 
       {/* Submit */}
       <button
@@ -330,7 +331,7 @@ export default function PactForm() {
       >
         {isSubmitting ? 'Podpisywanie...' : 'Podpisuję Pakt'}
       </button>
-      {submitMessage && <p className={`text-sm mt-2 ${submitMessage.includes('pomyślnie') ? 'text-green-600' : 'text-red-600'}`}>{submitMessage}</p>}
+      {submitMessage && <p className={`text-xs md:text-sm mt-2 ${submitMessage.includes('pomyślnie') ? 'text-green-600' : 'text-red-600'}`}>{submitMessage}</p>}
     </form>
   );
 }
