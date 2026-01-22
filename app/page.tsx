@@ -48,7 +48,7 @@ export default function Home() {
           <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo Bez Smartfona to ruch rodzin zjednoczonych wokół celu przedłużenia dzieciństwa bez dostępu do smartfonów i&nbsp;mediów społecznościowych – zamieniamy izolację na zbiorową siłę.</b>.</p>
           <p className="text-lg lg:text-xl mb-8">Razem zwracamy naszym dzieciom to co naprawdę ważne: czas na zabawę, przestrzeń do rozwoju, wolność do bycia dziećmi.</p>
           <p className="text-lg lg:text-xl mb-8">Dzieciństwo powinno być kształtowane przez rodziców i&nbsp;bezpośrednie otoczenie, a&nbsp;nie algorytmy.</p>
-          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="czym-jest-pakt">
+          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="pakt-rodzicow">
             <span className="text-lg lg:text-2xl font-title text-(--secondary-accent) text-center">Podpisz PAKT RODZICÓW</span>
           </Link>
         </div>
