@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
       schoolName: body.schoolName,
       numberOfChildren: body.numberOfChildren,
       gdpr_consent: body.gdpr_consent,
+      newsletter_consent: body.newsletter_consent || false,
     });
 
     // Save to database

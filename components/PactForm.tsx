@@ -24,7 +24,8 @@ const schema = z.object({
   schoolDistrict: z.string(),
   schoolCounty: z.string(),
   school: z.string(),
-  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych i zapisanie się na newsletter'),
+  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych osobowych'),
+  newsletter_consent: z.boolean().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -53,6 +54,7 @@ export default function PactForm() {
       schoolCounty: '',
       school: '',
       gdpr_consent: false,
+      newsletter_consent: false,
     },
   });
 
@@ -118,8 +120,14 @@ export default function PactForm() {
       // Always set 'school' to match 'schoolName' (empty string when placeholder selected)
       setValue('school', watchedSchoolName);
 
-      // Find the selected school object from schoolsData only if a school is actually selected
-      if (watchedSchoolName) {
+      // Handle special case for "Moje dzieci nie chodzą jeszcze do szkoły"
+      if (watchedSchoolName === "Moje dzieci nie chodzą jeszcze do szkoły") {
+        setValue('schoolId', '0');
+        setValue('schoolVoivodship', watchedVoivodship);
+        setValue('schoolDistrict', watchedDistrict);
+        setValue('schoolCounty', watchedCounty);
+      } else if (watchedSchoolName) {
+        // Find the selected school object from schoolsData only if a school is actually selected
         const selectedSchoolData = schoolsData.find((item) =>
           item['Województwo'] === watchedVoivodship &&
           item['Powiat'] === watchedDistrict &&
@@ -148,13 +156,31 @@ export default function PactForm() {
     setIsSubmitting(true);
     setSubmitMessage('');
     try {
-      const { firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent } = data;
+      // Ensure schoolId is set to '0' if "Moje dzieci nie chodzą jeszcze do szkoły" is selected
+      let finalSchoolId = data.schoolId;
+      if (data.schoolName === "Moje dzieci nie chodzą jeszcze do szkoły") {
+        finalSchoolId = '0';
+      }
+      
+      const { firstName, lastName, email, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent, newsletter_consent } = data;
       const response = await fetch('/api/pakty', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ firstName, lastName, email, schoolId, schoolVoivodship, schoolDistrict, schoolCounty, schoolName: school, numberOfChildren, gdpr_consent }),
+        body: JSON.stringify({ 
+          firstName, 
+          lastName, 
+          email, 
+          schoolId: finalSchoolId, 
+          schoolVoivodship, 
+          schoolDistrict, 
+          schoolCounty, 
+          schoolName: school, 
+          numberOfChildren, 
+          gdpr_consent, 
+          newsletter_consent 
+        }),
       });
       const result = await response.json();
       if (response.ok) {
@@ -174,7 +200,7 @@ export default function PactForm() {
       {/* Schools Selection */}
       <div className="space-y-2">
 
-        <h3 className="text-sm md:text-lg font-semibold">1. Wybierz szkołę</h3>
+        <h3 className="text-sm md:text-lg font-semibold">1. Wybierz szkołę (lub gminę, jeśli żadne z Twoich dzieci jeszcze nie uczęszcza do szkoły)</h3>
 
         <div className="flex flex-col lg:flex-row gap-2">
           {/* Voivodship */}
@@ -248,6 +274,7 @@ export default function PactForm() {
                   className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
                 >
                   <option value="">Wybierz Szkołę</option>
+                  <option value="Moje dzieci nie chodzą jeszcze do szkoły">Moje dzieci nie chodzą jeszcze do szkoły</option>
                   {schools.map((s) => <option key={s} value={s}>{s}</option>)}
                 </select>
               )}
@@ -259,7 +286,7 @@ export default function PactForm() {
         {/* Number of Children (show if school selected) */}
         {watchedSchoolName && (
           <div>
-            <label className="block text-xs md:text-sm font-medium mb-1">Liczba Twoich dzieci w tej szkole, dla których podpisujesz Pakt:</label>
+            <label className="block text-xs md:text-sm font-medium mb-1">Liczba Twoich dzieci, dla których podpisujesz Pakt:</label>
             <Controller
               name="numberOfChildren"
               control={control}
@@ -303,7 +330,7 @@ export default function PactForm() {
 
       <h3 className="text-sm md:text-lg font-semibold mt-16">3. Wyraź zgodę na przetwarzanie danych</h3>
 
-      {/* Consent */}
+      {/* GDPR Consent */}
       <div className="flex items-center">
         <Controller
           name="gdpr_consent"
@@ -317,9 +344,26 @@ export default function PactForm() {
             />
           )}
         />
-        <label className="ml-2 text-xs md:text-sm text-gray-700">Wyrażam zgodę na przetwarzanie danych i zapisuję sie na newsletter (Zapoznaj się z <Link href="/polityka-prywatnosci" className="underline">Polityką prywatności</Link> oraz <Link href="/regulamin-newslettera" className="underline">Regulaminem newslettera</Link>)</label>
+        <label className="ml-2 text-xs md:text-sm text-gray-700">Wyrażam zgodę na przetwarzanie danych osobowych (zapoznaj się z <a href="#" onClick={(e) => { e.preventDefault(); window.open('/polityka-prywatnosci?popup=true', 'privacy', 'width=800,height=600,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no'); }} className="underline">Polityką Prywatności</a>)</label>
       </div>
       {errors.gdpr_consent && <p className="text-red-500 text-xs md:text-sm">{errors.gdpr_consent.message}</p>}
+
+      {/* Newsletter Consent */}
+      <div className="flex items-center mt-2">
+        <Controller
+          name="newsletter_consent"
+          control={control}
+          render={({ field }) => (
+            <input
+              type="checkbox"
+              checked={field.value}
+              onChange={(e) => field.onChange(e.target.checked)}
+              className="h-4 w-4 bg-white text-blue-600 border-gray-300 rounded"
+            />
+          )}
+        />
+        <label className="ml-2 text-xs md:text-sm text-gray-700">Zapisuję się na newsletter (zapoznaj się z <a href="#" onClick={(e) => { e.preventDefault(); window.open('/regulamin-newslettera?popup=true', 'terms', 'width=800,height=600,scrollbars=yes,toolbar=no,menubar=no,location=no,status=no'); }} className="underline">Regulaminem Newslettera</a>)</label>
+      </div>
 
       <h3 className="text-sm md:text-lg font-semibold mt-16">4. Podpisz Pakt</h3>
 
@@ -327,11 +371,11 @@ export default function PactForm() {
       <button
         type="submit"
         disabled={isDisabled || isSubmitting}
-        className={`w-full bg-(--foreground) text-white px-4 py-2 rounded-3xl hover:opacity-80 transition-opacity ${isDisabled || isSubmitting ? 'bg-(--foreground) opacity-50 cursor-not-allowed' : ''}`}
+        className={`w-full font-title text-lg md:text-xl bg-(--foreground) text-(--secondary-accent) px-4 py-2 rounded-3xl hover:opacity-80 transition-opacity ${isDisabled || isSubmitting ? 'bg-(--foreground) opacity-50 cursor-not-allowed' : ''}`}
       >
         {isSubmitting ? 'Podpisywanie...' : 'Podpisuję Pakt'}
       </button>
-      {submitMessage && <p className={`text-xs md:text-sm mt-2 ${submitMessage.includes('pomyślnie') ? 'text-green-600' : 'text-red-600'}`}>{submitMessage}</p>}
+      {submitMessage && <p className={`text-sm md:text-lg mt-2 ${submitMessage.includes('pomyślnie') ? 'text-green-600' : 'text-red-600'}`}>{submitMessage}</p>}
     </form>
   );
 }

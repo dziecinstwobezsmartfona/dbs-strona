@@ -11,6 +11,7 @@ export interface IPact extends Document {
   schoolName: string;
   numberOfChildren: number;
   gdpr_consent: boolean;
+  newsletter_consent: boolean;
   createdAt: Date;
 }
 
@@ -25,6 +26,7 @@ const PactSchema: Schema = new Schema({
   schoolName: { type: String, required: true },
   numberOfChildren: { type: Number, required: true },
   gdpr_consent: { type: Boolean, required: true },
+  newsletter_consent: { type: Boolean, default: false },
 }, {
   timestamps: true,
 });
