@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '../../../lib/mongodb';
 import Pact from '../../../lib/models/Pact';
 
+// Required for Netlify deployment - ensures this route runs as a Node.js function
+export const runtime = 'nodejs';
+
 // Send transactional email via Brevo API
 async function sendBrevoEmail(firstName: string, lastName: string, email: string) {
   const apiKey = process.env.BREVO_API_KEY;
