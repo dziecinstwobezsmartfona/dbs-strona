@@ -1,3 +1,4 @@
+//small change
 import Link from 'next/link';
 
 export default function Home() {
@@ -32,7 +33,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-full h-auto mx-auto my-8 lg:mx-8 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Podpisz PAKT RODZICÓW</p>
             <p className="text-sm lg:text-xl font-sans text-white">Pakt Rodziców to sposób, aby wspólnie z&nbsp;innymi rodzicami w&nbsp;swojej społeczności zobowiązać się wzajemnie do nie dawania swoim dzieciom smartfonów przed ukończeniem 14 lat, oraz dostępu do mediów społecznościowych przed ukończeniem 16 lat.</p>
-            <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="czym-jest-pakt">
+            <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="pakt-rodzicow">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Podpisz PAKT</span>
             </Link>
           </div>

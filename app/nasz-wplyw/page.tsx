@@ -36,7 +36,7 @@ export default function NaszWplyw() {
                     <p className="text-sm xl:text-lg font-sans py-b lg:pb-16"><b>W Polsce dopiero rozpoczynamy, ale w Wielkiej Brytanii, gdzie "Dzieciństwo Bez Smartfona" się narodziło, statystyki wyglądają następująco:</b></p>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">
-                        <p>✍️ Ponad 160 000 podpisanych Paktów Rodziców</p>
+                        <p>✍️ Ponad 175 000 podpisanych Paktów Rodziców</p>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">

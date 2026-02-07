@@ -6,7 +6,7 @@ import React from 'react';
 
 interface MenuItem {
   title: string;
-  links: string[];
+  links: Array<{ label: string; href: string }>;
 }
 
 const Header: React.FC = () => {
@@ -26,38 +26,15 @@ const Header: React.FC = () => {
   }, []);
 
   const menus: MenuItem[] = [
-    { title: 'O NAS', links: ['Nasza Misja', 'Nasz Wpływ'] },
-    { title: 'CO ROBIMY', links: ['Sytuacja', 'Rozwiązanie'] },
-    // { title: 'Materiały', links: ['Dla rodziców', 'Dla nauczycieli'] }
+    { title: 'O NAS', links: [{ label: 'Nasza Misja', href: '/nasza-misja' }, { label: 'Nasz Wpływ', href: '/nasz-wplyw' }] },
+    { title: 'CO ROBIMY', links: [{ label: 'Sytuacja', href: '/sytuacja' }, { label: 'Rozwiązanie', href: '/rozwiazanie' }] },
+    // { title: 'Materiały', links: [{ label: 'Dla rodziców', href: '/dla-rodzicow' }, { label: 'Dla nauczycieli', href: '/dla-nauczycieli' }] }
   ];
 
-  const rightLinks = ['CO MOGĘ ZROBIĆ?', 'PAKT RODZICÓW'];
-
-  const slugify = (text: string): string => {
-    const polishMap: { [key: string]: string } = {
-      'ą': 'a', 'Ą': 'a',
-      'ć': 'c', 'Ć': 'c',
-      'ę': 'e', 'Ę': 'e',
-      'ł': 'l', 'Ł': 'l',
-      'ń': 'n', 'Ń': 'n',
-      'ó': 'o', 'Ó': 'o',
-      'ś': 's', 'Ś': 's',
-      'ź': 'z', 'Ź': 'z',
-      'ż': 'z', 'Ż': 'z',
-    };
-
-    return text
-      .split('')
-      .map(char => polishMap[char] || char)
-      .join('')
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '')
-      .replace(/--+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '');
-  };
+  const rightLinks = [
+    { label: 'CO MOGĘ ZROBIĆ?', href: '/co-moge-zrobic' },
+    { label: 'Podpisz PAKT', href: '/pakt-rodzicow' }
+  ];
 
   return (
     <header className="fixed top-4.5 left-[4%] right-[4%] bg-(--background) shadow-lg z-50 rounded-3xl">
@@ -98,11 +75,11 @@ const Header: React.FC = () => {
                   {menu.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <Link
-                        href={`/${slugify(link)}`}
+                        href={link.href}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
                         onClick={() => setOpenMenuIndex(null)}
                       >
-                        {link}
+                        {link.label}
                       </Link>
                     </li>
                   ))}
@@ -129,14 +106,14 @@ const Header: React.FC = () => {
             {rightLinks.map((link, index) => (
               <Link
                 key={index}
-                href={`/${slugify(link)}`}
+                href={link.href}
                 className={
-                  link === 'PAKT RODZICÓW'
+                  link.label === 'Podpisz PAKT'
                     ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--main-accent)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white px-2 md:px-4 py-4 rounded-3xl transition-colors"
                     : "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
                 }
               >
-                {link}
+                {link.label}
               </Link>
             ))}
           </nav>
@@ -172,11 +149,11 @@ const Header: React.FC = () => {
                 {menu.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
-                      href={`/${slugify(link)}`}
+                      href={link.href}
                       className="block text-sm text-gray-700 hover:text-gray-900 transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      {link}
+                      {link.label}
                     </Link>
                   </li>
                 ))}
@@ -187,11 +164,11 @@ const Header: React.FC = () => {
             {rightLinks.map((link, index) => (
               <Link
                 key={index}
-                href={`/${slugify(link)}`}
+                href={link.href}
                 className="block font-menu text-gray-700 hover:text-gray-900 py-2 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link}
+                {link.label}
               </Link>
             ))}
           </div>
