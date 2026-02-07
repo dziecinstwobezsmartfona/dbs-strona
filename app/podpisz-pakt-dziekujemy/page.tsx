@@ -9,14 +9,16 @@ export default function PodpiszPaktDziekujemy() {
                 <Tag className="bg-black/10 text-foreground mb-12">Pakt</Tag>
                 <p className="text-3xl md:text-4xl xl:text-6xl font-title">Dziękujemy</p>
                 <p className="text-5xl/16 md:text-6xl/20 xl:text-8xl/32 font-title mb-12">ZA PODPISANIE PAKTU</p>
-                <p className="text-lg md:text-base xl:text-xl mb-8"><b>Dziękujemy za dołączenie do społeczności rodziców, którzy decydują się poczekać z wręczeniem dziecku smartfona co najmniej do 14. roku życia, a dostępu do mediów społecznościowych do 16. roku życia.</b></p>
-                <p className="text-lg md:text-base xl:text-xl mb-8">Twój głos ma ogromną moc i pomaga zmieniać normy społeczne.</p>
-                <p className="text-lg md:text-base xl:text-xl mb-24">Razem możemy wiele zmienić! ⚡⚡⚡</p>
+                <p className="text-lg md:text-base xl:text-xl mb-8"><b>Drogi Rodzicu, ta strona jest potwierdzeniem podpisania przez Ciebie Paktu Rodziców! Gratulujemy!</b></p>
             </header>
-            <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-40 p-8">
+            <section className="flex flex-col bg-(--secondary-background) text-(--secondary-accent) rounded-3xl items-center justify-center w-3/4 mx-auto mb-40 p-8">
                 <p className="text-lg mb-4">Co dalej?</p>
-                <p className="text-base mb-8">Możesz podzielić się informacją o Pakcie ze znajomymi lub sprawdzić nasze inne zasoby.</p>
-                <Link href="/" className="bg-(--foreground) text-white px-6 py-2 rounded-3xl">Wróć do strony głównej</Link>
+                <p className="text-lg md:text-base xl:text-xl mb-8">Początki mogą być trudne, dlatego przede wszystkim zachęcamy Cię do dołączenia do grupy Twojej szkoły w społeczności DBS na WhatsAppie. Bycie częścią grupy, która ma podobne podejście, może przynieść ogromne wsparcie.</p>
+                <p className="text-lg md:text-base xl:text-xl mb-8">Tutaj znajdziesz grupę swojej szkoły na WhatsAppie:</p>
+                <Link href="/" className="bg-(--foreground) text-white px-6 py-2 rounded-3xl mb-8">
+                    <span className="text-lg lg:text-2xl font-title text-(--secondary-accent) text-center">Grupy Whatsapp dla szkół</span>
+                </Link>
+                <p className="text-lg md:text-base xl:text-xl mb-8">Grupa szkolna to miejsce, w którym wspólnie z innymi rodzicami, którzy mają dzieci w Twojej szkole, możecie rozmawiać, dzielić się pomysłami, planować wspólne działania oraz wspierać się nawzajem.</p>
             </section>
         </main>
     );
