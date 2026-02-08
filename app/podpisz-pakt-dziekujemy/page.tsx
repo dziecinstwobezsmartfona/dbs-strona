@@ -40,7 +40,7 @@ export default function PodpiszPaktDziekujemy() {
           <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mb-8 p-4 hover:bg-(--secondary-background)" href="https://chat.whatsapp.com/KKSz0wyUNaGJQD50908mGz?mode=r_c&source_surface=23">
             <span className="text-lg lg:text-2xl font-title text-(--secondary-accent) text-center">Dołącz do ogólnopolskiej społeczności na WhatsApp</span>
           </Link>
-          
+
           {/* Materiały pomocnicze */}
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-full h-auto mx-auto my-8 lg:mx-8 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Materiały pomocnicze</p>
@@ -56,6 +56,9 @@ export default function PodpiszPaktDziekujemy() {
             </Link>
             <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://drive.google.com/file/d/1mG1eOrIsBHixjMHGWmnBcBJcUnhS2Ypn/view?usp=sharing">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Prezentacja dla rodziców.pdf</span>
+            </Link>
+            <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://docs.google.com/document/d/15RmM4p2QndwEpb_zta4dxDe6KFVTTDn04UpiaQ1-FME/edit?usp=sharing">
+              <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Edytowalny szablon plakatu</span>
             </Link>
             <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://dziecinstwobezsmartfona.pl/kodeks-postepowania">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Kodeks postępowania społeczności DBS</span>

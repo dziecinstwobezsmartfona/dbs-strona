@@ -35,6 +35,9 @@ export default function NaszaMisja() {
                     <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://drive.google.com/file/d/1mG1eOrIsBHixjMHGWmnBcBJcUnhS2Ypn/view?usp=sharing">
                         <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Prezentacja dla rodziców.pdf</span>
                     </Link>
+                    <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://docs.google.com/document/d/15RmM4p2QndwEpb_zta4dxDe6KFVTTDn04UpiaQ1-FME/edit?usp=sharing">
+                        <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Edytowalny szablon plakatu</span>
+                    </Link>
                     <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://dziecinstwobezsmartfona.pl/kodeks-postepowania">
                         <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Kodeks postępowania społeczności DBS</span>
                     </Link>
