@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Tag from '@/components/Tag';
 
-export default function NaszaWplyw() {
+export default function NaszWplyw() {
     return (
         <main className="bg-(--main-accent) min-h-screen flex flex-col items-center justify-top pt-45">
             <header className="flex flex-col w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center">
@@ -36,7 +36,7 @@ export default function NaszaWplyw() {
                     <p className="text-sm xl:text-lg font-sans py-b lg:pb-16"><b>W Polsce dopiero rozpoczynamy, ale w Wielkiej Brytanii, gdzie "Dzieciństwo Bez Smartfona" się narodziło, statystyki wyglądają następująco:</b></p>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">
-                        <p>✍️ Ponad 160 000 podpisanych Paktów Rodziców</p>
+                        <p>✍️ Ponad 175 000 podpisanych Paktów Rodziców</p>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">

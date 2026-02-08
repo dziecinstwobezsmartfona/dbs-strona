@@ -1,18 +1,29 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
     <footer className="bg-(--foreground) text-(--background)">
-      <div className="flex flex-row h-45 justify-between items-end p-8">
-        <div>
+      <div className="flex flex-col md:flex-row md:justify-between items-center md:items-end p-8">
+        <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
           <Image
             src="/images/logo2.png"
             width={100}
             height={100}
             alt="Dzieciństwo Bez Smartfona Logo"
           />
+          <div className="md:ml-4 mt-4 md:mt-0 text-center md:text-left text-xs md:text-sm">
+            <p><b>Stowarzyszenie "Dzieciństwo Bez Smartfona"</b></p>
+            <p>Aleje Jerozolimskie 109/70</p>
+            <p>02-011 Warszawa</p>
+            <p>kontakt@dziecinstwobezsmartfona.pl</p>
+          </div>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center md:items-end text-xs md:text-sm">
+          <Link href="/kodeks-postepowania" className="text-(--background) hover:opacity-80 mt-8 mb-4 md:my-0 md:mr-8">Kodeks postępowania</Link>
+          <Link href="/polityka-prywatnosci" className="text-(--background) hover:opacity-80 mb-4 md:my-0 md:mr-8">Polityka prywatności</Link>
+          <Link href="/regulamin-newslettera" className="text-(--background) hover:opacity-80 mb-4 md:my-0 md:mr-8">Regulamin newslettera</Link>
+          <Link href="https://drive.google.com/file/d/1PrCJM6r59RLLpfud7lGpMLLuNJyuOl_t/view?usp=sharing" className="text-(--background) hover:opacity-80 mb-8 md:my-0 md:mr-8">FAQ</Link>
           <div className="flex space-x-4 items-center">
             <a
               href="https://www.instagram.com/dziecinstwobezsmartfona/"
