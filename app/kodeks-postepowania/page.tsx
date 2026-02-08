@@ -9,31 +9,45 @@ export default function KodeksPostepowania() {
             </header>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-16">
                 <div className="text-left w-full p-8 lg:p-16">
-                    <h1 className="text-2xl xl:text-3xl font-title pb-6">Kodeks postępowania społeczności Dzieciństwo Bez Smartfona</h1>
+                    <h1 className="text-2xl xl:text-3xl font-title pb-6">Kodeks postępowania społeczności Dzieciństwo Bez Smartfona (DBS)</h1>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Dbajmy o to, aby ten ruch był czymś, z czego wszyscy możemy być dumni
+                        <b>Dbajmy o to, aby ten ruch był czymś, z czego wszyscy możemy być dumni</b>
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        DZIECIŃSTWO BEZ SMARTFONA to społeczność ludzi, których jednoczy bardzo ważny cel: zapewnienie dzieciom czasu i przestrzeni na dorastanie w wolności od wciągających i uzależniających algorytmów.
+                        DBS to społeczność ludzi, których jednoczy bardzo ważny cel: zapewnienie dzieciom czasu i przestrzeni na dorastanie w wolności od wciągających i uzależniających algorytmów.
                         Nie jesteśmy tu po to, by dzielić – jesteśmy tu, by się wspierać, zadawać pytania, wymieniać pomysłami i wspólnie działać na rzecz dzieciństwa.
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Ten Kodeks Postępowania powstał po to, aby społeczność Dzieciństwo Bez Smartfona pozostała otwartym, pełnym szacunku miejscem. Dotyczy to rozmów na naszych grupach WhatsApp, w mediach społecznościowych, w społecznościach szkolnych i poza nimi.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Nasze wartości</h2>
+                    <p className="text-sm xl:text-lg font-sans pb-2">
+                        <b>Empatia. Szacunek. Otwartość.</b>
+                    </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Empatia. Szacunek. Otwartość.
                         Oczekujemy, że wszyscy członkowie społeczności będą rozmawiać z życzliwością i empatią – niezależnie od tego, czy rozmawiają z kimś, kto doskonale rozumie nasze podejście, czy patrzy na sprawę inaczej.
                         To trudny temat. Nie ma jednej słusznej odpowiedzi. Rodzicielstwo nie jest łatwe, każdy robi, co może, w oparciu o posiadane informacje i doświadczenie, a naszym zadaniem jest dzielenie się, słuchanie i tworzenie przestrzeni do tego, żeby móc swobodnie rozmawiać.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Jak działamy</h2>
+                    <p className="text-sm xl:text-lg font-sans pb-2">
+                        <b>Szanujemy różne punkty widzenia.</b>
+                    </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Szanujemy różne punkty widzenia.
                         Dążymy do dużej zmiany kulturowej. Ludzie będą mieli różne opinie i doświadczenia związane z tym tematem – i to jest w porządku. Szacunek w dyskusji to podstawa zdrowej rozmowy. W tej społeczności nie zawstydzamy, nie atakujemy, nie moralizujemy.
-                        Pamiętajmy: to system jest wadliwy, nie ludzie
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-2">
+                        <b>Pamiętajmy: to system jest wadliwy, nie ludzie</b>
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Bez względu na to, jakie mamy zdanie w tej debacie, pamiętajmy, że rodziny, szkoły i same dzieci zostały postawione w trudnej sytuacji przez firmy technologiczne, które zaprojektowały swoje produkty tak, abyśmy spędzali przy nich jak najwięcej czasu.
                         Wszyscy potrzebujemy wsparcia, aby przez to przejść.
-                        Z serdecznością i nadzieją
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-2">
+                        <b>Z serdecznością i nadzieją</b>
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Nie unikamy poważnych tematów – jednocześnie nasz ruch opiera się na serdeczności i nadziei. Skupmy się na tym, co dzieci mogą zyskać: wolność, zabawę, relacje, wyobraźnię, zdrowie psychicznie. Tego właśnie chcemy dla naszych dzieci.
                     </p>
 
@@ -53,37 +67,51 @@ export default function KodeksPostepowania() {
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Jesteśmy dla wszystkich</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Ten ruch jest dla wszystkich, natomiast nie tolerujemy żadnej formy dyskryminacji – ani tej ze względu na narodowość, płeć, klasę społeczną ani żadnej innej.
+                        Ten ruch jest dla wszystkich, natomiast nie tolerujemy żadnej formy dyskryminacji – ani tej ze względu na narodowość, płeć, klasę społeczną, ani żadnej innej.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Reprezentowanie DBS publicznie</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Jeśli mówimy o DBS publicznie – w mediach, w szkole lub online – upewnijmy się, że rozumiemy i odzwierciedlamy kluczowe wartości oraz ton ruchu. Zawsze wyraźnie zaznaczajmy, że jesteśmy wolontariuszami, a nie przedstawicielami DBS w sensie zawodowym.
-                        Jeśli macie wątpliwości – prosimy o kontakt: [link do formularza].
+                        Jeśli mówimy o DBS publicznie – w mediach, w szkole lub online – upewnijmy się, że rozumiemy i odzwierciedlamy kluczowe wartości oraz ton ruchu. Zawsze wyraźnie zaznaczajmy, że jesteśmy wolontariuszami społeczności DBS, a nie osobami zatrudnionymi przez Stowarzyszenie DBS, czyli organizację formalno-prawną.
+                        Jeśli macie wątpliwości – prosimy o kontakt pod adresem email: kontakt@dziecinstwobezsmartfona.pl.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Korzystanie z zasobów DBS</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Nasze materiały są udostępniane do wykorzystania niekomercyjnego.
-                        Możecie je udostępniać – prosimy jedynie o wskazanie źródła i link do oryginału.
+                        Materiały Stowarzyszenia DBS są udostępniane do wykorzystania niekomercyjnego.
+                        Każdy może z nich korzystać – prosimy jedynie o wskazanie źródła i link do oryginału.
                         Jeśli potrzebujecie czegoś, czego jeszcze nie mamy – napiszcie do nas, być może możemy pomóc.
-                        Wykorzystanie komercyjne naszej marki, nazwy, zasobów, narzędzi, prezentacji czy treści – w całości lub częściowo – jest zabronione.
-                        Jeśli macie wątpliwości – prosimy o kontakt: [link do formularza].
+                        Wykorzystanie komercyjne marki, nazwy, zasobów, narzędzi, prezentacji czy treści Stowarzyszenia DBS – w całości lub częściowo – jest zabronione.
+                        Jeśli macie wątpliwości – prosimy o kontakt pod adresem email: kontakt@dziecinstwobezsmartfona.pl.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Korzystanie z marki i logo DBS</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Członkowie społeczności nie mogą publikować komunikatów w imieniu Dzieciństwo Bez Smartfona bez wyraźnej zgody założycieli DBS (Link do zakładki kontakt).
-                        Dotyczy to także petycji i komunikatów, które mogłyby sugerować oficjalne stanowisko DBS.
+                        Członkowie społeczności nie mogą wypowiadać się <i>w imieniu</i> Dzieciństwo Bez Smartfona bez wyraźnej zgody Stowarzyszenia DBS (kontakt@dziecinstwobezsmartfona.pl).
+                        Dotyczy to także petycji i komunikatów, które mogłyby sugerować oficjalne stanowisko Stowarzyszenia DBS.
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Lokalni koordynatorzy mogą używać nazwy, logo oraz materiałów DBS w celu wykorzystania podczas lokalnych wydarzeń, pod warunkiem dodania nazwy regionu, miejscowości lub szkoły, np.
                         „Dzieciństwo Bez Smartfona - Szkoła Podstawowa nr. X w Warszawie”
-                        Dostępne edytowalne szablony Canva ułatwiają tworzenie lokalnych materiałów.
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
+                        Dostępne edytowalne szablony ułatwiają tworzenie lokalnych materiałów.
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Jeśli publikujesz komunikaty w imieniu lokalnej grupy DBS, dodaj:
-                        “Dzieciństwo Bez Smartfona - Szkoła Podstawowa nr. X w Warszawie” to niezależna, samoorganizująca się grupa inspirowana ogólnopolskim ruchem Dzieciństwo Bez Smartfona. Wyrażane tu opinie nie odzwierciedlają stanowiska DBS, a DBS nie jest zaangażowane w zarządzanie tą grupą, jej treściami, wydarzeniami ani danymi.”
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
+                        <b>“Dzieciństwo Bez Smartfona - Szkoła Podstawowa nr. X w Warszawie” to niezależna, samoorganizująca się grupa inspirowana ogólnopolskim ruchem Dzieciństwo Bez Smartfona. Wyrażane tu opinie nie odzwierciedlają stanowiska DBS, a DBS nie jest zaangażowane w zarządzanie tą grupą, jej treściami, wydarzeniami ani danymi.”</b>
+                    </p>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         Nie używaj nazwy ani logo DBS do:
-                        ogólnokrajowych kampanii lub wydarzeń,
-                        działań komercyjnych,
-                        działań politycznych lub związanych z partiami.
+                    </p>
+                    <ul className="text-sm xl:text-lg font-sans pb-6 list-disc list-inside">
+                        <li>ogólnokrajowych kampanii lub wydarzeń</li>
+                        <li>działań komercyjnych</li>
+                        <li>działań politycznych lub związanych z partiami</li>
+                    </ul>
+                    <p className="text-sm xl:text-lg font-sans pb-6">
                         W razie wątpliwości napisz do nas: kontakt@dziecinstwobezsmartfona.pl
                     </p>
 
