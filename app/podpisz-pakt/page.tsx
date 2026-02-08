@@ -13,10 +13,11 @@ export default function PodpiszPakt() {
                 <p className="text-lg md:text-base xl:text-xl mb-8"><b>Podpisując ten Pakt, dołączasz do rosnącej społeczności rodziców, którzy decydują się poczekać z wręczeniem dziecku smartfona co najmniej do 14. roku życia, a dostępu do mediów społecznościowych do 16. roku życia.</b></p>
                 <p className="text-lg md:text-base xl:text-xl mb-8">Podpisanie Paktu nie jest jawne (nigdy nie udostępnimy publicznie żadnych Twoich danych bez Twojej zgody).</p>
                 <p className="text-lg md:text-base xl:text-xl mb-8">Dzięki podpisaniu Paktu będziemy mogli przedstawiać informacje na temat liczby rodziców, którzy podpisali Pakt w danej szkole, gminie, powiecie, aby ułatwić rodzicom myślącym podobnie odnalezienie się i dodawać im odwagi w podejmowaniu decyzji opóźnienia wręczenia smartfona swoim dzieciom. Im więcej z nas podpisze Pakt, tym większą będzie miał siłę w zmienianiu normy społecznej w naszej społeczności.</p>
-                <p className="text-lg md:text-base xl:text-xl mb-24"><b>Twój głos ma ogromną moc</b>⚡⚡⚡</p>
+                <p className="text-lg md:text-base xl:text-xl mb-8"><b>Twój głos ma ogromną moc</b>⚡⚡⚡</p>
             </header>
             <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-40 p-8">
                 <PactForm />
+                <p className="text-sm md:text-lg my-8">Masz jakieś pytanie? Zajrzyj do <Link href="https://drive.google.com/file/d/1PrCJM6r59RLLpfud7lGpMLLuNJyuOl_t/view?usp=sharing"><b><u>odpowiedzi na najczęściej zadawane pytania (FAQ</u>)</b>.</Link></p>
             </section>
         </main>
     );
