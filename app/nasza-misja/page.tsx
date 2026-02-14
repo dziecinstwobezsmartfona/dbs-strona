@@ -3,7 +3,7 @@ import Tag from '@/components/Tag';
 
 export default function NaszaMisja() {
     return (
-        <main className="bg-[#C2D3FF] min-h-screen flex flex-col items-center justify-top pt-45">
+        <main className="bg-(--purple) min-h-screen flex flex-col items-center justify-top pt-45">
             <header className="flex flex-col w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center">
                 <Tag className="bg-black/10 text-foreground mb-12">Nasza Misja</Tag>
                 <p className="text-5xl/16 md:text-6xl/20 xl:text-8xl/32 font-title mb-12">Odzyskajmy dzieciństwo</p>
