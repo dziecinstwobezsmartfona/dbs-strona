@@ -15,6 +15,8 @@ interface PactCounterProps {
   foreground?: string;
   /** Subtext to display under the counter */
   subtext?: string;
+  /** Type of count to display: 'children' for number of children (from pakty-count), 'schools' for number of schools (from szkoly-count) */
+  type?: 'children' | 'schools';
 }
 
 interface PaktyCountResponse {
@@ -22,8 +24,12 @@ interface PaktyCountResponse {
   numberOfChildren: number;
 }
 
+interface SzkolyCountResponse {
+  numberOfSchools: number;
+}
+
 /**
- * Component that displays the number of children the pact was signed for.
+ * Component that displays the number of children or schools based on the type prop.
  * 
  * Animation behavior:
  * - While loading from API: counts up slowly from 0
@@ -36,6 +42,7 @@ const PactCounter: React.FC<PactCounterProps> = ({
   background = "bg-[#0A6880]",
   foreground = "text-white",
   subtext,
+  type = "children",
 }) => {
   const [displayCount, setDisplayCount] = useState<number>(0);
   const [targetCount, setTargetCount] = useState<number | null>(null);
@@ -56,15 +63,24 @@ const PactCounter: React.FC<PactCounterProps> = ({
     
     const fetchCount = async () => {
       try {
-        const response = await fetch("/api/pakty-count");
+        const apiEndpoint = type === "schools" ? "/api/szkoly-count" : "/api/pakty-count";
+        const response = await fetch(apiEndpoint);
         if (!response.ok) {
           throw new Error("Failed to fetch count");
         }
-        const data: PaktyCountResponse = await response.json();
         
-        if (isMounted) {
-          setTargetCount(data.numberOfChildren);
-          setIsLoading(false);
+        if (type === "schools") {
+          const data: SzkolyCountResponse = await response.json();
+          if (isMounted) {
+            setTargetCount(data.numberOfSchools);
+            setIsLoading(false);
+          }
+        } else {
+          const data: PaktyCountResponse = await response.json();
+          if (isMounted) {
+            setTargetCount(data.numberOfChildren);
+            setIsLoading(false);
+          }
         }
       } catch (err) {
         console.error("Error fetching pact count:", err);
@@ -83,7 +99,7 @@ const PactCounter: React.FC<PactCounterProps> = ({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [type]);
 
   // Animation effect for counting
   useEffect(() => {
@@ -163,6 +179,7 @@ const PactCounter: React.FC<PactCounterProps> = ({
     items-center
     justify-center
     min-w-[200px]
+    lg:min-w-[400px]
   `.trim();
 
   return (
