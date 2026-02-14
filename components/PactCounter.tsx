@@ -173,7 +173,7 @@ const PactCounter: React.FC<PactCounterProps> = ({
         <span className="tabular-nums">{formatNumber(displayCount)}</span>
       )}
       {subtext && (
-        <span className={`${subtextFont} text-base mt-2`}>
+        <span className={`${subtextFont} text-base mt-2 text-center`}>
           {subtext}
         </span>
       )}

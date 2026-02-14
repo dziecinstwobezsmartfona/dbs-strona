@@ -15,6 +15,8 @@ export default function NaszaMisja() {
                         fontSize="text-5xl lg:text-7xl"
                         subtextFont="font-sans"
                         subtext="dzieci jest już objętych Paktem!"
+                        background="bg-(--background)"
+                        foreground="text-(--foreground)"
                     />
                 </div>
                 <Link className="flex justify-center bg-(--background) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white" href="podpisz-pakt">
