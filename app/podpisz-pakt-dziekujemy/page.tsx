@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PactCounter from '@/components/PactCounter';
 
 export default function PodpiszPaktDziekujemy() {
   return (
@@ -17,7 +18,18 @@ export default function PodpiszPaktDziekujemy() {
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center w-3/4 lg:w-1/2 h-full mx-auto text-center text-(--secondary-accent) px-4">
           <p className="text-3xl lg:text-5xl font-title mt-60 mb-4">Dziękujemy za podpisanie</p>
-          <p className="text-5xl lg:text-7xl font-title mb-40">PAKTU RODZICÓW</p>
+          <p className="text-5xl lg:text-7xl font-title mb-4">PAKTU RODZICÓW!</p>
+          
+          {/* Pact Counter - showing number of children */}
+          <div className="mb-8">
+            <PactCounter 
+              font="font-title"
+              fontSize="text-5xl lg:text-7xl"
+              background="bg-white/60"
+              foreground="text-(--foreground)"
+              subtext="dzieci jest już objętych Paktem!"
+            />
+          </div>
         </div>
       </section>
 

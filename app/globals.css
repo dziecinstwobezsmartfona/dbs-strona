@@ -6,6 +6,8 @@
   --foreground: #0E3B3B;
   --main-accent: #CEFFA8;
   --secondary-accent: #ECFF87;
+  --purple: #C2D3FF;
+  --purple-light: #E2E3FF;
 }
 
 @theme inline {

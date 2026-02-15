@@ -48,7 +48,7 @@ export default function NaszWplyw() {
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                     <div className="w-full p-4">
-                        <p>🌍 32 globalne oddziały Smartphone Free Childhood na sześciu kontynentach: od Nigerii po Holandię, od Argentyny po Australię</p>
+                        <p>🌍 41 globalnych oddziałów Smartphone Free Childhood na sześciu kontynentach: od Nigerii po Holandię, od Argentyny po Australię</p>
                     </div>
                     <div className="w-full p-4"><div className="w-full border-b border-gray-300"></div></div>
                 </section>
@@ -56,7 +56,7 @@ export default function NaszWplyw() {
                 <div className="flex flex-col lg:flex-row items-center justify-center w-full">
                     <div className="text-left order-2 lg:order-2 w-full p-8 lg:p-16">
                         <p className="text-3xl xl:text-5xl/16 font-title pb-8">Świat się przygląda</p>
-                        <p className="text-sm xl:text-lg font-sans pb-6">Obecnie rodzice z ponad 30 krajów pracują nad rozwinięciem ruchu Smartphone Free Childhood. Zainteresowanie międzynarodowe szybko rośnie, a brytyjski ruch jest tematem artykułów, m.in., w „
+                        <p className="text-sm xl:text-lg font-sans pb-6">Obecnie rodzice z ponad 40 krajów pracują nad rozwinięciem ruchu Smartphone Free Childhood. Zainteresowanie międzynarodowe szybko rośnie, a brytyjski ruch jest tematem artykułów, m.in., w „
                             <Link href="https://www.nytimes.com/2025/04/01/world/europe/smartphone-ban-schools-uk-childhood.html" className="hover:"><u>The New York Times</u></Link>” czy „
                             <Link href="https://www.theguardian.com/technology/2024/feb/17/thousands-join-uk-parents-calling-for-smartphone-free-childhood"><u>The Guardian</u></Link>”.
                         </p>
