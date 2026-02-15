@@ -96,7 +96,7 @@ export default function NaszaMisja() {
                                 className="mb-6"
                             />
                             <Tag className="bg-(--main-accent) text-foreground mb-6"><b>Wiek 14-16 lat</b></Tag>
-                            <p className="text-2xl md:text-4xl font-title mb-6">Wsparcie i nadzór</p>
+                            <p className="text-2xl md:text-4xl font-title mb-6">Smartfon z nadzorem</p>
                             <p className="text-base md:text-lg font-sans">Na tym etapie można przekazać dziecku smartfon, ale z ustawioną kontrolą rodzicielską oraz jasnymi zasadami dotyczącymi tego, z jakich aplikacji może korzystać i jak długo każdego dnia.</p>
                         </div>
                         {/* Wiek 16+ */}
@@ -109,8 +109,8 @@ export default function NaszaMisja() {
                                 className="mb-6"
                             />
                             <Tag className="bg-(--main-accent) text-foreground mb-6"><b>Wiek 16+ lat</b></Tag>
-                            <p className="text-2xl md:text-4xl font-title mb-6">Pierwszy smartfon</p>
-                            <p className="text-base md:text-lg font-sans">Jeśli uznasz, że twój nastolatek dobrze radzi sobie z codzienną obecnością internetu i mediów społecznościowych, pozwól mu swobodnie korzystać ze smartfona. Każdy nastolatek jest inny i to ty jako jego rodzic będziesz wiedział, czy jest już na to gotowy.</p>
+                            <p className="text-2xl md:text-4xl font-title mb-6">Smartfon</p>
+                            <p className="text-base md:text-lg font-sans">Jeśli uznasz, że twój nastolatek dobrze radzi sobie z codzienną obecnością internetu i mediów społecznościowych, pozwól mu swobodnie korzystać ze smartfona. Każdy nastolatek jest inny i to ty jako jego rodzic będziesz wiedział, czy jest już na to gotowy. Wiemy, że 16-latek to już prawie dorosły, ale nie rezygnuj z rozmów o tym, co dzieje się w sieci.</p>
                         </div>
                     </div>
                 </div>
