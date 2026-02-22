@@ -168,7 +168,11 @@ export interface Media {
 export interface Article {
   id: string;
   visible?: boolean | null;
-  image: string | Media;
+  /**
+   * Auto-generated from title if left blank
+   */
+  slug: string;
+  image?: (string | null) | Media;
   title: string;
   content: {
     root: {
@@ -313,6 +317,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ArticlesSelect<T extends boolean = true> {
   visible?: T;
+  slug?: T;
   image?: T;
   title?: T;
   content?: T;

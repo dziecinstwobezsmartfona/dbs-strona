@@ -57,29 +57,31 @@ export default async function ArticleCard({ articleId, className = '' }: Props) 
 
   return (
     <Link href={`/articles/${articleId}`}>
-      <div className={`flex flex-col justify-between overflow-hidden w-[300px] h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] focus:outline-none ${className}`}>
-        <div className="h-1/2">
+      <div className={`flex flex-col justify-between overflow-hidden h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] focus:outline-none ${className}`}>
+        <div className="h-1/2 relative">
           <Image
             src={imageUrl}
             alt={article.image?.alt || article.title}
-            width="320"
-            height="200"
-            className="object-cover w-full h-full"
+            fill={true}
+            sizes="50vw"
+            className="object-cover"
             priority={false} // ← set true only if above the fold
             loading="eager"
           />
         </div>
 
-        <div className="p-4 flex flex-col h-full justify-begin">
-          <h3 className="text-lg font-semibold leading-tight line-clamp-2 mb-auto">
-            {article.title}
-          </h3>
-        </div>
+        <div className="h-1/2 flex flex-col justify-between">
+          <div className="p-4 flex flex-col justify-begin">
+            <h3 className="text-lg font-semibold leading-tight mb-auto">
+              {article.title}
+            </h3>
+          </div>
 
-        <div className="p-4 flex flex-row justify-end items-center">
-          <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <div className="p-4 flex flex-row h-[20%] justify-end items-center">
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
         </div>
 
       </div>

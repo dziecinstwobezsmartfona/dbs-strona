@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import Tag from '@/components/Tag';
 import ArticleCard from '@/components/ArticleCard';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
@@ -14,7 +11,7 @@ export default async function Zasoby() {
         where: {
             visible: { equals: true }
         },
-        limit: 20,
+        // limit: 20, // When the number of articles becomes too large to hanle on one page, consider implementing pagination
         depth: 1, // Populate image relationship
     });
 
@@ -29,11 +26,14 @@ export default async function Zasoby() {
                     <p className="text-lg md:text-base xl:text-xl mb-16">Poniżej znajdziesz ciekawe wiadomości, artykuły, odpowiedzi na pytania oraz inne zasoby, które mogą okazać się pomocne.</p>
                 </div>
             </section>
-            <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-full md:w-3/4 mx-auto mb-16">
+            <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-full max-w-[1424px] mx-auto mb-16">
                 {/* Articles content grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8">
                     {articles.map((article) => (
-                        <ArticleCard key={article.id} articleId={article.id} />
+                        <ArticleCard
+                            key={article.id}
+                            articleId={article.id}
+                        />
                     ))}
                 </div>
             </section>

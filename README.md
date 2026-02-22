@@ -12,69 +12,189 @@ A movement uniting families committed to protecting childhood from smartphones a
 
 This website serves as the central hub for the movement, providing information about the initiative, allowing parents to sign the Parents' Pact, and connecting families through community channels.
 
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                           Next.js 16 App                            │
+├─────────────────────────────────────────────────────────────────────┤
+│  Route Groups                                                       │
+│  ┌────────────────────────┐    ┌─────────────────────────────────┐  │
+│  │      (app)             │    │         (payload)               │  │
+│  │  Public Website        │    │  CMS Admin Panel                │  │
+│  │  • Pages & Routes      │    │  • Content Management           │  │
+│  │  • API Endpoints       │    │  • GraphQL API                  │  │
+│  │  • Components          │    │  • Media Management             │  │
+│  └────────────────────────┘    └─────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────────┤
+│                           Data Layer                                │
+│  ┌────────────────────────┐    ┌─────────────────────────────────┐  │
+│  │   MongoDB + Mongoose   │    │        Payload CMS              │  │
+│  │   • Pact Signatures    │    │  • Articles Collection          │  │
+│  │   • Direct Access      │    │  • Media Collection             │  │
+│  └────────────────────────┘    │  • Users Collection             │  │
+│                                └─────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────────┤
+│                        External Services                            │
+│  • Brevo (Transactional Emails)    • UploadThing (Media Storage)    │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Key Architectural Decisions
+
+1. **Dual Data Access Pattern**: The project uses two complementary data access patterns:
+   - **Payload CMS**: Manages editorial content (Articles, Media) with a full admin UI and GraphQL API
+   - **Direct Mongoose**: Handles Pact signatures with custom API routes for full control over validation and business logic
+
+2. **Route Groups**: Next.js route groups separate the public-facing website from the CMS admin:
+   - `(app)`: Public website pages and API routes
+   - `(payload)`: Payload CMS admin panel and its API endpoints
+
+3. **Hybrid API Architecture**: Custom Next.js API routes handle Pact operations, while Payload provides its built-in REST and GraphQL APIs for content management
+
+---
+
 ## Tech Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org) (strict mode)
-- **Styling**: [TailwindCSS 4](https://tailwindcss.com) + custom CSS variables
-- **Forms**: [React Hook Form](https://react-hook-form.com) + [Zod](https://zod.dev) validation
-- **Database**: [MongoDB](https://www.mongodb.com) with [Mongoose](https://mongoosejs.com)
-- **UI Components**: Custom React components + [Embla Carousel](https://www.embla-carousel.com)
+| Category | Technology |
+|----------|------------|
+| **Framework** | [Next.js 16](https://nextjs.org) (App Router) |
+| **Language** | [TypeScript](https://www.typescriptlang.org) (strict mode) |
+| **CMS** | [Payload CMS 3.x](https://payloadcms.com) |
+| **Database** | [MongoDB](https://www.mongodb.com) with [Mongoose](https://mongoosejs.com) |
+| **Styling** | [TailwindCSS 4](https://tailwindcss.com) + CSS Variables |
+| **Forms** | [React Hook Form](https://react-hook-form.com) + [Zod](https://zod.dev) |
+| **Media Storage** | [UploadThing](https://uploadthing.com) (via Payload plugin) |
+| **Email Service** | [Brevo](https://brevo.com) API |
+| **UI Components** | Custom React components + [Embla Carousel](https://www.embla-carousel.com) |
+
+---
 
 ## Project Structure
 
 ```
-app/                          # Next.js App Router pages and API routes
-  ├── page.tsx               # Home page
-  ├── layout.tsx             # Global layout with Header and Footer
-  ├── globals.css            # Global styles and CSS variables
-  ├── api/
-  │   └── pakty/
-  │       └── route.ts       # API endpoint for pact submissions
-  └── [route]/page.tsx       # Various content pages
-components/                   # Reusable React components
-  ├── Header.tsx             # Navigation header with menus
-  ├── Footer.tsx             # Footer component
-  ├── PactForm.tsx           # Form for signing the Parents' Pact
-  ├── ImpactCard.tsx         # Card component for impact display
-  └── Tag.tsx                # Tag/badge component
-lib/                          # Utility functions and database models
-  ├── mongodb.ts             # MongoDB connection
-  └── models/
-      └── Pact.ts            # Mongoose schema for pact signatures
-public/                       # Static assets
-  ├── images/                # Images and icons
-  ├── videos/                # Background videos
-  └── data/
-      └── lista_szkol.json   # School list data
+├── app/                              # Next.js App Router
+│   ├── (app)/                        # Public website route group
+│   │   ├── layout.tsx               # Main layout (Header, Footer, fonts)
+│   │   ├── page.tsx                 # Home page
+│   │   ├── globals.css              # Global styles & CSS variables
+│   │   ├── api/                     # Custom API routes
+│   │   │   ├── pakty/               # POST: Save pact signatures
+│   │   │   ├── pakty-count/         # GET: Count of signed pacts
+│   │   │   ├── statystyki/          # GET: Statistics by voivodship
+│   │   │   └── szkoly-count/        # GET: Count of participating schools
+│   │   ├── nasza-misja/             # Our Mission page
+│   │   ├── nasz-wplyw/              # Our Impact page
+│   │   ├── sytucja/                 # Situation page
+│   │   ├── rozwiazanie/             # Solution page
+│   │   ├── co-moge-zrobic/          # What Can I Do page
+│   │   ├── pakt-rodzicow/           # Parents' Pact info page
+│   │   ├── pakt-rodzicow-wyniki/    # Pact results/statistics
+│   │   ├── podpisz-pakt/            # Sign the Pact form
+│   │   ├── podpisz-pakt-dziekujemy/ # Thank you page
+│   │   ├── zasoby/                  # Resources page
+│   │   ├── kodeks-postepowania/     # Code of Conduct
+│   │   ├── polityka-prywatnosci/    # Privacy Policy
+│   │   └── regulamin-newslettera/   # Newsletter Terms
+│   │
+│   └── (payload)/                    # Payload CMS route group
+│       ├── layout.tsx               # Payload admin layout
+│       ├── admin/                   # Admin panel routes
+│       └── api/                     # Payload REST & GraphQL APIs
+│           ├── [...slug]/           # REST API
+│           ├── graphql/             # GraphQL endpoint
+│           └── graphql-playground/  # GraphQL IDE
+│
+├── collections/                      # Payload CMS collections
+│   ├── Articles.ts                  # Blog/articles content type
+│   ├── Media.ts                     # Media library
+│   └── Users.ts                     # Admin users
+│
+├── components/                       # Reusable React components
+│   ├── Header.tsx                   # Navigation header with menus
+│   ├── Footer.tsx                   # Site footer
+│   ├── PactForm.tsx                 # Parents' Pact signature form
+│   ├── PactCounter.tsx              # Live pact counter display
+│   ├── PactStatsTable.tsx           # Statistics table component
+│   ├── ArticleCard.tsx              # Article preview card
+│   ├── ImpactCard.tsx               # Impact display card
+│   └── Tag.tsx                      # Tag/badge component
+│
+├── lib/                              # Utilities and database
+│   ├── mongodb.ts                   # MongoDB connection singleton
+│   └── models/
+│       └── Pact.ts                  # Mongoose schema for signatures
+│
+├── public/                           # Static assets
+│   ├── images/                      # Optimized images
+│   ├── videos/                      # Background videos
+│   └── data/
+│       └── lista_szkol.json         # Schools reference data
+│
+├── payload.config.ts                 # Payload CMS configuration
+├── payload-types.ts                  # Auto-generated Payload types
+└── next.config.ts                    # Next.js configuration
 ```
+
+---
 
 ## Key Pages
 
-- **Home** (`/`) - Main landing page with call-to-action
-- **Our Mission** (`/nasza-misja`) - Project mission and vision
-- **Our Impact** (`/nasz-wplyw`) - Statistics and community impact
-- **Situation** (`/sytuacja`) - The problem: childhood and screens
-- **Solution** (`/rozwiazanie`) - DBS approach and benefits
-- **What Can I Do?** (`/co-moge-zrobic`) - Action items for parents
-- **Sign the Pact** (`/pakt-rodzicow`) - Interactive form to sign the Parents' Pact
-- **Thank You** (`/podpisz-pakt-dziekujemy`) - Confirmation page after signing
-- **Privacy Policy** (`/polityka-prywatnosci`) - Legal documentation
-- **Newsletter Terms** (`/regulamin-newslettera`) - Newsletter terms of service
-- **Code of Conduct** (`/kodeks-postepowania`) - Community guidelines
+| Route | Description |
+|-------|-------------|
+| `/` | Home page with call-to-action |
+| `/nasza-misja` | Project mission and vision |
+| `/nasz-wplyw` | Statistics and community impact |
+| `/sytuacja` | The problem: childhood and screens |
+| `/rozwiazanie` | DBS approach and solutions |
+| `/co-moge-zrobic` | Action items for parents |
+| `/pakt-rodzicow` | Parents' Pact information |
+| `/pakt-rodzicow-wyniki` | Live statistics by region |
+| `/podpisz-pakt` | Interactive form to sign the Pact |
+| `/podpisz-pakt-dziekujemy` | Post-signature confirmation |
+| `/zasoby` | Resources and materials |
+| `/admin` | Payload CMS admin panel |
+| `/api/graphql` | GraphQL API endpoint |
+
+---
+
+## API Endpoints
+
+### Custom API Routes (Pact Management)
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/pakty` | POST | Submit new pact signature |
+| `/api/pakty-count` | GET | Total count of signed pacts |
+| `/api/szkoly-count` | GET | Count of participating schools |
+| `/api/statystyki` | GET | Aggregated statistics by voivodship |
+
+### Payload CMS APIs
+
+Payload automatically provides:
+- REST API at `/api/{collection}` (e.g., `/api/articles`)
+- GraphQL API at `/api/graphql`
+- GraphQL Playground at `/api/graphql-playground`
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ and npm
+- MongoDB database (local or Atlas)
+- UploadThing account (for media storage)
+- Brevo account (for transactional emails)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd strona-DBS
+git clone https://github.com/dziecinstwobezsmartfona/dbs-strona.git
+cd dbs-strona
 ```
 
 2. Install dependencies:
@@ -83,9 +203,19 @@ npm install
 ```
 
 3. Set up environment variables:
-Create a `.env.local` file with your MongoDB connection string:
-```
-MONGODB_URI=<your-mongodb-uri>
+Create a `.env.local` file with:
+```env
+# Database
+DATABASE_URL=mongodb://localhost:27017/dbs
+
+# Payload CMS
+PAYLOAD_SECRET=your-secret-key-min-32-chars
+
+# UploadThing (Media Storage)
+UPLOADTHING_TOKEN=your-uploadthing-token
+
+# Brevo (Email Service)
+BREVO_API_KEY=your-brevo-api-key
 ```
 
 ### Development
@@ -96,86 +226,124 @@ Run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
-The app will hot-reload as you edit files.
+Open [http://localhost:3000](http://localhost:3000) for the public site, or [http://localhost:3000/admin](http://localhost:3000/admin) for the Payload CMS admin panel.
 
 ### Building for Production
 
-Build the application:
-
 ```bash
 npm run build
-```
-
-Start the production server:
-
-```bash
 npm run start
 ```
 
-### Linting
-
-Run ESLint to check for code quality issues:
+### Code Quality
 
 ```bash
-npm run lint
+npm run lint          # Run ESLint
 ```
 
-## Design & Styling
+---
 
-- **CSS Variables**: Custom color and font variables defined in `app/globals.css`
-  - `--background`, `--foreground`, `--main-accent`, `--secondary-accent`
-  - `--font-montserrat`, `--font-anton`, `--font-victor`
-- **Fonts**: 
-  - [Montserrat](https://fonts.google.com/specimen/Montserrat) - Body text
-  - [Anton](https://fonts.google.com/specimen/Anton) - Title styling (`font-title`)
-  - [Victor Mono](https://fonts.google.com/specimen/Victor+Mono) - Mono text
-- **TailwindCSS**: Utility-first CSS with custom theme integration
+## Design System
 
-## Navigation & Routing
+### CSS Variables
 
-The Header component builds navigation menus with automatic slug generation from Polish characters. When adding new pages:
+Custom properties defined in `app/(app)/globals.css`:
 
-1. Create page file: `app/<slug>/page.tsx`
-2. Update menus in `components/Header.tsx`
-3. Ensure slug matches the `slugify()` helper output
+```css
+/* Colors */
+--background          /* Page background */
+--foreground          /* Primary text color */
+--main-accent         /* Primary brand color */
+--secondary-accent    /* Secondary brand color */
 
-## Database
+/* Typography */
+--font-montserrat     /* Body text (customizable via Tailwind) */
+--font-anton          /* Display/titles (font-title class) */
+--font-victor         /* Monospace text */
+```
 
-The project uses MongoDB with Mongoose for storing pact signatures. The Pact model stores:
-- Parent name and contact information
-- Children information
-- Signature timestamp
-- Newsletter subscription preference
+### Fonts
 
-## Community
+- **Montserrat** - Primary body font
+- **Anton** - Display font for titles (applied via `font-title` class)
+- **Victor Mono** - Monospace font
 
-- **WhatsApp Community**: Join the official DBS WhatsApp group for support and discussion
-- **Local Schools**: The site tracks participating schools to show community reach
+---
+
+## Database Schemas
+
+### Pact (Mongoose)
+
+Stored directly in MongoDB for custom API access:
+
+```typescript
+{
+  firstName: string,
+  lastName: string,
+  email: string,
+  schoolId: string,
+  schoolVoivodship: string,    // Polish "województwo"
+  schoolDistrict: string,      // Polish "powiat"
+  schoolCounty: string,        // Polish "gmina"
+  schoolName: string,
+  numberOfChildren: number,
+  gdpr_consent: boolean,
+  newsletter_consent: boolean,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Articles (Payload CMS)
+
+```typescript
+{
+  visible: boolean,           // Publication status
+  slug: string,               // URL-friendly identifier
+  image: relationship,        // Media reference
+  title: string,
+  content: richText           // Lexical editor content
+}
+```
+
+---
 
 ## Deployment
 
-This project is optimized for deployment on [Vercel](https://vercel.com) (recommended) or any Node.js hosting platform supporting Next.js.
+The project is optimized for deployment on [Vercel](https://vercel.com) or Netlify with Node.js runtime support.
 
-### Environment Variables Required
+### Required Environment Variables
 
-- `MONGODB_URI` - MongoDB connection string (for production)
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | MongoDB connection string |
+| `PAYLOAD_SECRET` | Payload CMS encryption key (32+ chars) |
+| `UPLOADTHING_TOKEN` | UploadThing API token |
+| `BREVO_API_KEY` | Brevo email API key |
+
+---
 
 ## Contributing
 
 We welcome contributions! Please ensure:
-- Code follows the existing patterns and conventions
+
+- Code follows existing patterns and conventions
 - TypeScript strict mode compliance
 - ESLint passes (`npm run lint`)
 - Components use the project's CSS variable system
+- Polish language for user-facing content
+
+---
+
+## Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Payload CMS Documentation](https://payloadcms.com/docs)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs)
+- [MongoDB with Next.js](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
+
+---
 
 ## License
 
 This project is part of the Dzieciństwo Bez Smartfona movement. For licensing questions, contact the project maintainers.
-
-## More Information
-
-- 📖 [Next.js Documentation](https://nextjs.org/docs)
-- 🎨 [TailwindCSS Documentation](https://tailwindcss.com/docs)
-- 📝 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
