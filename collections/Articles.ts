@@ -1,5 +1,6 @@
 import { slugField } from 'payload';
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import { slugifypl } from '@/lib/slugifypl';
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -18,6 +19,7 @@ export const Articles: CollectionConfig = {
     },
     slugField({
       position: 'sidebar',
+      slugify: ({valueToSlugify}) => slugifypl(valueToSlugify),
     }),
     {
       name: 'coverImage',

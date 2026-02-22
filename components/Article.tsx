@@ -3,8 +3,8 @@ import configPromise from '@payload-config';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Article } from '@/payload-types';
-import { RichText } from '@payloadcms/richtext-lexical/react';
 import Tag from './Tag';
+import { ArticleContent } from '@/components/ArticleContent';
 
 type Props = {
   slug: string;
@@ -58,8 +58,8 @@ export default async function Article({ slug }: Props) {
       {/* Article content */}
       <section className="bg-white items-left justify-top w-[90%] max-w-[1024px] py-16 mx-auto">
         <div className="flex flex-col">
-          <div className="text-left w-full">
-            <p>Treść artykułu</p>
+          <div className="prose lg:prose-xl prose-headings:font-title prose-headings:text-(--foreground) text-left w-full">
+            <ArticleContent data={article.content} />
           </div>
         </div>
       </section>

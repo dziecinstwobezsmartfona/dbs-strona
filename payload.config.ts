@@ -5,7 +5,7 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
+import { Users } from "./collections/users/config";
 import { Media } from "./collections/Media";
 import { Articles } from "./collections/Articles";
 
