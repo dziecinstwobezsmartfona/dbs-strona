@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   ];
 
   const leftlinks = [
-    { label: 'ZASOBY', href: '/zasoby' },
+    { label: 'POMOCE', href: '/pomoce' },
   ];
 
   const rightLinks = [

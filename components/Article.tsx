@@ -35,7 +35,7 @@ export default async function Article({ slug }: Props) {
       {/* Header Section */}
       <section className="bg-(--main-accent) w-full">
         <div className="flex flex-col w-[90%] max-w-[1024px] mx-auto">
-          <Tag className="bg-black/10 text-foreground mb-12 mt-45 mx-auto">Zasoby</Tag>
+          <Tag className="bg-black/10 text-foreground mb-12 mt-45 mx-auto">Pomoce</Tag>
           <div className="flex flex-col items-center justify-center text-left mb-30">
             <p className="text-5xl md:text-6xl xl:text-7xl font-title mb-8">{article?.title}</p>
           </div>
