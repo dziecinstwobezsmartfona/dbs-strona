@@ -2,6 +2,8 @@ import ArticleCard from '@/components/ArticleCard';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Zasoby() {
     const payload = await getPayload({ config: configPromise });
 

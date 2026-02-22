@@ -2,6 +2,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { jsxConverter } from "@/components/ArticleContent/converters";
 
+export const dynamic = 'force-dynamic';
 
 type Props = {
     data: SerializedEditorState
