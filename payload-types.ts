@@ -169,10 +169,14 @@ export interface Article {
   id: string;
   visible?: boolean | null;
   /**
-   * Auto-generated from title if left blank
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
+  generateSlug?: boolean | null;
   slug: string;
-  image?: (string | null) | Media;
+  /**
+   * Main cover image for the article
+   */
+  coverImage?: (string | null) | Media;
   title: string;
   content: {
     root: {
@@ -317,8 +321,9 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ArticlesSelect<T extends boolean = true> {
   visible?: T;
+  generateSlug?: T;
   slug?: T;
-  image?: T;
+  coverImage?: T;
   title?: T;
   content?: T;
   updatedAt?: T;

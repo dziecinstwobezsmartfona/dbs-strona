@@ -11,7 +11,8 @@ type Article = {
   id: string;
   visible: boolean;
   title: string;
-  image: {
+  slug: string
+  coverImage: {
     id: string;
     url: string;
     alt?: string;
@@ -49,19 +50,19 @@ export default async function ArticleCard({ articleId, className = '' }: Props) 
     // or: return null;
   }
 
-  const imageUrl = article.image?.url;
+  const imageUrl = article.coverImage?.url;
   if (!imageUrl) {
     // fallback image or skip rendering
     return null;
   }
 
   return (
-    <Link href={`/articles/${articleId}`}>
+    <Link href={`/zasoby/${article.slug}`}>
       <div className={`flex flex-col justify-between overflow-hidden h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] focus:outline-none ${className}`}>
         <div className="h-1/2 relative">
           <Image
             src={imageUrl}
-            alt={article.image?.alt || article.title}
+            alt={article.coverImage?.alt || article.title}
             fill={true}
             sizes="50vw"
             className="object-cover"
