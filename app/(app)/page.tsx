@@ -37,10 +37,10 @@ export default function Home() {
               <PactCounter font="font-title" fontSize="text-4xl lg:text-5xl" background="bg-white" foreground="text-(--foreground)" subtext="podpisanych Paktów" subtextFont="font-menu" />
             </div>
             <div className="flex flex-col lg:flex-row justify-between w-full">
-              <Link className="flex justify-center bg-(--secondary-accent) w-1/2 rounded-3xl mx-8 mt-4 p-4 hover:bg-(--background)" href="pakt-rodzicow">
+              <Link className="flex justify-center items-center bg-(--secondary-accent) w-full lg:w-1/2 rounded-3xl mx-auto lg:mx-8 mt-4 p-4 hover:bg-(--background)" href="pakt-rodzicow">
                 <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Podpisz PAKT</span>
               </Link>
-              <Link className="flex justify-center bg-(--purple) w-1/2 rounded-3xl mx-8 mt-4 p-4 hover:bg-(--purple-light)" href="pakt-rodzicow-wyniki">
+              <Link className="flex justify-center bg-(--purple) w-full lg:w-1/2 rounded-3xl mx-auto lg:mx-8 mt-4 p-4 hover:bg-(--purple-light)" href="pakt-rodzicow-wyniki">
                 <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Zobacz statystyki</span>
               </Link>
             </div>

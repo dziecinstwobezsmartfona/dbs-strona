@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '../../../lib/mongodb';
-import Pact from '../../../lib/models/Pact';
+import dbConnect from '../../../../lib/mongodb';
+import Pact from '../../../../lib/models/Pact';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';

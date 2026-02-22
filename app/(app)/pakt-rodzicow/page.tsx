@@ -1,8 +1,7 @@
-import Tag from '@/components/Tag';
 import PactCounter from '@/components/PactCounter';
 import Link from 'next/link';
 
-export default function NaszaMisja() {
+export default function PaktRodzicow() {
     return (
         <main className="container bg-(--background)">
             {/* Title section */}

@@ -28,7 +28,10 @@ const Header: React.FC = () => {
   const menus: MenuItem[] = [
     { title: 'O NAS', links: [{ label: 'Nasza Misja', href: '/nasza-misja' }, { label: 'Nasz Wpływ', href: '/nasz-wplyw' }] },
     { title: 'CO ROBIMY', links: [{ label: 'Sytuacja', href: '/sytuacja' }, { label: 'Rozwiązanie', href: '/rozwiazanie' }] },
-    // { title: 'Materiały', links: [{ label: 'Dla rodziców', href: '/dla-rodzicow' }, { label: 'Dla nauczycieli', href: '/dla-nauczycieli' }] }
+  ];
+
+  const leftlinks = [
+    { label: 'POMOCE', href: '/pomoce' },
   ];
 
   const rightLinks = [
@@ -85,6 +88,17 @@ const Header: React.FC = () => {
                   ))}
                 </ul>
               </div>
+            ))}
+          </nav>
+          <nav className="hidden lg:flex items-center space-x-2 md:space-x-4 lg:space-x-6">
+            {leftlinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                className="font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+              >
+                {link.label}
+              </Link>
             ))}
           </nav>
         </div>
@@ -160,6 +174,18 @@ const Header: React.FC = () => {
               </ul>
             </div>
           ))}
+          <div className="mt-6 space-y-2">
+            {leftlinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                className="block font-menu text-gray-700 hover:text-gray-900 py-2 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
           <div className="mt-6 space-y-2">
             {rightLinks.map((link, index) => (
               <Link
