@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import PactCounter from '@/components/PactCounter';
 import PactStatsTable from '@/components/PactStatsTable';
 
-export default function PaktRodzicowWyniki() {
+const PaktStatsContent = () => {
   const searchParams = useSearchParams();
   const voivodship = searchParams.get('voivodship');
   const district = searchParams.get('district');
@@ -48,7 +49,7 @@ export default function PaktRodzicowWyniki() {
   };
 
   return (
-    <main className="bg-white">
+    <>
       {/* Large tile with totals */}
       <section className="mt-32 mb-16">
         <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-[90%] lg:w-3/4 mx-auto my-8 rounded-[50px]">
@@ -59,13 +60,13 @@ export default function PaktRodzicowWyniki() {
             <p className="text-3xl lg:text-6xl font-title text-white pb-8">{getDrillDownTitle()}</p>
             <div className="flex flex-col lg:flex-row items-center justify-between w-full pb-8">
               <div className="my-4">
-                <PactCounter 
-                  font="font-title" 
-                  fontSize="text-5xl lg:text-8xl" 
-                  background="bg-white" 
-                  foreground="text-(--foreground)" 
-                  subtext="dzieci objętych Paktem" 
-                  subtextFont="font-menu" 
+                <PactCounter
+                  font="font-title"
+                  fontSize="text-5xl lg:text-8xl"
+                  background="bg-white"
+                  foreground="text-(--foreground)"
+                  subtext="dzieci objętych Paktem"
+                  subtextFont="font-menu"
                   type="children"
                   voivodship={voivodship || undefined}
                   district={district || undefined}
@@ -73,13 +74,13 @@ export default function PaktRodzicowWyniki() {
                 />
               </div>
               <div className="my-4">
-                <PactCounter 
-                  type="schools" 
-                  font="font-title" 
-                  fontSize="text-5xl lg:text-8xl" 
-                  background="bg-white" 
-                  foreground="text-(--foreground)" 
-                  subtext="zarejestrowanych szkół" 
+                <PactCounter
+                  type="schools"
+                  font="font-title"
+                  fontSize="text-5xl lg:text-8xl"
+                  background="bg-white"
+                  foreground="text-(--foreground)"
+                  subtext="zarejestrowanych szkół"
                   subtextFont="font-menu"
                   voivodship={voivodship || undefined}
                   district={district || undefined}
@@ -99,6 +100,16 @@ export default function PaktRodzicowWyniki() {
           <PactStatsTable voivodship={voivodship} district={district} county={county} />
         </div>
       </section>
-    </main >
+    </>
+  );
+};
+
+export default function PaktRodzicowWyniki() {
+  return (
+    <main className="bg-white">
+        <Suspense fallback={<div>Ładowanie statystyk...</div>}>
+          <PaktStatsContent />
+        </Suspense>
+    </main>
   );
 }
