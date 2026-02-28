@@ -17,6 +17,10 @@ interface PactCounterProps {
   subtext?: string;
   /** Type of count to display: 'children' for number of children (from pakty-count), 'schools' for number of schools (from szkoly-count) */
   type?: 'children' | 'schools';
+  /** Drill-down level parameters */
+  voivodship?: string;
+  district?: string;
+  county?: string;
 }
 
 interface PaktyCountResponse {
@@ -43,6 +47,9 @@ const PactCounter: React.FC<PactCounterProps> = ({
   foreground = "text-white",
   subtext,
   type = "children",
+  voivodship,
+  district,
+  county,
 }) => {
   const [displayCount, setDisplayCount] = useState<number>(0);
   const [targetCount, setTargetCount] = useState<number | null>(null);
@@ -63,7 +70,17 @@ const PactCounter: React.FC<PactCounterProps> = ({
     
     const fetchCount = async () => {
       try {
-        const apiEndpoint = type === "schools" ? "/api/szkoly-count" : "/api/pakty-count";
+        // Build query parameters for drill-down
+        const params = new URLSearchParams();
+        if (voivodship) params.append('voivodship', voivodship);
+        if (district) params.append('district', district);
+        if (county) params.append('county', county);
+        
+        const queryString = params.toString();
+        const apiEndpoint = type === "schools" 
+          ? `/api/szkoly-count${queryString ? '?' + queryString : ''}`
+          : `/api/pakty-count${queryString ? '?' + queryString : ''}`;
+        
         const response = await fetch(apiEndpoint);
         if (!response.ok) {
           throw new Error("Failed to fetch count");
@@ -99,7 +116,7 @@ const PactCounter: React.FC<PactCounterProps> = ({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [type]);
+  }, [type, voivodship, district, county]);
 
   // Animation effect for counting
   useEffect(() => {
