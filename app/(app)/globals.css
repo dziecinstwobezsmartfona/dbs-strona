@@ -24,3 +24,18 @@ body {
   background: white;
   color: var(--foreground);
 }
+
+/* Custom spin animation for PactCounter */
+@keyframes spin-custom {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-custom {
+  animation: spin-custom 1s linear infinite;
+}
+
+/* Fallback inline animation for debugging */
+.spinner-debug {
+  animation: spin-custom 1s linear infinite !important;
+}

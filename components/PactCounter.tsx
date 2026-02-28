@@ -199,10 +199,27 @@ const PactCounter: React.FC<PactCounterProps> = ({
     lg:min-w-[400px]
   `.trim();
 
+  // Loading spinner component with proper colors
+  const LoadingSpinner = () => (
+    <div className="flex items-center justify-center">
+      <div 
+        className="w-12 h-12 border-4 rounded-full animate-spin-custom spinner-debug"
+        style={{
+          borderWidth: '4px',
+          borderColor: 'var(--foreground) transparent var(--secondary-background) transparent',
+          animation: 'spin-custom 1s linear infinite',
+          transformOrigin: 'center'
+        }}
+      ></div>
+    </div>
+  );
+
   return (
     <div className={containerClasses}>
       {error ? (
         <span className="text-sm">{error}</span>
+      ) : isLoading ? (
+        <LoadingSpinner />
       ) : (
         <span className="tabular-nums">{formatNumber(displayCount)}</span>
       )}
