@@ -5,11 +5,35 @@ import Pact from '../../../../lib/models/Pact';
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     await dbConnect();
 
+    // Parse query parameters for drill-down filtering
+    const url = new URL(request.url);
+    const voivodship = url.searchParams.get('voivodship');
+    const district = url.searchParams.get('district');
+    const county = url.searchParams.get('county');
+
     const pipeline = [];
+
+    // Add match stage for drill-down filtering if parameters are provided
+    const matchStage: any = {};
+    if (voivodship) {
+      matchStage.schoolVoivodship = voivodship;
+    }
+    if (district) {
+      matchStage.schoolDistrict = district;
+    }
+    if (county) {
+      matchStage.schoolCounty = county;
+    }
+    
+    if (Object.keys(matchStage).length > 0) {
+      pipeline.push({
+        $match: matchStage
+      });
+    }
 
     // Group by email to get unique parents and sum their children
     pipeline.push({

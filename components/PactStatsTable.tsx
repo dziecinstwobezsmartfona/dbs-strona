@@ -1,26 +1,47 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface StatystykiResponse {
   schoolVoivodship: string;
+  schoolDistrict?: string;
+  schoolCounty?: string;
+  schoolName?: string;
   numberOfChildren: number;
 }
 
+interface PactStatsTableProps {
+  voivodship?: string | null;
+  district?: string | null;
+  county?: string | null;
+}
+
 /**
- * Component that fetches and displays pact statistics by voivodeship in a table format.
+ * Component that fetches and displays pact statistics by voivodeship or district in a table format.
  */
-const PactStatsTable: React.FC = () => {
+const PactStatsTable: React.FC<PactStatsTableProps> = ({ voivodship, district, county }) => {
   const [stats, setStats] = useState<StatystykiResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchStats = async () => {
       try {
-        const response = await fetch("/api/statystyki");
+        // Build query parameters
+        const params = new URLSearchParams();
+        if (voivodship) params.append('voivodship', voivodship);
+        if (district) params.append('district', district);
+        if (county) params.append('county', county);
+
+        const queryString = params.toString();
+        const url = `/api/statystyki${queryString ? `?${queryString}` : ''}`;
+
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch statistics");
         }
@@ -44,7 +65,7 @@ const PactStatsTable: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [voivodship, district, county]);
 
   // Polish voivodeship names mapping
   const voivodeshipNames: { [key: string]: string } = {
@@ -68,6 +89,39 @@ const PactStatsTable: React.FC = () => {
 
   const formatVoivodeshipName = (name: string): string => {
     return voivodeshipNames[name] || name;
+  };
+
+  const formatDistrictName = (name: string): string => {
+    if (!name) return 'Brak danych';
+    
+    // Convert to lowercase and capitalize first letter of each word
+    return name
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  const formatCountyName = (name: string): string => {
+    if (!name) return 'Brak danych';
+    
+    // Convert to lowercase and capitalize first letter of each word
+    return name
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  const formatSchoolName = (name: string): string => {
+    if (!name) return 'Brak danych';
+    
+    // Convert to lowercase and capitalize first letter of each word
+    return name
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };
 
   const formatNumber = (num: number): string => {
@@ -98,13 +152,44 @@ const PactStatsTable: React.FC = () => {
     );
   }
 
+  const handleRowClick = (stat: StatystykiResponse) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    
+    if (!voivodship) {
+      // Clicking on voivodship row - drill down to district level
+      newParams.set('voivodship', stat.schoolVoivodship);
+      router.push(`/pakt-rodzicow-wyniki?${newParams.toString()}`);
+    } else if (!district) {
+      // Clicking on district row - drill down to county level
+      newParams.set('district', stat.schoolDistrict || '');
+      router.push(`/pakt-rodzicow-wyniki?${newParams.toString()}`);
+    } else if (!county) {
+      // Clicking on county row - drill down to school level
+      newParams.set('county', stat.schoolCounty || '');
+      router.push(`/pakt-rodzicow-wyniki?${newParams.toString()}`);
+    }
+    // No further drill-down if already at school level
+  };
+
+  const getTableTitle = () => {
+    if (!voivodship) {
+      return "Województwo";
+    } else if (!district) {
+      return "Powiat";
+    } else if (!county) {
+      return "Gmina";
+    } else {
+      return "Szkoła";
+    }
+  };
+
   return (
     <div className="w-full">
       <table className="w-full border-collapse">
         <thead>
           <tr className="bg-transparent">
             <th className="py-4 px-4 text-lg lg:text-4xl font-title border-b-2 border-(--foreground) text-left">
-              Województwo
+              {getTableTitle()}
             </th>
             <th className="py-4 px-4 text-lg lg:text-4xl font-title border-b-2 border-(--foreground) text-right">
               Pakty
@@ -114,12 +199,19 @@ const PactStatsTable: React.FC = () => {
         <tbody>
           {stats.map((stat, index) => (
             <tr
-              key={stat.schoolVoivodship}
+              key={stat.schoolVoivodship + (stat.schoolDistrict || '')}
               className={`${index % 2 === 0 ? "bg-transparent" : "bg-transparent"
-                } hover:bg-(--foreground) hover:text-(--background) transition-colors`}
+                } hover:bg-(--foreground) hover:text-(--background) transition-colors cursor-pointer`}
+              onClick={() => handleRowClick(stat)}
             >
               <td className="py-3 px-4 text-base lg:text-2xl font-sans font-bold border-b border-(--foreground) text-left">
-                {formatVoivodeshipName(stat.schoolVoivodship)}
+                {voivodship 
+                  ? (district 
+                      ? (county 
+                          ? (stat.schoolName || 'Brak danych') 
+                          : formatCountyName(stat.schoolCounty || 'Brak danych')) 
+                      : formatDistrictName(stat.schoolDistrict || 'Brak danych')) 
+                  : formatVoivodeshipName(stat.schoolVoivodship)}
               </td>
               <td className="py-3 px-4 text-base lg:text-2xl font-menu font-bold border-b border-(--foreground) text-right">
                 {formatNumber(stat.numberOfChildren)}
