@@ -57,9 +57,9 @@ export default async function Article({ slug }: Props) {
 
       {/* Article content */}
       <section className="bg-white items-left justify-top w-[90%] max-w-[1024px] py-16 mx-auto">
-        <div className="flex flex-col">
-          <div className="prose lg:prose-xl prose-headings:font-title prose-headings:text-(--foreground) text-left w-full">
-            <ArticleContent data={article.content} />
+        <div className="flex flex-col w-full">
+          <div className="prose max-w-none w-full lg:prose-xl prose-headings:font-title prose-headings:text-(--foreground) text-left">
+            <ArticleContent data={article.content} className="w-full"/>
           </div>
         </div>
       </section>
