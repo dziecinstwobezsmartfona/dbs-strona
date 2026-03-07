@@ -7,14 +7,14 @@ export const dynamic = 'force-dynamic';
 export default async function Pomoce() {
     const payload = await getPayload({ config: configPromise });
 
-    // Fetch first 20 visible articles
+    // Fetch all visible articles with populated coverImage in a single query
     const articlesResult = await payload.find({
         collection: 'articles',
         where: {
             visible: { equals: true }
         },
-        // limit: 20, // When the number of articles becomes too large to hanle on one page, consider implementing pagination
         depth: 1, // Populate image relationship
+        sort: '-createdAt', // Sort by creation date (newest first)
     });
 
     const articles = articlesResult.docs;
@@ -34,7 +34,13 @@ export default async function Pomoce() {
                     {articles.map((article) => (
                         <ArticleCard
                             key={article.id}
-                            articleId={article.id}
+                            article={{
+                                id: article.id,
+                                title: article.title,
+                                slug: article.slug,
+                                coverImage: article.coverImage as any,
+                                visible: article.visible || false
+                            }}
                         />
                     ))}
                 </div>

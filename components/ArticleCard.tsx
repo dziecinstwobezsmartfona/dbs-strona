@@ -1,11 +1,8 @@
 // app/components/ArticleCard.tsx
 // or wherever you prefer to put reusable components
 
-import { getPayload } from 'payload';           // or your import path
-import configPromise from '@payload-config';     // ← most common in recent Payload v3+
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 
 type Article = {
   id: string;
@@ -23,31 +20,15 @@ type Article = {
 };
 
 type Props = {
-  articleId: string;
+  article: Article;
   // Optional: you can also pass width/height/className etc. if you want to customize per usage
   className?: string;
 };
 
-export default async function ArticleCard({ articleId, className = '' }: Props) {
-  const payload = await getPayload({ config: configPromise });
-
-  let article: Article | null = null;
-
-  try {
-    article = await payload.findByID({
-      collection: 'articles',
-      id: articleId,
-      depth: 1,           // important → populates the 'image' relationship
-    }) as Article | null;
-  } catch (err) {
-    console.error('Failed to fetch article:', err);
-  }
-
+export default function ArticleCard({ article, className = '' }: Props) {
+  // Skip rendering if article is not visible
   if (!article || !article.visible) {
-    // You can also return null / skeleton / fallback card
-    // For strict behavior → notFound()
-    notFound();
-    // or: return null;
+    return null;
   }
 
   const imageUrl = article.coverImage?.url;
@@ -55,6 +36,7 @@ export default async function ArticleCard({ articleId, className = '' }: Props) 
     // fallback image or skip rendering
     return null;
   }
+
 
   return (
     <Link href={`/pomoce/${article.slug}`}>
