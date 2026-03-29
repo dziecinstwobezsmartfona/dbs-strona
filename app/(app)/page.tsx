@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import PactCounter from '@/components/PactCounter';
+import WebinarPopup from '@/components/WebinarPopup';
 
 export default function Home() {
   return (
     <main className="container">
+      <WebinarPopup />
       {/* Title section */}
       <section className="relative w-screen overflow-hidden">
         {/* Background Video */}
@@ -29,6 +31,48 @@ export default function Home() {
 
       {/* Large tiles section */}
       <section className="relative w-screen bg-(--background) py-24">
+
+        {/* Webinar info (temporary) */}
+        <div className="relative max-w-lg w-[90%] bg-white text-(--foreground) rounded-3xl shadow-2xl border border-(--secondary-background) p-8 overflow-y-auto mx-auto mb-16">
+
+          <h2 className="text-2xl lg:text-3xl font-title mb-4 text-center">
+            📢 Webinar: Jak działać jako Koordynator DBS w szkole?
+          </h2>
+
+          <div className="space-y-2 text-base leading-relaxed">
+            <p>📅 <strong>Kiedy?</strong> 14.04.2026 (wtorek) o 20:30</p>
+            <p>💻 <strong>Gdzie?</strong> Online</p>
+            <div className="pt-2 text-center">
+              <p className="font-semibold">🔗 Zapisy:</p>
+              <a
+                href="https://forms.gle/EYtSv78NkPJ95Tc16"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex mt-2 items-center justify-center rounded-2xl bg-(--main-accent) px-4 py-2 font-title text-(--foreground) hover:bg-(--secondary-accent) transition-colors"
+              >
+                https://forms.gle/EYtSv78NkPJ95Tc16
+              </a>
+            </div>
+            <p className="text-sm text-(--foreground) text-center">
+              📩 Link do spotkania prześlemy dzień przed webinarem na podany w formularzu adres e-mail.
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <p className="font-semibold mb-3">Tematy webinaru:</p>
+            <ul className="space-y-2 text-base leading-relaxed">
+              <li>1️⃣ Czym jest Dzieciństwo Bez Smartfona i Pakt Rodziców</li>
+              <li>2️⃣ Rola Koordynatora – kim jest Koordynator i jak może działać w swojej szkole</li>
+              <li>3️⃣ Materiały i pomoce dla Koordynatorów</li>
+              <li>4️⃣ Inne formy zaangażowania</li>
+            </ul>
+          </div>
+
+          <p className="mt-6 text-center text-lg">Zapraszamy! 🙂</p>
+
+        </div>
+        {/* End of Webinar info */}
+
         <div className="flex flex-col lg:flex-row items-top justify-center w-3/4 mx-auto">
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-full h-auto mx-auto my-8 lg:mx-8 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Podpisz PAKT RODZICÓW</p>
