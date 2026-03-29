@@ -2,8 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+const STORAGE_KEY = "webinarPopupSeen";
+
 export default function WebinarPopup() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const seenPopup = window.localStorage.getItem(STORAGE_KEY);
+
+    if (!seenPopup) {
+      window.localStorage.setItem(STORAGE_KEY, "true");
+      setIsOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
