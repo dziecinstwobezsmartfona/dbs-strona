@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import PactCounter from '@/components/PactCounter';
-import WebinarPopup from '@/components/WebinarPopup';
+//import WebinarPopup from '@/components/WebinarPopup';
 
 export default function Home() {
   return (
     <main className="container">
-      <WebinarPopup />
+      {/* <WebinarPopup /> */}
       {/* Title section */}
       <section className="relative w-screen overflow-hidden">
         {/* Background Video */}
@@ -32,7 +32,7 @@ export default function Home() {
       {/* Large tiles section */}
       <section className="relative w-screen bg-(--background) py-24">
 
-        {/* Webinar info (temporary) */}
+        {/* Webinar info (temporary)
         <div className="relative max-w-lg w-[90%] bg-white text-(--foreground) rounded-3xl shadow-2xl border border-(--secondary-background) p-8 overflow-y-auto mx-auto mb-16">
 
           <h2 className="text-2xl lg:text-3xl font-title mb-4 text-center">
