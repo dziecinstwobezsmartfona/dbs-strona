@@ -35,8 +35,9 @@ const Header: React.FC = () => {
   ];
 
   const rightLinks = [
-    { label: 'CO MOGĘ ZROBIĆ?', href: '/co-moge-zrobic' },
-    { label: 'Podpisz PAKT', href: '/pakt-rodzicow' }
+    { label: 'DZIAŁAJ', href: '/dzialam' },
+    { label: 'Podpisz PAKT', href: '/pakt-rodzicow' },
+    { label: 'WESPRZYJ', href: '/wspieram' }
   ];
 
   return (
@@ -124,7 +125,10 @@ const Header: React.FC = () => {
                 className={
                   link.label === 'Podpisz PAKT'
                     ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--main-accent)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white px-2 md:px-4 py-4 rounded-3xl transition-colors"
-                    : "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                    : (link.label === 'WESPRZYJ'
+                      ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--foreground)] text-[var(--main-accent)] hover:bg-[var(--main-accent)] hover:text-foreground px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                      : "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                    )
                 }
               >
                 {link.label}

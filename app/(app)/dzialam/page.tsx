@@ -1,7 +1,7 @@
 import Tag from '@/components/Tag';
 import Link from 'next/link';
 
-export default function NaszaMisja() {
+export default function Dzialam() {
     return (
         <main className="bg-[url(/images/card-bg-01.webp)] min-h-screen flex flex-col items-center justify-top py-45">
             <header className="flex flex-col text-(--foreground) w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center">

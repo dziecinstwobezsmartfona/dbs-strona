@@ -52,7 +52,7 @@ export default function PaktRodzicow() {
                     </div>
                 </div>
                 <div className="flex flex-col w-[90%] lg:w-3/4 mx-auto">
-                    <Link className="flex justify-center bg-(--foreground) text-(--secondary-accent) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white hover:text-(--foreground)" href="co-moge-zrobic">
+                    <Link className="flex justify-center bg-(--foreground) text-(--secondary-accent) rounded-3xl w-full mx-auto mb-12 py-4 hover:bg-white hover:text-(--foreground)" href="dzialam">
                         <span className="text-lg lg:text-2xl font-title">Co jeszcze mogę zrobić?</span>
                     </Link>
                 </div>
