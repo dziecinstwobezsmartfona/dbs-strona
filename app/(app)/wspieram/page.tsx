@@ -23,15 +23,11 @@ export default function Wspieram() {
             <div className="flex w-full mx-[10%] pt-48 z-1">
                 <div className="flex flex-col items-start justify-center md:flex-row md:items-center">
                     <div className="flex flex-col md:w-1/2 md:mr-8 text-(--foreground)">
-                        <p className="text-3xl lg:text-5xl/16 font-title pb-8">Wspieram Dzieciństwo Bez Smartfona</p>
-                        <p className="text-sm lg:text-lg font-sans">Wspierając Stowarzyszenie Dzieciństwo Bez Smartfona, pomagasz realizować nasze cele regulaminowe, jakimi są:</p>
-                        <ul className="text-sm lg:text-lg font-sans list-disc pl-10 py-4">
-                            <li className="py-2">zmiana kulturowa polegająca na nie dawaniu dzieciom smartfonów do 14-tego roku życia, a mediów społecznościowych do 16-tego roku życia</li>
-                            <li className="py-2">jednoczenie rodziców w Polsce i wspieranie ich w odraczaniu momentu wręczenia swojemu dziecku smartfona i mediów społecznościowych</li>
-                            <li className="py-2">profilaktyka zdrowia dzieci i młodzieży w zakresie korzystania z technologii</li>
-                            <li className="py-2">uświadamianie i edukowanie społeczeństwa odnośnie wpływu smartfonów na życie i rozwój dzieci.</li>
-                        </ul>
-                        <p className="text-sm lg:text-lg font-sans">Zebrane środki będą przeznaczone m.in. na koszty licencji, administracyjne i promocyjne stowarzysznia.</p>                        
+                        <p className="text-3xl lg:text-5xl/16 font-title pb-8">Dzieciństwo mija tylko raz</p>
+                        <p className="text-sm lg:text-lg font-sans pb-4">Wspierając Stowarzyszenie Dzieciństwo Bez Smartfona, pomagasz tworzyć świat, w którym dzieci mogą rozwijać się w swoim tempie, budować prawdziwe relacje i odkrywać rzeczywistość poza ekranem.</p>
+                        <p className="text-sm lg:text-lg font-sans pb-4">Wierzymy, że dzieci zasługują na dzieciństwo pełne zabawy, przyjaźni, ruchu i ciekawości świata. Dlatego wspieramy rodziców, edukujemy społeczeństwo i działamy na rzecz ograniczenia zbyt wczesnego dostępu do smartfonów i mediów społecznościowych.</p>
+                        <p className="text-sm lg:text-lg font-sans pb-4"><b>Twoja darowizna to realne wsparcie dla działań, które chronią zdrowie i rozwój dzieci i młodzieży.</b></p>
+                        <p className="text-sm lg:text-lg font-sans pb-4">Razem możemy sprawić, że więcej dzieci będzie patrzeć na świat własnymi oczami, a nie przez ekran telefonu. ❤️</p>
                     </div>
                     {/* Fanipay widget */}
                     <div className="my-16 md:my-auto md:w-1/2 md:ml-8">
