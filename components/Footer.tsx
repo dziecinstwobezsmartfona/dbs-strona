@@ -14,9 +14,11 @@ export default function Footer() {
           />
           <div className="md:ml-4 mt-4 md:mt-0 text-center md:text-left text-xs md:text-sm">
             <p><b>Stowarzyszenie "Dzieciństwo Bez Smartfona"</b></p>
+            <p className="pb-4">NIP: xxxxxxxxxx    REGON: xxxxxxxxxx</p>
             <p>Aleje Jerozolimskie 109/70</p>
             <p>02-011 Warszawa</p>
-            <p>kontakt@dziecinstwobezsmartfona.pl</p>
+            <p className="pb-4">kontakt@dziecinstwobezsmartfona.pl</p>
+            <p>Nr konta: xxxx xxxx xxxx xxxx xxxx</p>
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center md:items-end text-xs md:text-sm">

@@ -2,7 +2,7 @@ import Heart from "@/components/Heart";
 
 export default function DziekujemyZaWplate() {
     return (
-        <main className="flex min-h-screen items-center justify-center bg-[url(/images/seamless-grass.jpg)]">
+        <main className="flex min-h-screen items-center justify-center bg-(--main-accent)">
 
             <div className="relative w-full mx-[10%]">
 
