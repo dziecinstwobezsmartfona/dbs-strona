@@ -7,7 +7,7 @@ export default function NaszaMisja() {
             <header className="flex flex-col w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center">
                 <Tag className="bg-black/10 text-foreground mb-12">Nasza Misja</Tag>
                 <p className="text-5xl/16 md:text-6xl/20 xl:text-8xl/32 font-title mb-12">Odzyskajmy dzieciństwo</p>
-                <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Smartfony fundamentalne zmieniły dzieciństwo</b>. Na gorsze. Dzieci najpierw dostawały smartfony, bo <b>prawie nikt nie był świadomy</b> płynącego z nich zagrożenia, a teraz je dostają, ponieważ sprawy zaszły tak daleko, że <b>rodzice nie widzą innego wyjścia</b>.</p>
+                <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Smartfony fundamentalnie zmieniły dzieciństwo</b>. Na gorsze. Dzieci najpierw dostawały smartfony, bo <b>prawie nikt nie był świadomy</b> płynącego z nich zagrożenia, a teraz je dostają, ponieważ sprawy zaszły tak daleko, że <b>rodzice nie widzą innego wyjścia</b>.</p>
                 <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Właśnie dlatego istnieje ten ruch</b>. Nie po to, by osądzać czy stwarzać podziały, ale by <b>razem stawić czoło temu problemowi</b>, by wspólnie z innymi rodzicami zadać sobie pytanie:</p>
                 <p className="text-lg md:text-lg xl:text-xl mb-8"><b><i>Może jednak coś da się z tym zrobić?</i></b></p>
                 <p className="text-lg md:text-lg xl:text-xl mb-12">Samemu jest trudno, ale <b>razem możemy dać dzieciom lepszy start</b>.</p>
@@ -53,10 +53,10 @@ export default function NaszaMisja() {
                 <div className="flex flex-col lg:flex-row items-center justify-center w-full">
                     <div className="text-left order-2 lg:order-1 w-full p-8 lg:p-16">
                         <p className="text-3xl xl:text-5xl/16 font-title pb-8">Niemożliwy wybór</p>
-                        <p className="text-sm xl:text-lg font-sans pb-6">Kiedy co drugie dziecko ma smartfona z najaktualniejszymi aplikacjami, rezygnacja z niego wydaje się odsunięciem dziecka od innych.</p>
-                        <p className="text-sm xl:text-lg font-sans pb-2">Rodzice stają więc przed niemożliwym wyborem:</p>
-                        <p className="text-sm xl:text-lg font-sans pb-2">☹️ Powiedzieć „tak" smartfonowi i zaryzykować dobro dziecka</p>
-                        <p className="text-sm xl:text-lg font-sans pb-6">☹️ Albo powiedzieć „nie" i zaryzykować odcięcie dziecka od rówieśników</p>
+                        <p className="text-sm xl:text-lg font-sans pb-6">Kiedy większość dzieci ma smartfona z najaktualniejszymi aplikacjami, rezygnacja z niego wydaje się odsunięciem dziecka od rówieśników.</p>
+                        <p className="text-sm xl:text-lg font-sans pb-2">Rodzice mają wrażenie, że stoją przed <b>niemożliwym wyborem</b>:</p>
+                        <p className="text-sm xl:text-lg font-sans pb-2">☹️ Powiedzieć „<b>tak</b>" smartfonowi i <b>ryzykować zdrowie swojego dziecka</b></p>
+                        <p className="text-sm xl:text-lg font-sans pb-6">☹️ Albo powiedzieć „<b>nie</b>" i <b>zaryzykować odcięcie dziecka od rówieśników</b></p>
                         <p className="text-sm xl:text-lg font-sans">To klasyczny przykład sytuacji, w której żadna decyzja nie wydaje się dobra. Sytuacji, przed którą żadna rodzina nie powinna była zostać postawiona samotnie.</p>
                     </div>
                     <div className="order-1 lg:order-2 w-full p-16">

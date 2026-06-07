@@ -73,6 +73,22 @@ export default function Home() {
         </div>
         {/* End of Webinar info */}
 
+        {/* Nasza misja */}
+        <section className="flex flex-col bg-white rounded-3xl items-center justify-center w-3/4 mx-auto mb-16">
+          <div className="flex flex-col w-[90%] lg:w-[80%] mx-auto items-left justify-center mb-8 font-sans">
+            <p className="text-3xl/10 md:text-5xl/20 xl:text-6xl/24 mt-8 mb-6 text-center font-title">Ruch społeczny "Dzieciństwo Bez Smartfona"</p>
+            <p className="text-md md:text-lg xl:text-xl pb-6 text-center"><b>Smartfony fundamentalnie zmieniły dzieciństwo. Na gorsze.</b></p>
+            <p className="text-md md:text-lg xl:text-xl pb-6">Dzieci najpierw dostawały smartfony, bo <b>prawie nikt nie był świadomy</b> płynącego z nich zagrożenia, a teraz je dostają, ponieważ sprawy zaszły tak daleko, że <b>rodzice nie widzą innego wyjścia</b>.</p>
+            <p className="text-md md:text-lg xl:text-xl pb-6">Kiedy większość dzieci ma smartfona z najaktualniejszymi aplikacjami, rezygnacja z niego wydaje się odsunięciem dziecka od rówieśników.</p>
+            <p className="text-md md:text-lg xl:text-xl pb-2">Rodzice mają wrażenie, że stoją przed <b>niemożliwym wyborem</b>:</p>
+            <p className="text-md md:text-lg xl:text-xl pb-2">☹️ Powiedzieć „<b>tak</b>" smartfonowi i <b>ryzykować zdrowie swojego dziecka</b></p>
+            <p className="text-md md:text-lg xl:text-xl pb-6">☹️ Albo powiedzieć „<b>nie</b>" i <b>zaryzykować odcięcie dziecka od rówieśników</b></p>
+            <p className="text-md md:text-lg xl:text-xl pb-6">Ale czy na pewno powiedzenie "nie" smartfonom dla dzieci jest niemożliwe?</p>
+            <p className="text-md md:text-lg xl:text-xl pb-6 text-center"><b>Rozwiązaniem jest współpraca.</b></p>
+            <p className="text-md md:text-lg xl:text-xl mb-8">Zgadzając się <b>zbiorowo</b> na opóźnienie momentu wręczenia dzieciom smartfonów, możemy odwrócić bieg wydarzeń i odzyskać dzieciństwo z „rąk” gigantów technologicznych. Jeśli będziemy działać w grupie, zmiana jest nie tylko możliwa – jest <b>nieunikniona</b>.</p>
+          </div>
+        </section>
+
         <div className="flex flex-col lg:flex-row items-top justify-center w-3/4 mx-auto">
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-full h-auto mx-auto my-8 lg:mx-8 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Podpisz PAKT RODZICÓW</p>
@@ -98,11 +114,11 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col w-3/4 lg:w-1/2 mx-auto mt-16 items-center justify-center text-center">
-          <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo Bez Smartfona to ruch rodzin zjednoczonych wokół celu przedłużenia dzieciństwa bez dostępu do smartfonów i&nbsp;mediów społecznościowych – zamieniamy izolację na zbiorową siłę.</b>.</p>
-          <p className="text-lg lg:text-xl mb-8">Razem zwracamy naszym dzieciom to co naprawdę ważne: czas na zabawę, przestrzeń do rozwoju, wolność do bycia dziećmi.</p>
-          <p className="text-lg lg:text-xl mb-8">Dzieciństwo powinno być kształtowane przez rodziców i&nbsp;bezpośrednie otoczenie, a&nbsp;nie algorytmy.</p>
-          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="pakt-rodzicow">
-            <span className="text-lg lg:text-2xl font-title text-(--secondary-accent) text-center">Podpisz PAKT RODZICÓW</span>
+          <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo Bez Smartfona to ruch rodzin zjednoczonych wokół celu przedłużenia dzieciństwa bez dostępu do smartfonów i&nbsp;mediów społecznościowych – zamieniamy izolację na zbiorową siłę.</b></p>
+          <p className="text-lg lg:text-xl mb-8"><b>Razem zwracamy naszym dzieciom to co naprawdę ważne: czas na zabawę, przestrzeń do rozwoju, wolność do bycia dziećmi.</b></p>
+          <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo powinno być kształtowane przez rodziców i&nbsp;bezpośrednie otoczenie, a&nbsp;nie algorytmy.</b></p>
+          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="dzialam">
+            <span className="text-2xl lg:text-6xl font-title text-(--secondary-accent) text-center">DZIAŁAJ Z NAMI!</span>
           </Link>
         </div>
       </section>
