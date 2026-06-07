@@ -37,12 +37,12 @@ export default function PaktRodzicow() {
                     <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-02.webp)] bg-auto bg-top text-(--main-accent) w-[90%] lg:w-3/4 mx-auto my-8 rounded-[50px]">
                         <div className="flex flex-col items-center justify-between w-[90%] lg:w-3/4 my-8 lg:my-16">
                             <p className="text-5xl lg:text-5xl font-title text-center pb-8">Dołącz do rosnącego ruchu rodziców</p>
-                            <div className="flex flex-col lg:flex-row items-center justify-between w-full pb-8">
-                                <div className="my-4">
-                                    <PactCounter font="font-title" fontSize="text-5xl lg:text-8xl" background="bg-white" foreground="text-(--foreground)" subtext="dzieci objętych Paktem" subtextFont="font-menu" />
+                            <div className="flex flex-col lg:flex-row items-center justify-between w-full pb-8 lg:space-x-8">
+                                <div className="my-4 w-full">
+                                    <PactCounter font="font-title" fontSize="text-8xl" background="bg-white" foreground="text-(--foreground)" subtext="dzieci objętych Paktem" subtextFont="font-menu" />
                                 </div>
-                                <div className="my-4">
-                                    <PactCounter type="schools" font="font-title" fontSize="text-5xl lg:text-8xl" background="bg-white" foreground="text-(--foreground)" subtext="zarejestrowanych szkół" subtextFont="font-menu" />
+                                <div className="my-4 w-full">
+                                    <PactCounter type="schools" font="font-title" fontSize="text-8xl" background="bg-white" foreground="text-(--foreground)" subtext="zarejestrowanych szkół" subtextFont="font-menu" />
                                 </div>
                             </div>
                             <Link className="flex justify-center bg-(--secondary-accent) rounded-3xl mt-4 p-4 hover:bg-(--background) w-full" href="pakt-rodzicow-wyniki">

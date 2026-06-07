@@ -195,8 +195,6 @@ const PactCounter: React.FC<PactCounterProps> = ({
     flex-col
     items-center
     justify-center
-    min-w-[200px]
-    lg:min-w-[400px]
   `.trim();
 
   // Loading spinner component with proper colors
