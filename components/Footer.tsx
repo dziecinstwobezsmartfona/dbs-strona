@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   return (
-    <footer className="bg-(--foreground) text-(--background)">
+    <footer className="bg-foreground text-background overflow-hidden">
+      {/* Formularz newslettera */}
+      <NewsletterForm/>
+      {/* Dane adresowe i linki */}
       <div className="flex flex-col md:flex-row md:justify-between items-center md:items-end p-8">
         <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
           <Image

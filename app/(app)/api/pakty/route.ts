@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '../../../../lib/mongodb';
 import Pact from '../../../../lib/models/Pact';
+import Subscriber from '../../../../lib/models/Subscriber';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';
@@ -89,6 +90,17 @@ export async function POST(request: NextRequest) {
     await pact.save();
 
     console.log('Pakt saved to database:', pact);
+
+    // Add to subscribers collection if newsletter consent given
+    if (body.newsletter_consent) {
+      const existingSubscriber = await Subscriber.findOne({ email: body.email });
+      if (!existingSubscriber) {
+        await new Subscriber({
+          fullName: `${body.firstName} ${body.lastName}`,
+          email: body.email,
+        }).save();
+      }
+    }
 
     // Send confirmation email
     const emailSent = await sendBrevoEmail(body.firstName, body.lastName, body.email);
