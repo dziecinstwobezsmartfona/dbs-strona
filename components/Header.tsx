@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface MenuItem {
   title: string;
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         {/* Left: Hamburger for mobile + Desktop menus */}
         <div className="justify-self-start flex items-center">
           <button
-            className="lg:hidden p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100"
+            className="lg:hidden p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-[var(--foreground)]/20"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg
@@ -64,18 +64,17 @@ const Header: React.FC = () => {
               />
             </svg>
           </button>
-          <nav className="hidden lg:flex items-center space-x-2 md:space-x-4 lg:space-x-6">
+          <nav className="hidden lg:flex items-center">
             {menus.map((menu, index) => (
               <div key={index} className="group relative menu-group">
-                <div 
-                  className="cursor-pointer font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-3 py-2 rounded-lg transition-colors"
+                <div
+                  className="cursor-pointer font-menu font-bold text-[0.8rem] xl:text-[1rem] text-gray-700 hover:text-gray-900 hover:bg-[var(--foreground)]/20 px-2 md:px-4 py-4 rounded-3xl transition-colors"
                   onClick={() => setOpenMenuIndex(openMenuIndex === index ? null : index)}
                 >
                   {menu.title}
                 </div>
-                <ul className={`font-menu font-bold absolute left-0 top-full bg-white shadow-xl rounded-lg border border-gray-200 min-w-[150px] py-2 z-10 ${
-                  openMenuIndex === index ? 'block' : 'hidden group-hover:block'
-                }`}>
+                <ul className={`font-menu font-bold absolute left-0 top-full bg-white shadow-xl rounded-lg border border-gray-200 min-w-[150px] py-2 z-10 ${openMenuIndex === index ? 'block' : 'hidden group-hover:block'
+                  }`}>
                   {menu.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <Link
@@ -96,7 +95,7 @@ const Header: React.FC = () => {
               <Link
                 key={index}
                 href={link.href}
-                className="font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                className="font-menu font-bold text-[0.8rem] xl:text-[1rem] text-gray-700 hover:text-gray-900 hover:bg-[var(--foreground)]/20 px-2 md:px-4 py-4 rounded-3xl transition-colors"
               >
                 {link.label}
               </Link>
@@ -105,12 +104,16 @@ const Header: React.FC = () => {
         </div>
 
         {/* Center: Logo and Organization Name */}
-        <div className="flex flex-row justify-center items-center space-x-2 lg:space-x-3">
-          {/* <Image src="/images/logo1.png" alt="" width={70} height={70} /> */}
-          <Link href="/">
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-lg lg:text-[2.2rem]/8 font-title">DZIECIŃSTWO</p>
-              <p className="text-lg lg:text-[2.2rem]/8 font-title">BEZ SMARTFONA</p>
+        <div className="flex flex-row justify-center items-center space-x-2 xl:space-x-3">
+          <Link href="/" className="px-3 rounded-3xl hover:bg-[var(--foreground)]/20 transition-colors">
+            <div className="flex flex-row justify-center items-center">
+              <div className="relative w-[60px] h-[60px] xl:w-[70px] xl:h-[70px]">
+                <Image src="/images/logo1.png" alt="" fill={true} />
+              </div>
+              <div className="hidden lg:flex flex-col justify-center items-start pl-4">
+                <p className="text-[1.8rem]/7 xl:text-[2.2rem]/8 font-title">DZIECIŃSTWO</p>
+                <p className="text-[1.8rem]/7 xl:text-[2.2rem]/8 font-title">BEZ SMARTFONA</p>
+              </div>
             </div>
           </Link>
         </div>
@@ -124,10 +127,10 @@ const Header: React.FC = () => {
                 href={link.href}
                 className={
                   link.label === 'Podpisz PAKT'
-                    ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--main-accent)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                    ? "font-menu font-bold text-[0.8rem] xl:text-[1rem] bg-[var(--main-accent)] text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white px-2 md:px-4 py-4 rounded-3xl transition-colors"
                     : (link.label === 'WESPRZYJ'
-                      ? "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] bg-[var(--foreground)] text-[var(--main-accent)] hover:bg-[var(--main-accent)] hover:text-foreground px-2 md:px-4 py-4 rounded-3xl transition-colors"
-                      : "font-menu font-bold text-[clamp(0.75rem,1.5vw,1rem)] text-gray-700 hover:text-gray-900 px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                      ? "font-menu font-bold text-[0.8rem] xl:text-[1rem] bg-[var(--foreground)] text-[var(--main-accent)] hover:bg-[var(--main-accent)] hover:text-foreground px-2 md:px-4 py-4 rounded-3xl transition-colors"
+                      : "font-menu font-bold text-[0.8rem] xl:text-[1rem] text-gray-700 hover:text-gray-900 hover:bg-[var(--foreground)]/20 px-2 md:px-4 py-4 rounded-3xl transition-colors"
                     )
                 }
               >
@@ -137,7 +140,7 @@ const Header: React.FC = () => {
           </nav>
           {/* Search Icon */}
           {/*
-          <button className="p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">
+          <button className="p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-[var(--foreground)]/20">
             <svg
               className="w-5 h-5"
               fill="none"

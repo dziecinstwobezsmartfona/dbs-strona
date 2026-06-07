@@ -118,7 +118,7 @@ export default function NewsletterForm() {
                 />
                 {errors.email && <p className="text-red-700 text-sm mt-1">{errors.email.message}</p>}
               </div>
-              <button type="submit" className="bg-foreground text-background py-3 rounded-3xl font-medium mt-2">
+              <button type="submit" className="bg-foreground text-background py-3 rounded-3xl font-medium mt-2 hover:bg-(--secondary-accent) hover:text-foreground transition-colors">
                 Zapisz się*
               </button>
             </form>
