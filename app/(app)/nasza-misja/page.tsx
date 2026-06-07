@@ -8,7 +8,7 @@ export default function NaszaMisja() {
                 <Tag className="bg-black/10 text-foreground mb-12">Nasza Misja</Tag>
                 <p className="text-5xl/16 md:text-6xl/20 xl:text-8xl/32 font-title mb-12">Odzyskajmy dzieciństwo</p>
                 <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Smartfony fundamentalnie zmieniły dzieciństwo</b>. Na gorsze. Dzieci najpierw dostawały smartfony, bo <b>prawie nikt nie był świadomy</b> płynącego z nich zagrożenia, a teraz je dostają, ponieważ sprawy zaszły tak daleko, że <b>rodzice nie widzą innego wyjścia</b>.</p>
-                <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Właśnie dlatego istnieje ten ruch</b>. Nie po to, by osądzać czy stwarzać podziały, ale by <b>razem stawić czoło temu problemowi</b>, by wspólnie z innymi rodzicami zadać sobie pytanie:</p>
+                <p className="text-lg md:text-lg xl:text-xl mb-8"><b>Właśnie dlatego istnieje ten ruch</b>. Nie po to, by osądzać czy stwarzać podziały, ale by <b>razem stawić czoło temu problemowi</b> i wspólnie z innymi rodzicami zadać sobie pytanie:</p>
                 <p className="text-lg md:text-lg xl:text-xl mb-8"><b><i>Może jednak coś da się z tym zrobić?</i></b></p>
                 <p className="text-lg md:text-lg xl:text-xl mb-12">Samemu jest trudno, ale <b>razem możemy dać dzieciom lepszy start</b>.</p>
             </header>
@@ -16,7 +16,7 @@ export default function NaszaMisja() {
                 <div className="flex flex-col lg:flex-row items-center justify-center w-full">
                     <div className="text-left order-2 lg:order-1 w-full p-8 lg:p-16">
                         <p className="text-3xl xl:text-5xl/16 font-title pb-8">Nowa rzeczywistość rodziców</p>
-                        <p className="text-sm xl:text-lg font-sans pb-6">W niewiele ponad 15 lat smartfony całkowicie zmieniły oblicze dzieciństwa, a dowodów na to, że wyrządzają więcej szkód niż pożytku, nie można już ignorować. Obecnie nie ma żadnych formalnych wytycznych dotyczących tego, kiedy dzieci powinny otrzymać swój pierwszy smartfon, ani regulacji ograniczających korzystanie z tych urządzeń przez dzieci na terenie szkół.</p>
+                        <p className="text-sm xl:text-lg font-sans pb-6">W niewiele ponad 15 lat smartfony całkowicie zmieniły oblicze dzieciństwa, a dowodów na to, że wyrządzają więcej szkód niż pożytku, nie można już ignorować. Obecnie nie ma żadnych formalnych wytycznych dotyczących tego, kiedy dzieci powinny otrzymać swój pierwszy smartfon, a prace nad regulacjami ograniczającymi korzystanie z tych urządzeń przez dzieci na terenie szkół dopiero się rozpoczęły.</p>
                         <p className="text-sm xl:text-lg font-sans">Powoduje to bezsilność rodziców wobec panujących realiów. Każdy rodzic, w trosce o swoje dziecko, staje samotnie do nierównej walki z najpotężniejszymi firmami technologicznymi na świecie, które wydają miliardy dolarów, by jak najdłużej przytrzymać dzieci przed ekranami.</p>
                     </div>
                     <div className="order-1 lg:order-2 w-full p-16">
@@ -57,7 +57,7 @@ export default function NaszaMisja() {
                         <p className="text-sm xl:text-lg font-sans pb-2">Rodzice mają wrażenie, że stoją przed <b>niemożliwym wyborem</b>:</p>
                         <p className="text-sm xl:text-lg font-sans pb-2">☹️ Powiedzieć „<b>tak</b>" smartfonowi i <b>ryzykować zdrowie swojego dziecka</b></p>
                         <p className="text-sm xl:text-lg font-sans pb-6">☹️ Albo powiedzieć „<b>nie</b>" i <b>zaryzykować odcięcie dziecka od rówieśników</b></p>
-                        <p className="text-sm xl:text-lg font-sans">To klasyczny przykład sytuacji, w której żadna decyzja nie wydaje się dobra. Sytuacji, przed którą żadna rodzina nie powinna była zostać postawiona samotnie.</p>
+                        <p className="text-sm xl:text-lg font-sans">To klasyczny przykład sytuacji, w której żadna decyzja nie wydaje się dobra. Sytuacji, przed którą żadna rodzina nie powinna być pozostawiona samotnie.</p>
                     </div>
                     <div className="order-1 lg:order-2 w-full p-16">
                         <Image
