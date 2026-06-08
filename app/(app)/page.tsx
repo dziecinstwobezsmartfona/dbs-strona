@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PactCounter from '@/components/PactCounter';
+import WheelPicker from '@/components/WheelPicker';
 //import WebinarPopup from '@/components/WebinarPopup';
 
 export default function Home() {
@@ -110,7 +111,32 @@ export default function Home() {
           {/* Dołącz do Społeczności DBS */}
           <div className="flex flex-col items-center justify-between bg-[url(/images/card-bg-01.webp)] bg-auto bg-top text-(--secondary-accent) w-full xl:w-1/2 p-8 rounded-3xl">
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Dołącz do Społeczności DBS</p>
-            <p className="text-sm lg:text-xl font-sans text-white">Nasza Społeczność na WhatsApp to najlepszy sposób na połączenie się z&nbsp;innymi rodzicami myślącymi podobnie. Jest ona miejscem do dzielenia się pomysłami, zadawania pytań i&nbsp;dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
+            <p className="text-sm lg:text-xl font-sans text-white pb-8">Nasza Społeczność na WhatsApp to najlepszy sposób na połączenie się z&nbsp;innymi rodzicami myślącymi podobnie. Jest ona miejscem do dzielenia się pomysłami, zadawania pytań i&nbsp;dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
+            <WheelPicker
+              items={[
+                "DBS SP Cogito w Poznaniu",
+                "DBS Warsaw Montessori School",
+                "DBS SP Nr 4 w Niepołomicach",
+                "DBS ZSM im. Moniuszki w Wałbrzychu",
+                "DBS SP Kolumbus w Błoniu",
+                "DBS SP Nr 4 w Rybniku",
+                "DBS SPP 399 Kabaty (Warszawa)",
+                "DBS Master's Academy w Lwówku Śląskim",
+                "DBS SP Nr 1 w Niepołomicach",
+                "DBS SP Nr 218 w Aninie (Warszawa)",
+                "DBS Zespół Szkolno-Przedszkolny w Ciepłowodach",
+                "DBS SP Nr 23 w Warszawie",
+                "DBS SP Nr 6 w Ząbkach",
+                "DBS SP w Krajence",
+                "DBS SP im. Kawalerów Orderu Uśmiechu w Kobylnicy",
+                "DBS SP Nr 29 w Poznaniu",
+                "DBS Materiały Od Rodziców",
+                "DBS Koordynatorzy Szkolni",
+                "DBS Przyjazna Technologia"
+              ]}
+              interval={2000}
+              className="text-xs sm:text-sm lg:text-lg text-center"
+            />
             <Link className="flex justify-center items-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://chat.whatsapp.com/KKSz0wyUNaGJQD50908mGz?mode=r_c&source_surface=23">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Ogólnopolska Społeczność DBS na Whatsapp</span>
             </Link>
