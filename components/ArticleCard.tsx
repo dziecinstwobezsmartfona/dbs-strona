@@ -39,7 +39,7 @@ export default function ArticleCard({ article, className = '' }: Props) {
 
 
   return (
-    <Link href={`/pomoce/${article.slug}`}>
+    <Link href={`/${article.slug}`}>
       <div className={`flex flex-col justify-between overflow-hidden h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] hover:bg-background focus:outline-none ${className}`}>
         <div className="h-1/2 relative">
           <Image

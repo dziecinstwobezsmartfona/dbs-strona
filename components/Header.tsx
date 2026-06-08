@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   ];
 
   const leftlinks = [
-    { label: 'POMOCE', href: '/pomoce' },
+    { label: 'WIEDZA I MATERIAŁY', href: '/wiedza-i-materialy' },
   ];
 
   const rightLinks = [

@@ -24,7 +24,7 @@ export default async function Pomoce() {
             {/* Header Section */}
             <section className="flex flex-col w-full bg-(--main-accent) ">
                 <div className="flex flex-col w-3/4 lg:w-1/2 mx-auto items-center justify-center text-center pt-45">
-                    <p className="text-5xl md:text-6xl xl:text-7xl font-title mb-8">Pomoce</p>
+                    <p className="text-5xl md:text-6xl xl:text-7xl font-title mb-8">Wiedza i Materiały</p>
                     <p className="text-lg md:text-base xl:text-xl mb-16">Poniżej znajdziesz ciekawe wiadomości, artykuły, odpowiedzi na pytania oraz inne zasoby, które mogą okazać się pomocne.</p>
                 </div>
             </section>
