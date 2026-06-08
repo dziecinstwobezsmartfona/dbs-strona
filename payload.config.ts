@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { Users } from "./collections/users/config";
 import { Media } from "./collections/Media";
 import { Articles } from "./collections/Articles";
+import { Schools } from "./collections/Schools";
 
 import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Articles],
+  collections: [Users, Media, Articles, Schools],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
