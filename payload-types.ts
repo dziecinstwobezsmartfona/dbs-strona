@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     articles: Article;
     schools: School;
+    activities: Activity;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     schools: SchoolsSelect<false> | SchoolsSelect<true>;
+    activities: ActivitiesSelect<false> | ActivitiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -94,6 +96,9 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User;
   jobs: {
     tasks: unknown;
@@ -152,6 +157,7 @@ export interface Media {
   id: string;
   alt: string;
   _key?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -177,9 +183,11 @@ export interface Article {
   generateSlug?: boolean | null;
   slug: string;
   /**
-   * Main cover image for the article
+   * Ilustracja do umieszczenia pod tytułem
    */
   coverImage?: (string | null) | Media;
+  category?: ('artykuł' | 'pytanie' | 'materiał' | 'DBS poleca' | 'dziennik')[] | null;
+  medium?: ('do czytania' | 'do słuchania' | 'do oglądania' | 'do wykorzystania')[] | null;
   title: string;
   content: {
     root: {
@@ -222,6 +230,21 @@ export interface School {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activities".
+ */
+export interface Activity {
+  id: string;
+  name: string;
+  description: string;
+  image?: (string | null) | Media;
+  link?: string | null;
+  role?: ('rodzic' | 'nauczyciel')[] | null;
+  visible?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -259,6 +282,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'schools';
         value: string | School;
+      } | null)
+    | ({
+        relationTo: 'activities';
+        value: string | Activity;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -332,6 +359,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   _key?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -353,6 +381,8 @@ export interface ArticlesSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   coverImage?: T;
+  category?: T;
+  medium?: T;
   title?: T;
   content?: T;
   updatedAt?: T;
@@ -375,6 +405,20 @@ export interface SchoolsSelect<T extends boolean = true> {
         phone?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activities_select".
+ */
+export interface ActivitiesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  image?: T;
+  link?: T;
+  role?: T;
+  visible?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -417,6 +461,16 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

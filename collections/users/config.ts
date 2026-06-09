@@ -6,6 +6,10 @@ import editor from './access/editor';
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Użytkownik',
+    plural: 'Użytkownicy'
+  },
   access: {
     create: admin,
     read: admin,
