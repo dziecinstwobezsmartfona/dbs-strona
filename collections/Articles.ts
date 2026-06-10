@@ -44,11 +44,10 @@ export const Articles: CollectionConfig = {
       hasMany: true,
       required: false,
       options: [
-        'artykuł',
-        'pytanie',
-        'materiał',
+        'artykuły',
+        'pytania',
+        'narzędzia',
         'DBS poleca',
-        'dziennik',
       ],
       admin: {
         position: 'sidebar',

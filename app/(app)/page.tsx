@@ -1,9 +1,18 @@
 import Link from 'next/link';
 import PactCounter from '@/components/PactCounter';
 import WheelPicker from '@/components/WheelPicker';
+import { getPayload } from 'payload';
+import configPromise from '@payload-config';
+import ArticleShowcase from '@/components/ArticleShowcase';
 //import WebinarPopup from '@/components/WebinarPopup';
 
-export default function Home() {
+export default async function Home() {
+  const payload = await getPayload({ config: configPromise });
+  const schoolsResult = await payload.find({
+    collection: 'schools',
+    limit: 0,
+  });
+  const schoolNames = schoolsResult.docs.map((s) => s.school_name);
   return (
     <main className="container">
       {/* <WebinarPopup /> */}
@@ -113,27 +122,7 @@ export default function Home() {
             <p className="text-3xl lg:text-5xl/16 font-title pb-8 text-center">Dołącz do Społeczności DBS</p>
             <p className="text-sm lg:text-xl font-sans text-white pb-8">Nasza Społeczność na WhatsApp to najlepszy sposób na połączenie się z&nbsp;innymi rodzicami myślącymi podobnie. Jest ona miejscem do dzielenia się pomysłami, zadawania pytań i&nbsp;dowiadywania się jakie kroki podejmują inni, aby utrzymać dzieciństwo wolne od smartfonów.</p>
             <WheelPicker
-              items={[
-                "DBS SP Cogito w Poznaniu",
-                "DBS Warsaw Montessori School",
-                "DBS SP Nr 4 w Niepołomicach",
-                "DBS ZSM im. Moniuszki w Wałbrzychu",
-                "DBS SP Kolumbus w Błoniu",
-                "DBS SP Nr 4 w Rybniku",
-                "DBS SPP 399 Kabaty (Warszawa)",
-                "DBS Master's Academy w Lwówku Śląskim",
-                "DBS SP Nr 1 w Niepołomicach",
-                "DBS SP Nr 218 w Aninie (Warszawa)",
-                "DBS Zespół Szkolno-Przedszkolny w Ciepłowodach",
-                "DBS SP Nr 23 w Warszawie",
-                "DBS SP Nr 6 w Ząbkach",
-                "DBS SP w Krajence",
-                "DBS SP im. Kawalerów Orderu Uśmiechu w Kobylnicy",
-                "DBS SP Nr 29 w Poznaniu",
-                "DBS Materiały Od Rodziców",
-                "DBS Koordynatorzy Szkolni",
-                "DBS Przyjazna Technologia"
-              ]}
+              items={schoolNames}
               interval={2000}
               className="text-xs sm:text-sm lg:text-lg text-center"
             />
@@ -169,6 +158,18 @@ export default function Home() {
           <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="dzialam">
             <span className="text-2xl lg:text-6xl font-title text-(--secondary-accent) text-center">DZIAŁAJ Z NAMI!</span>
           </Link>
+        </div>
+      </section>
+      {/* Podgląd do bazy wiedzy */}
+      <section className="relative w-screen bg-white">
+        <div className="w-3/4 mx-auto py-24">
+          <ArticleShowcase />
+        </div>
+      </section>
+      {/* Zostań Koordynatorem Szkolnym */}
+      <section className="relative w-screen bg-white">
+        <div className="hidden w-3/4 mx-auto my-24">
+          <p>Zostań Koordynatorem Szkolnym</p>
         </div>
       </section>
     </main>

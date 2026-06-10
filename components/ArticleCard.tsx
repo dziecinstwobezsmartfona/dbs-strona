@@ -3,6 +3,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { StringValidation } from 'zod/v3';
 
 type Article = {
   id: string;
@@ -23,9 +24,10 @@ type Props = {
   article: Article;
   // Optional: you can also pass width/height/className etc. if you want to customize per usage
   className?: string;
+  titleClassName?: string;
 };
 
-export default function ArticleCard({ article, className = '' }: Props) {
+export default function ArticleCard({ article, className = '', titleClassName = 'text-lg' }: Props) {
   // Skip rendering if article is not visible
   if (!article || !article.visible) {
     return null;
@@ -40,7 +42,7 @@ export default function ArticleCard({ article, className = '' }: Props) {
 
   return (
     <Link href={`/${article.slug}`}>
-      <div className={`flex flex-col justify-between overflow-hidden h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] hover:bg-background focus:outline-none ${className}`}>
+      <div className={`flex flex-col justify-between overflow-hidden h-[400px] bg-gray-100 rounded-3xl shadow-md transition-transform hover:scale-[1.05] hover:bg-background focus:outline-none text-lg ${className}`}>
         <div className="h-1/2 relative">
           <Image
             src={imageUrl}
@@ -55,7 +57,7 @@ export default function ArticleCard({ article, className = '' }: Props) {
 
         <div className="h-1/2 flex flex-col justify-between">
           <div className="p-4 flex flex-col justify-begin">
-            <h3 className="text-lg font-semibold leading-tight mb-auto">
+            <h3 className={`font-semibold leading-tight mb-auto ${titleClassName}`}>
               {article.title}
             </h3>
           </div>

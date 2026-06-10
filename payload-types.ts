@@ -186,7 +186,7 @@ export interface Article {
    * Ilustracja do umieszczenia pod tytułem
    */
   coverImage?: (string | null) | Media;
-  category?: ('artykuł' | 'pytanie' | 'materiał' | 'DBS poleca' | 'dziennik')[] | null;
+  category?: ('artykuły' | 'pytania' | 'narzędzia' | 'DBS poleca')[] | null;
   medium?: ('do czytania' | 'do słuchania' | 'do oglądania' | 'do wykorzystania')[] | null;
   title: string;
   content: {
