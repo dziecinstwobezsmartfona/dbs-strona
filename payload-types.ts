@@ -174,6 +174,7 @@ export interface Media {
  */
 export interface Article {
   id: string;
+  order: number;
   visible?: boolean | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -232,6 +233,7 @@ export interface School {
  */
 export interface Activity {
   id: string;
+  order: number;
   name: string;
   description: string;
   image?: (string | null) | Media;
@@ -373,6 +375,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
+  order?: T;
   visible?: T;
   generateSlug?: T;
   slug?: T;
@@ -409,6 +412,7 @@ export interface SchoolsSelect<T extends boolean = true> {
  * via the `definition` "activities_select".
  */
 export interface ActivitiesSelect<T extends boolean = true> {
+  order?: T;
   name?: T;
   description?: T;
   image?: T;

@@ -7,6 +7,7 @@ export default async function Dzialam() {
     const { docs: activities } = await payload.find({
         collection: 'activities',
         where: { visible: { equals: true } },
+        sort: 'order',
         depth: 1,
         limit: 100,
     });

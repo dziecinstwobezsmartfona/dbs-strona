@@ -90,7 +90,10 @@ export default function NaszWplyw() {
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center justify-center w-3/4 lg:w-1/2 h-full mx-auto text-center text-(--foreground) px-4">
                     <p className="text-3xl md:text-4xl xl:text-5xl/16 font-title mt-16 mb-8">To dopiero początek</p>
-                    <p className="text-sm md:text-base xl:text-lg font-bold mb-24">Widzimy rosnące zainteresowanie ze strony rodziców. Nasze wspólne zaangażowanie i determinacja mogą wiele zmienić. Ty też masz wpływ. Już wkrótce znajdziesz tutaj informacje, jak możesz pomóc.</p>
+                    <p className="text-sm md:text-base xl:text-lg font-bold mb-8">Widzimy rosnące zainteresowanie ze strony rodziców. Nasze wspólne zaangażowanie i determinacja mogą wiele zmienić. Ty też masz wpływ.</p>
+                    <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 mb-24 py-4 px-8 hover:bg-(--secondary-background)" href="dzialam">
+                        <span className="text-2xl lg:text-6xl font-title text-(--secondary-accent) text-center">DZIAŁAJ Z NAMI!</span>
+                    </Link>
                 </div>
             </section>
         </main>

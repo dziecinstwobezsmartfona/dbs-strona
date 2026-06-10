@@ -13,6 +13,11 @@ export const Articles: CollectionConfig = {
     defaultColumns: ['slug', 'title', 'visible'],
   },
   fields: [
+    { name: 'order',
+      label: 'Kolejność',
+      type: 'number',
+      required: true,
+    },
     {
       name: 'visible',
       label: 'Widoczny na stronie',

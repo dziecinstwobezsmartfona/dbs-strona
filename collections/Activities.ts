@@ -11,6 +11,12 @@ export const Activities: CollectionConfig = {
     },
     fields: [
         {
+            name: 'order',
+            label: 'Kolejność',
+            type: 'number',
+            required: true,
+        },
+        {
             name: 'name',
             label: 'Nazwa działania',
             type: 'text',
