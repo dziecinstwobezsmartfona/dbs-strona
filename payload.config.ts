@@ -1,8 +1,10 @@
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { s3Storage } from '@payloadcms/storage-s3';
+
+import { S3ClientConfig } from '@aws-sdk/client-s3';
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -17,6 +19,15 @@ import { Activities } from "./collections/Activities";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+const s3Config: S3ClientConfig = {
+  endpoint: process.env.AWS_ENDPOINT_URL,
+  region: process.env.AWS_DEFAULT_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+  },
+};
 
 export default buildConfig({
   admin: {
@@ -42,14 +53,12 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    uploadthingStorage({
+    s3Storage({
       collections: {
         media: true,
       },
-      options: {
-        token: process.env.UPLOADTHING_TOKEN,
-      },
-      clientUploads: true,
+      bucket: process.env.AWS_S3_BUCKET_NAME || '',
+      config: s3Config,
     }),
   ],
   email: nodemailerAdapter({

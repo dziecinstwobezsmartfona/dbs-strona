@@ -126,7 +126,7 @@ export default async function Home() {
               interval={2000}
               className="text-xs sm:text-sm lg:text-lg text-center"
             />
-            <Link className="flex justify-center items-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="https://chat.whatsapp.com/KKSz0wyUNaGJQD50908mGz?mode=r_c&source_surface=23">
+            <Link className="flex justify-center items-center bg-(--main-accent) rounded-3xl w-full mx-8 mt-8 p-4 hover:bg-(--background)" href="/dolacz-do-spolecznosci">
               <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Ogólnopolska Społeczność DBS na Whatsapp</span>
             </Link>
           </div>
@@ -155,7 +155,7 @@ export default async function Home() {
           <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo Bez Smartfona to ruch rodzin zjednoczonych wokół celu przedłużenia dzieciństwa bez dostępu do smartfonów i&nbsp;mediów społecznościowych – zamieniamy izolację na zbiorową siłę.</b></p>
           <p className="text-lg lg:text-xl mb-8"><b>Razem zwracamy naszym dzieciom to co naprawdę ważne: czas na zabawę, przestrzeń do rozwoju, wolność do bycia dziećmi.</b></p>
           <p className="text-lg lg:text-xl mb-8"><b>Dzieciństwo powinno być kształtowane przez rodziców i&nbsp;bezpośrednie otoczenie, a&nbsp;nie algorytmy.</b></p>
-          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 p-4 hover:bg-(--secondary-background)" href="dzialam">
+          <Link className="flex justify-center bg-(--foreground) rounded-3xl mx-8 mt-8 py-4 px-8 hover:bg-(--secondary-background)" href="dzialam">
             <span className="text-2xl lg:text-6xl font-title text-(--secondary-accent) text-center">DZIAŁAJ Z NAMI!</span>
           </Link>
         </div>
@@ -167,9 +167,23 @@ export default async function Home() {
         </div>
       </section>
       {/* Zostań Koordynatorem Szkolnym */}
-      <section className="relative w-screen bg-white">
-        <div className="hidden w-3/4 mx-auto my-24">
-          <p>Zostań Koordynatorem Szkolnym</p>
+      <section className="relative w-screen bg-(--purple)">
+        <div className="w-3/4 lg:w-1/2 mx-auto py-24 text-center">
+          <h2 className="text-4xl lg:text-6xl font-title text-foreground pb-12">Zostań Koordynatorem Szkolnym</h2>
+          <p className="text-lg lg:text-xl mb-8"><b>Koordynator Szkolny to osoba, która w społeczności szkolnej robi pierwszy krok, łącząc rodziców wokół jednego celu - przedłużenia dzieciństwa bez dostępu do smartfonów i mediów społecznościowych. Dzięki rozmowie i współpracy z innymi rodzicami koordynator wpływa na kulturę podejścia do smartfonów w szkole - bez zakazów, nakazów i odgórnych regulacji.</b></p>
+          {/* Webinar - Jak działać jako Koordynator DBS w szkole? */}
+          <div className="aspect-video w-full mx-auto overflow-hidden rounded-3xl">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/RG8QPShWrH4?controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1"
+              title="Webinar - Jak działać jako Koordynator DBS w szkole?"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen>
+            </iframe>
+          </div>
+          <Link className="flex justify-center items-center bg-(--secondary-accent) rounded-3xl w-full mt-12 p-4 hover:bg-(--background)" href="/zostan-koordynatorem">
+            <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Jak mogę zostać Koordynatorem Szkolnym?</span>
+          </Link>
         </div>
       </section>
     </main>
