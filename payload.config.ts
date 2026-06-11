@@ -1,7 +1,7 @@
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { brevoAdapter } from "./lib/BrevoAdapter";
 import { s3Storage } from '@payloadcms/storage-s3';
 
 import { S3ClientConfig } from '@aws-sdk/client-s3';
@@ -61,17 +61,9 @@ export default buildConfig({
       config: s3Config,
     }),
   ],
-  email: nodemailerAdapter({
+  email: brevoAdapter({
+    apiKey: process.env.BREVO_API_KEY || '',
     defaultFromAddress: 'noreply@dziecinstwobezsmartfona.pl',
     defaultFromName: 'Dzieciństwo Bez Smartfona',
-    transportOptions: {
-      host: 'smtp-relay.brevo.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.BREVO_SMTP_USER,
-        pass: process.env.BREVO_SMTP_KEY,
-      },
-    }
   }),
 });
