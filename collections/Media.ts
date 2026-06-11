@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import { revalidatePath } from 'next/cache';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -20,4 +21,12 @@ export const Media: CollectionConfig = {
     disableLocalStorage: true,
     displayPreview: true,
   },
+  hooks: {
+    afterChange: [
+      () => revalidatePath('/', 'layout'),
+    ],
+    afterDelete: [
+      () => revalidatePath('/', 'layout'),
+    ],
+  }
 }

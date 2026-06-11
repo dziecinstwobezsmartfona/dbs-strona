@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidatePath } from 'next/cache';
 
 export const Activities: CollectionConfig = {
     slug: 'activities',
@@ -59,4 +60,12 @@ export const Activities: CollectionConfig = {
             defaultValue: true,
         },
     ],
+    hooks: {
+        afterChange: [
+            () => revalidatePath('/', 'layout'),
+        ],
+        afterDelete: [
+            () => revalidatePath('/', 'layout'),
+        ],
+    }
 }

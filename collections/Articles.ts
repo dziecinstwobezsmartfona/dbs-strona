@@ -1,6 +1,7 @@
 import { slugField } from 'payload';
 import type { CollectionConfig } from 'payload';
 import { slugifypl } from '@/lib/slugifypl';
+import { revalidatePath } from 'next/cache';
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -13,7 +14,8 @@ export const Articles: CollectionConfig = {
     defaultColumns: ['slug', 'title', 'visible'],
   },
   fields: [
-    { name: 'order',
+    {
+      name: 'order',
       label: 'Kolejność',
       type: 'number',
       required: true,
@@ -87,4 +89,12 @@ export const Articles: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      () => revalidatePath('/', 'layout'),
+    ],
+    afterDelete: [
+      () => revalidatePath('/', 'layout'),
+    ],
+  }
 }

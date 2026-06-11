@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import { revalidatePath } from 'next/cache';
 
 export const Schools: CollectionConfig = {
     slug: 'schools',
@@ -64,4 +65,12 @@ export const Schools: CollectionConfig = {
             ]
         }
     ],
+    hooks: {
+        afterChange: [
+            () => revalidatePath('/', 'layout'),
+        ],
+        afterDelete: [
+            () => revalidatePath('/', 'layout'),
+        ],
+    }
 }
