@@ -2,6 +2,7 @@ import { slugField } from 'payload';
 import type { CollectionConfig } from 'payload';
 import { slugifypl } from '@/lib/slugifypl';
 import { revalidatePath } from 'next/cache';
+import { lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical';
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -87,6 +88,50 @@ export const Articles: CollectionConfig = {
       label: 'Zawartość',
       type: 'richText',
       required: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          UploadFeature({
+            collections: {
+              media: {
+                fields: [
+                  {
+                    name: 'width',
+                    label: 'Szerokość',
+                    type: 'select',
+                    defaultValue: 'w-full',
+                    options: [
+                      { label: 'Pełna', value: 'w-full' },
+                      { label: '3/4', value: 'w-3/4' },
+                      { label: '2/3', value: 'w-2/3' },
+                      { label: '1/2', value: 'w-1/2' },
+                      { label: '1/3', value: 'w-1/3' },
+                      { label: '1/4', value: 'w-1/4' },
+                    ],
+                  },
+                  {
+                    name: 'alignment',
+                    label: 'Wyrównanie',
+                    type: 'select',
+                    defaultValue: 'left',
+                    options: [
+                      { label: 'Do lewej', value: 'left' },
+                      { label: 'Na środku', value: 'center' },
+                      { label: 'Do prawej', value: 'right' },
+                    ],
+                  },
+                  {
+                    name: 'rounded',
+                    label: 'Zaokrąglone rogi',
+                    type: 'checkbox',
+                    defaultValue: false,
+                  },
+                ],
+              },
+            },
+          }),
+        ],
+      }),
     },
   ],
   hooks: {
