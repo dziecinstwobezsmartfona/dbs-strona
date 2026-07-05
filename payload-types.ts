@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     articles: Article;
+    schools: School;
+    activities: Activity;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +82,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    schools: SchoolsSelect<false> | SchoolsSelect<true>;
+    activities: ActivitiesSelect<false> | ActivitiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -92,6 +96,9 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User;
   jobs: {
     tasks: unknown;
@@ -122,7 +129,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
-  roles?: ('admin' | 'editor' | 'viewer')[] | null;
+  roles: ('admin' | 'editor' | 'viewer')[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -149,7 +156,6 @@ export interface User {
 export interface Media {
   id: string;
   alt: string;
-  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -168,6 +174,7 @@ export interface Media {
  */
 export interface Article {
   id: string;
+  order: number;
   visible?: boolean | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -175,9 +182,11 @@ export interface Article {
   generateSlug?: boolean | null;
   slug: string;
   /**
-   * Main cover image for the article
+   * Ilustracja do umieszczenia pod tytułem
    */
   coverImage?: (string | null) | Media;
+  category?: ('artykuły' | 'pytania' | 'narzędzia' | 'DBS poleca')[] | null;
+  medium?: ('do czytania' | 'do słuchania' | 'do oglądania' | 'do wykorzystania')[] | null;
   title: string;
   content: {
     root: {
@@ -194,6 +203,43 @@ export interface Article {
     };
     [k: string]: unknown;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schools".
+ */
+export interface School {
+  id: string;
+  school_name: string;
+  school_full_name: string;
+  whatsapp_link?: string | null;
+  number_of_members?: number | null;
+  coordinators?:
+    | {
+        name: string;
+        email?: string | null;
+        phone?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activities".
+ */
+export interface Activity {
+  id: string;
+  order: number;
+  name: string;
+  description: string;
+  image?: (string | null) | Media;
+  link?: string | null;
+  role?: ('rodzic' | 'nauczyciel')[] | null;
+  visible?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -232,6 +278,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'schools';
+        value: string | School;
+      } | null)
+    | ({
+        relationTo: 'activities';
+        value: string | Activity;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -304,7 +358,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -322,12 +375,50 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
+  order?: T;
   visible?: T;
   generateSlug?: T;
   slug?: T;
   coverImage?: T;
+  category?: T;
+  medium?: T;
   title?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schools_select".
+ */
+export interface SchoolsSelect<T extends boolean = true> {
+  school_name?: T;
+  school_full_name?: T;
+  whatsapp_link?: T;
+  number_of_members?: T;
+  coordinators?:
+    | T
+    | {
+        name?: T;
+        email?: T;
+        phone?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activities_select".
+ */
+export interface ActivitiesSelect<T extends boolean = true> {
+  order?: T;
+  name?: T;
+  description?: T;
+  image?: T;
+  link?: T;
+  role?: T;
+  visible?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -370,6 +461,16 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

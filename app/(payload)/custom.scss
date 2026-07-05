@@ -1,0 +1,213 @@
+/* =========================================================================
+   Payload CMS — Admin Panel Brand Theme
+   Wire this file into payload.config.ts via:  admin: { css: path.resolve(dirname, 'custom.scss') }
+   ========================================================================= */
+
+/* Google fonts. If you'd rather use next/font (recommended for production —
+   no layout shift, self-hosted), see the note at the bottom of this file. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..800;1,300..800&family=Anton&display=swap');
+
+/* -------------------------------------------------------------------------
+   1. Brand palette — your source-of-truth tokens
+   ------------------------------------------------------------------------- */
+:root {
+  --brand-background: #edffdd;
+  --brand-secondary-background: #0a6880;
+  --brand-foreground: #0e3b3b;
+  --brand-main-accent: #ceffa8;
+  --brand-secondary-accent: #ecff87;
+  --brand-purple: #c2d3ff;
+  --brand-purple-light: #e2e3ff;
+}
+
+/* -------------------------------------------------------------------------
+   2. LIGHT THEME
+   Payload reads `html` (no data-theme attr) as light. The elevation ramp
+   runs 0 (lightest surface) -> 800 (body text) -> 1000 (darkest).
+   ------------------------------------------------------------------------- */
+html {
+  /* Fonts */
+  --font-body: 'Montserrat', system-ui, sans-serif;
+  --font-heading: 'Anton', 'Montserrat', sans-serif; /* custom helper var, used in §4 */
+
+  /* Elevation ramp: #EDFFDD (background) -> #0E3B3B (foreground/text) -> darker */
+  --theme-elevation-0: #edffdd;
+  --theme-elevation-50: #dff3d3;
+  --theme-elevation-100: #d1e7c9;
+  --theme-elevation-150: #c3dabf;
+  --theme-elevation-200: #b5ceb5;
+  --theme-elevation-250: #a7c2aa;
+  --theme-elevation-300: #99b6a0;
+  --theme-elevation-350: #8ba996;
+  --theme-elevation-400: #7e9d8c;
+  --theme-elevation-450: #709182;
+  --theme-elevation-500: #628478;
+  --theme-elevation-550: #54786e;
+  --theme-elevation-600: #466c64;
+  --theme-elevation-650: #386059;
+  --theme-elevation-700: #2a544f;
+  --theme-elevation-750: #1c4745;
+  --theme-elevation-800: #0e3b3b; /* = body text */
+  --theme-elevation-850: #0c3434;
+  --theme-elevation-900: #0a2d2d;
+  --theme-elevation-950: #072525;
+  --theme-elevation-1000: #051e1e;
+
+  /* Core theme aliases (set explicitly — Payload may derive these from
+     newer base tokens, so we pin them to be safe) */
+  --theme-bg: var(--brand-background);
+  --theme-input-bg: #ffffff;
+  --theme-text: var(--brand-foreground);
+  --theme-overlay: rgba(14, 59, 59, 0.55);
+}
+
+/* -------------------------------------------------------------------------
+   3. DARK THEME
+   Payload sets [data-theme="dark"] on <html>. We mirror the light ramp so
+   surfaces go dark and text goes light, keeping the same brand hues.
+   ------------------------------------------------------------------------- */
+[data-theme='dark'] {
+  --theme-elevation-0: #051e1e;
+  --theme-elevation-50: #072525;
+  --theme-elevation-100: #0a2d2d;
+  --theme-elevation-150: #0c3434;
+  --theme-elevation-200: #0e3b3b;
+  --theme-elevation-250: #1c4745;
+  --theme-elevation-300: #2a544f;
+  --theme-elevation-350: #386059;
+  --theme-elevation-400: #466c64;
+  --theme-elevation-450: #54786e;
+  --theme-elevation-500: #628478;
+  --theme-elevation-550: #709182;
+  --theme-elevation-600: #7e9d8c;
+  --theme-elevation-650: #8ba996;
+  --theme-elevation-700: #99b6a0;
+  --theme-elevation-750: #a7c2aa;
+  --theme-elevation-800: #c3dabf; /* = body text (light on dark) */
+  --theme-elevation-850: #d1e7c9;
+  --theme-elevation-900: #dff3d3;
+  --theme-elevation-950: #e8f9da;
+  --theme-elevation-1000: #edffdd;
+
+  --theme-bg: #082a2a;
+  --theme-input-bg: #0c3434;
+  --theme-text: #d1e7c9;
+  --theme-overlay: rgba(0, 0, 0, 0.65);
+}
+
+/* -------------------------------------------------------------------------
+   4. Typography — Anton for headings, Montserrat for body
+   --font-body is already consumed by Payload's <body>. We apply the display
+   face to headings. Anton is a heavy display face: it shines on large titles
+   but can feel loud on small headings, so we keep it to h1–h3 and let h4–h6
+   stay in Montserrat. Adjust the selector list to taste.
+   ------------------------------------------------------------------------- */
+@layer payload-default {
+  h1,
+  h2,
+  h3,
+  .step-nav__home,
+  .nav__label {
+    font-family: var(--font-heading);
+    font-weight: 400; /* Anton ships a single weight */
+    letter-spacing: 0.01em;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   5. Accent touches via Payload's BEM classes
+   These layer on top of the elevation system to inject the brand teal and
+   light accents where a flat ramp wouldn't carry enough personality.
+   ------------------------------------------------------------------------- */
+
+/* Primary action buttons -> brand teal */
+.btn--style-primary {
+  --color: #ffffff;
+  background-color: var(--brand-secondary-background);
+  border-color: var(--brand-secondary-background);
+  color: #ffffff;
+
+  &:hover,
+  &:focus {
+    background-color: #08556a; /* teal, slightly darker */
+    border-color: #08556a;
+  }
+
+  &.btn--disabled {
+    background-color: var(--theme-elevation-200);
+    border-color: var(--theme-elevation-200);
+  }
+}
+
+/* Active nav item -> teal accent bar + tint */
+.nav__link {
+  &.active,
+  &:hover {
+    background-color: var(--brand-purple-light);
+
+    /* Pin dark text so the label stays legible in both light and dark mode
+       (the purple highlight is light in both themes). */
+    &,
+    & *,
+    .nav__label {
+      color: var(--brand-foreground);
+    }
+  }
+
+  &.active {
+    box-shadow: inset 3px 0 0 var(--brand-secondary-background);
+  }
+}
+
+/* Subtle row hover in list views */
+.table tr:hover td {
+  background-color: var(--brand-purple-light);
+
+  /* Keep cell text (and any cell links) dark on the light purple highlight. */
+  &,
+  & a,
+  & * {
+    color: var(--brand-foreground);
+  }
+}
+
+/* Pill / badge highlights pick up the light accent */
+.pill--style-light {
+  background-color: var(--brand-main-accent);
+  color: var(--brand-foreground);
+}
+
+/* Focus rings in the brand teal for inputs */
+.field-type input:focus,
+.field-type textarea:focus,
+.field-type .rs__control--is-focused {
+  border-color: var(--brand-secondary-background);
+  box-shadow: 0 0 0 2px rgba(10, 104, 128, 0.25);
+}
+
+/* -------------------------------------------------------------------------
+   6. Rich Text (Lexical) editor content
+   The editor renders real <p> / <h1>–<h6> elements inside a [contenteditable]
+   surface. We scope to `.field-type [contenteditable]` — `.field-type` is
+   Payload's universal field wrapper and the contenteditable region is unique
+   to the rich text field, so this targets editor content (not the toolbar)
+   without relying on Lexical's internal theme class names.
+   Left unlayered for highest specificity, so it wins over the editor defaults.
+   ------------------------------------------------------------------------- */
+.field-type [contenteditable] {
+  p,
+  li,
+  blockquote {
+    font-family: var(--font-body); /* Montserrat */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading); /* Anton */
+    font-weight: 400; /* Anton ships a single weight */
+  }
+}

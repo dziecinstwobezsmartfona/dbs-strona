@@ -13,31 +13,36 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@payloadcms/db-mongodb": "^3.77.0",
-    "@payloadcms/next": "^3.77.0",
-    "@payloadcms/richtext-lexical": "^3.77.0",
-    "@payloadcms/storage-uploadthing": "^3.77.0",
+    "@payloadcms/db-mongodb": "3.85.0",
+    "@payloadcms/next": "3.85.0",
+    "@payloadcms/richtext-lexical": "3.85.0",
+    "@payloadcms/storage-s3": "^3.85.0",
+    "@payloadcms/storage-uploadthing": "3.85.0",
     "@tailwindcss/typography": "^0.5.19",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "graphql": "^16.12.0",
     "mongoose": "^9.1.4",
-    "next": "^16.2.0-canary.10",
-    "payload": "^3.77.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "next": "^16.2.7",
+    "payload": "3.85.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
     "react-hook-form": "^7.71.1",
     "zod": "^4.3.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
     "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.0",
+    "eslint-config-next": "^16.2.7",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
   }
 }

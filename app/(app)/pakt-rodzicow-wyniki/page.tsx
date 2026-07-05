@@ -58,11 +58,11 @@ const PaktStatsContent = () => {
             <p className="text-sm lg:text-xl font-sans pb-12">Statystyki</p>
             <p className="text-sm lg:text-xl font-sans pb-8"><b>{getBackTo()}</b></p>
             <p className="text-3xl lg:text-6xl font-title text-white pb-8">{getDrillDownTitle()}</p>
-            <div className="flex flex-col lg:flex-row items-center justify-between w-full pb-8">
-              <div className="my-4">
+            <div className="flex flex-col lg:flex-row items-center justify-between w-full pb-8 lg:space-x-8">
+              <div className="my-4 w-full">
                 <PactCounter
                   font="font-title"
-                  fontSize="text-5xl lg:text-8xl"
+                  fontSize="text-8xl"
                   background="bg-white"
                   foreground="text-(--foreground)"
                   subtext="dzieci objętych Paktem"
@@ -73,11 +73,11 @@ const PaktStatsContent = () => {
                   county={county || undefined}
                 />
               </div>
-              <div className="my-4">
+              <div className="my-4 w-full">
                 <PactCounter
                   type="schools"
                   font="font-title"
-                  fontSize="text-5xl lg:text-8xl"
+                  fontSize="text-8xl"
                   background="bg-white"
                   foreground="text-(--foreground)"
                   subtext="zarejestrowanych szkół"

@@ -92,7 +92,7 @@ export default function NewsletterForm() {
     <div className="bg-(--main-accent) text-foreground p-8 md:p-12 mx-4 md:mx-8 mt-16 mb-8 rounded-3xl flex flex-col gap-8">
       <div className="flex flex-col md:flex-row md:items-begin gap-8">
         <div className="md:w-1/2">
-          <h2 className="text-5xl md:text-6xl font-title leading-none mb-4">Razem mamy moc</h2>
+          <h2 className="text-4xl md:text-6xl font-title leading-none mb-4">Razem mamy moc</h2>
           <p className="text-md">Zapisz się do newslettera Dzieciństwa Bez Smartfona, aby otrzymywać inspirujące historie, pomocne materiały i najnowsze informacje o naszym ruchu.</p>
         </div>
         <div className="md:w-1/2">
@@ -118,7 +118,7 @@ export default function NewsletterForm() {
                 />
                 {errors.email && <p className="text-red-700 text-sm mt-1">{errors.email.message}</p>}
               </div>
-              <button type="submit" className="bg-foreground text-background py-3 rounded-3xl font-medium mt-2">
+              <button type="submit" className="bg-foreground text-background py-3 rounded-3xl font-medium mt-2 hover:bg-(--secondary-accent) hover:text-foreground transition-colors">
                 Zapisz się*
               </button>
             </form>
