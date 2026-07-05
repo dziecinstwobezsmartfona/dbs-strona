@@ -181,7 +181,7 @@ export default async function Home() {
               allowFullScreen>
             </iframe>
           </div>
-          <Link className="flex justify-center items-center bg-(--secondary-accent) rounded-3xl w-full mt-12 p-4 hover:bg-(--background)" href="/zostan-koordynatorem">
+          <Link className="flex justify-center items-center bg-(--secondary-accent) rounded-3xl w-full mt-12 p-4 hover:bg-(--background)" href="/zostan-koordynatorem-szkolnym">
             <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Jak mogę zostać Koordynatorem Szkolnym?</span>
           </Link>
         </div>
