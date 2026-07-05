@@ -1,6 +1,6 @@
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature, defaultEditorFeatures, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { brevoAdapter } from "./lib/BrevoAdapter";
 import { s3Storage } from '@payloadcms/storage-s3';
 
@@ -15,6 +15,7 @@ import { Media } from "./collections/Media";
 import { Articles } from "./collections/Articles";
 import { Schools } from "./collections/Schools";
 import { Activities } from "./collections/Activities";
+import { YouTubeBlock } from "./blocks/YouTube";
 
 
 const filename = fileURLToPath(import.meta.url);
@@ -43,7 +44,12 @@ export default buildConfig({
     }
   },
   collections: [Users, Media, Articles, Schools, Activities],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      BlocksFeature({ blocks: [YouTubeBlock] }),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

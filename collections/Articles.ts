@@ -2,7 +2,8 @@ import { slugField } from 'payload';
 import type { CollectionConfig } from 'payload';
 import { slugifypl } from '@/lib/slugifypl';
 import { revalidatePath } from 'next/cache';
-import { lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical';
+import { BlocksFeature, lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical';
+import { YouTubeBlock } from '@/blocks/YouTube';
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -91,6 +92,7 @@ export const Articles: CollectionConfig = {
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
           ...defaultFeatures,
+          BlocksFeature({ blocks: [YouTubeBlock] }),
           UploadFeature({
             collections: {
               media: {

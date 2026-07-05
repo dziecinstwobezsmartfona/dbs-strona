@@ -63,7 +63,43 @@ const UploadConverter: React.FC<{ node: MediaUploadNode }> = ({ node }) => {
   );
 };
 
+function extractYouTubeId(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname === 'youtu.be') return parsed.pathname.slice(1);
+    if (parsed.hostname.includes('youtube.com')) {
+      if (parsed.pathname.startsWith('/embed/')) return parsed.pathname.split('/embed/')[1].split('/')[0];
+      return parsed.searchParams.get('v');
+    }
+  } catch {
+    // invalid URL
+  }
+  return null;
+}
+
+type YouTubeBlockFields = { blockType: 'youtube'; blockName: string; id: string; url: string };
+
+const YouTubeConverter: React.FC<{ node: { fields: YouTubeBlockFields } }> = ({ node }) => {
+  const videoId = extractYouTubeId(node.fields.url);
+  if (!videoId) return null;
+  const src = `https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`;
+  return (
+    <div className="aspect-video w-full mx-auto overflow-hidden rounded-3xl my-8">
+      <iframe
+        className="w-full h-full"
+        src={src}
+        title="YouTube video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
+  );
+};
+
 export const jsxConverter: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
   upload: ({ node }) => <UploadConverter node={node as unknown as MediaUploadNode} />,
+  blocks: {
+    youtube: ({ node }: { node: { fields: YouTubeBlockFields } }) => <YouTubeConverter node={node} />,
+  },
 });
