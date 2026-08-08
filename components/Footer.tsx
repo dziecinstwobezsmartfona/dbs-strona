@@ -17,12 +17,12 @@ export default function Footer() {
             alt="Dzieciństwo Bez Smartfona Logo"
           />
           <div className="md:ml-4 mt-4 md:mt-0 text-center md:text-left text-xs md:text-sm">
-            <p><b>Stowarzyszenie "Dzieciństwo Bez Smartfona"</b></p>
-            <p className="pb-4">NIP: 7011300985    REGON: 543938154</p>
+            <p><b>Fundacja "Dzieciństwo Bez Smartfona"</b></p>
+            <p className="pb-4">KRS: 0001256605  NIP: 7011300985  REGON: 545328052</p>
             <p>Aleje Jerozolimskie 109/70</p>
             <p>02-011 Warszawa</p>
             <p className="pb-4">kontakt@dziecinstwobezsmartfona.pl</p>
-            <p>Nr konta: 32 2530 0008 2090 1090 7977 0001</p>
+            {/* <p>Nr konta: 32 2530 0008 2090 1090 7977 0001</p> */}
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center md:items-end text-xs md:text-sm">

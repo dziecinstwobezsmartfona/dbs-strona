@@ -11,7 +11,7 @@ export default function PolitykaPrywatnosci() {
                 <div className="text-left w-full p-8 lg:p-16">
                     <h1 className="text-2xl xl:text-3xl font-title pb-6">Polityka Prywatności</h1>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Stowarzyszenie „Dzieciństwo Bez Smartfona” (dalej Stowarzyszenie) jest organizacją pozarządową działającą na rzecz ochrony dzieci i młodzieży przed nadmiernym korzystaniem z urządzeń ekranowych (smartfonów, tabletów, komputerów) oraz promowania zdrowego dzieciństwa.
+                        Fundacja „Dzieciństwo Bez Smartfona” (dalej Fundacja) jest organizacją pozarządową działającą na rzecz ochrony dzieci i młodzieży przed nadmiernym korzystaniem z urządzeń ekranowych (smartfonów, tabletów, komputerów) oraz promowania zdrowego dzieciństwa.
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
                         Realizując naszą misję zbieramy i przetwarzamy dane osobowe rodziców / opiekunów prawnych podpisujących Pakt Rodziców, oraz osób zapisujących się na newsletter, a także uczestników naszych wydarzeń, darczyńców, współpracowników i wolontariuszy.
@@ -25,10 +25,10 @@ export default function PolitykaPrywatnosci() {
                         Od 25 maja 2018 r. obowiązuje Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (określane popularnie jako „RODO”).
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        RODO obowiązywać będzie w identycznym zakresie we wszystkich krajach Unii Europejskiej, a więc także w Polsce i wprowadza szereg zmian w zasadach regulujących przetwarzanie danych osobowych, które będą miały wpływ na działalność mi. in. organizacji i stowarzyszeń w tym naszej Fundacji. Poza RODO w polskim porządku prawnym obowiązuje też ustawa z dnia 10 maja 2018 r. o ochronie danych osobowych (t.j. Dz. U. z 2019 r. poz. 1781), która doprecyzowuje niektóre z zasad ochrony danych osobowych.
+                        RODO obowiązywać będzie w identycznym zakresie we wszystkich krajach Unii Europejskiej, a więc także w Polsce i wprowadza szereg zmian w zasadach regulujących przetwarzanie danych osobowych, które będą miały wpływ na działalność mi. in. organizacji i stowarzyszeń, w tym naszej Fundacji. Poza RODO w polskim porządku prawnym obowiązuje też ustawa z dnia 10 maja 2018 r. o ochronie danych osobowych (t.j. Dz. U. z 2019 r. poz. 1781), która doprecyzowuje niektóre z zasad ochrony danych osobowych.
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Poniżej przedstawiamy najważniejsze informacje dotyczące przetwarzania danych osobowych w związku z działaniami Stowarzyszenia „Dzieciństwo Bez Smartfona”.
+                        Poniżej przedstawiamy najważniejsze informacje dotyczące przetwarzania danych osobowych w związku z działaniami Fundacji „Dzieciństwo Bez Smartfona”.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Czym są dane osobowe?</h2>
@@ -41,27 +41,27 @@ export default function PolitykaPrywatnosci() {
                         Administratorem danych osobowych jest:
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Stowarzyszenie „Dzieciństwo Bez Smartfona”<br />
+                        Fundacja „Dzieciństwo Bez Smartfona”<br />
                         Aleje Jerozolimskie 109/70, 02-011 Warszawa
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Podstawa i cel przetwarzania danych osobowych</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Przetwarzanie danych osobowych musi mieć zawsze podstawę prawną. W działalności naszego Stowarzyszenia występują przede wszystkim następujące podstawy:
+                        Przetwarzanie danych osobowych musi mieć zawsze podstawę prawną. W działalności Fundacji występują przede wszystkim następujące podstawy:
                     </p>
                     <ul className="text-sm xl:text-lg font-sans pb-6 list-disc list-inside">
                         <li><strong>Dobrowolna zgoda</strong> – dotyczy przede wszystkim zapisania się na newsletter (otrzymywania informacji o kampaniach, webinarach, materiałach edukacyjnych) oraz podpisania <strong>Paktu Rodziców</strong> (w którym podajesz swoje dane w celu dołączenia do społeczności i otrzymywania wsparcia);</li>
-                        <li><strong>Niezbędność przetwarzania do celów wynikających z prawnie uzasadnionych interesów administratora</strong> – dotyczy ona realizacji celów regulaminowych Stowarzyszenia, w tym: prowadzenia kampanii społecznych, działalności edukacyjnej, budowania społeczności świadomych rodziców, informowania o wydarzeniach i akcjach, kontaktu w sprawach Paktu Rodziców, analizy zasięgu działań;</li>
+                        <li><strong>Niezbędność przetwarzania do celów wynikających z prawnie uzasadnionych interesów administratora</strong> – dotyczy ona realizacji celów regulaminowych Fundacji, w tym: prowadzenia kampanii społecznych, działalności edukacyjnej, budowania społeczności świadomych rodziców, informowania o wydarzeniach i akcjach, kontaktu w sprawach Paktu Rodziców, analizy zasięgu działań;</li>
                         <li><strong>Niezbędność do wykonania umów</strong> – w przypadku ewentualnych umów darowizny, współpracy wolontariackiej lub umów z wykonawcami;</li>
                         <li><strong>Prawne zobowiązania</strong> – w naszym przypadku jest to np.: przekazanie materiałów na żądanie uprawnionego organu np.: sądu.</li>
                     </ul>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Zasady przetwarzania danych osobowych</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Dane osobowe w Stowarzyszeniu przetwarzane będą wyłącznie w przypadku posiadania przez Stowarzyszenie jednej z dopuszczonych przez RODO podstaw prawnych i wyłącznie w celu dostosowanym do danej podstawy, zgodnie z opisem powyżej. Dane osobowe przetwarzane będą do czasu istnienia podstawy do ich przetwarzania – czyli w przypadku udzielenia zgody do momentu jej cofnięcia, ograniczenia lub innych działań ze strony właściciela danych ograniczających tę zgodę, w przypadku niezbędności do wykonania umowy – przez czas jej wykonywania, a w przypadku, gdy podstawą przetwarzania danych jest uzasadniony interes administratora – do czasu istnienia tego uzasadnionego interesu.
+                        Dane osobowe w Fundacji przetwarzane będą wyłącznie w przypadku posiadania przez Fundację jednej z dopuszczonych przez RODO podstaw prawnych i wyłącznie w celu dostosowanym do danej podstawy, zgodnie z opisem powyżej. Dane osobowe przetwarzane będą do czasu istnienia podstawy do ich przetwarzania – czyli w przypadku udzielenia zgody do momentu jej cofnięcia, ograniczenia lub innych działań ze strony właściciela danych ograniczających tę zgodę, w przypadku niezbędności do wykonania umowy – przez czas jej wykonywania, a w przypadku, gdy podstawą przetwarzania danych jest uzasadniony interes administratora – do czasu istnienia tego uzasadnionego interesu.
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Po wskazanym w w/w punkcie okresie czasu dane osobowe podlegają usunięciu z baz elektronicznych Stowarzyszenia lub zniszczeniu jeśli są w formie papierowej.
+                        Po wskazanym w w/w punkcie okresie czasu dane osobowe podlegają usunięciu z baz elektronicznych Fundacji lub zniszczeniu jeśli są w formie papierowej.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Odbiorcy danych osobowych</h2>
