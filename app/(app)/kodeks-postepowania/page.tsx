@@ -72,23 +72,23 @@ export default function KodeksPostepowania() {
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Reprezentowanie DBS publicznie</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Jeśli mówimy o DBS publicznie – w mediach, w szkole lub online – upewnijmy się, że rozumiemy i odzwierciedlamy kluczowe wartości oraz ton ruchu. Zawsze wyraźnie zaznaczajmy, że jesteśmy wolontariuszami społeczności DBS, a nie osobami zatrudnionymi przez Stowarzyszenie DBS, czyli organizację formalno-prawną.
+                        Jeśli mówimy o DBS publicznie – w mediach, w szkole lub online – upewnijmy się, że rozumiemy i odzwierciedlamy kluczowe wartości oraz ton ruchu. Zawsze wyraźnie zaznaczajmy, że jesteśmy wolontariuszami społeczności DBS, a nie osobami zatrudnionymi przez Fundację DBS, czyli organizację formalno-prawną.
                         Jeśli macie wątpliwości – prosimy o kontakt pod adresem email: kontakt@dziecinstwobezsmartfona.pl.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Korzystanie z zasobów DBS</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Materiały Stowarzyszenia DBS są udostępniane do wykorzystania niekomercyjnego.
+                        Materiały Fundacji DBS są udostępniane do wykorzystania niekomercyjnego.
                         Każdy może z nich korzystać – prosimy jedynie o wskazanie źródła i link do oryginału.
                         Jeśli potrzebujecie czegoś, czego jeszcze nie mamy – napiszcie do nas, być może możemy pomóc.
-                        Wykorzystanie komercyjne marki, nazwy, zasobów, narzędzi, prezentacji czy treści Stowarzyszenia DBS – w całości lub częściowo – jest zabronione.
+                        Wykorzystanie komercyjne marki, nazwy, zasobów, narzędzi, prezentacji czy treści Fundacji DBS – w całości lub częściowo – jest zabronione.
                         Jeśli macie wątpliwości – prosimy o kontakt pod adresem email: kontakt@dziecinstwobezsmartfona.pl.
                     </p>
 
                     <h2 className="text-xl xl:text-2xl font-title pb-4">Korzystanie z marki i logo DBS</h2>
                     <p className="text-sm xl:text-lg font-sans pb-6">
-                        Członkowie społeczności nie mogą wypowiadać się <i>w imieniu</i> Dzieciństwo Bez Smartfona bez wyraźnej zgody Stowarzyszenia DBS (kontakt@dziecinstwobezsmartfona.pl).
-                        Dotyczy to także petycji i komunikatów, które mogłyby sugerować oficjalne stanowisko Stowarzyszenia DBS.
+                        Członkowie społeczności nie mogą wypowiadać się <i>w imieniu</i> Dzieciństwo Bez Smartfona bez wyraźnej zgody Fundacji DBS (kontakt@dziecinstwobezsmartfona.pl).
+                        Dotyczy to także petycji i komunikatów, które mogłyby sugerować oficjalne stanowisko Fundacji DBS.
                     </p>
                     <p className="text-sm xl:text-lg font-sans pb-6">
                         Lokalni koordynatorzy mogą używać nazwy, logo oraz materiałów DBS w celu wykorzystania podczas lokalnych wydarzeń, pod warunkiem dodania nazwy regionu, miejscowości lub szkoły, np.
