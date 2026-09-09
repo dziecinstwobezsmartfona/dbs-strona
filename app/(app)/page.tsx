@@ -163,7 +163,7 @@ export default async function Home() {
       {/* Podgląd do bazy wiedzy */}
       <section className="relative w-screen bg-white">
         <div className="w-3/4 mx-auto py-24">
-          <ArticleShowcase />
+          <ArticleShowcase slugs={['dzieci-nie-moga-czekac-wspolny-list-rodzicow-z-21-organizacji-do-przewodniczacej-von-der-leyen']}/>
         </div>
       </section>
       {/* Zostań Koordynatorem Szkolnym */}
