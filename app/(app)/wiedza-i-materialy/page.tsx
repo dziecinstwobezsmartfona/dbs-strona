@@ -14,7 +14,8 @@ export default async function Pomoce() {
             visible: { equals: true }
         },
         depth: 1, // Populate image relationship
-        sort: '-createdAt', // Sort by creation date (newest first)
+        sort: 'order', // Sort by the "order" field
+        limit: 0, // No limit — fetch all matching articles
     });
 
     const articles = articlesResult.docs;
