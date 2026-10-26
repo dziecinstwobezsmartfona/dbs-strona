@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import PactCounter from '@/components/PactCounter';
 import WheelPicker from '@/components/WheelPicker';
 import { getPayload } from 'payload';
@@ -172,15 +173,21 @@ export default async function Home() {
           <h2 className="text-4xl lg:text-6xl font-title text-foreground pb-12">Zostań Koordynatorem Szkolnym</h2>
           <p className="text-lg lg:text-xl mb-8"><b>Koordynator Szkolny to osoba, która w społeczności szkolnej robi pierwszy krok, łącząc rodziców wokół jednego celu - przedłużenia dzieciństwa bez dostępu do smartfonów i mediów społecznościowych. Dzięki rozmowie i współpracy z innymi rodzicami koordynator wpływa na kulturę podejścia do smartfonów w szkole - bez zakazów, nakazów i odgórnych regulacji.</b></p>
           {/* Webinar - Jak działać jako Koordynator DBS w szkole? */}
-          <div className="aspect-video w-full mx-auto overflow-hidden rounded-3xl">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/RG8QPShWrH4?controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1"
-              title="Webinar - Jak działać jako Koordynator DBS w szkole?"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen>
-            </iframe>
-          </div>
+          <a
+            href="https://www.youtube.com/watch?v=RG8QPShWrH4"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Webinar - Jak działać jako Koordynator DBS w szkole? (otwiera YouTube w nowym oknie)"
+            className="relative block aspect-video w-full mx-auto overflow-hidden rounded-3xl"
+          >
+            <Image
+              src="/images/webinar-koordynator.webp"
+              alt="Webinar - Jak działać jako Koordynator DBS w szkole?"
+              fill
+              sizes="(min-width: 1024px) 37.5vw, 75vw"
+              className="object-cover"
+            />
+          </a>
           <Link className="flex justify-center items-center bg-(--secondary-accent) rounded-3xl w-full mt-12 p-4 hover:bg-(--background)" href="/zostan-koordynatorem-szkolnym">
             <span className="text-lg lg:text-2xl font-title text-(--foreground) text-center">Jak mogę zostać Koordynatorem Szkolnym?</span>
           </Link>
