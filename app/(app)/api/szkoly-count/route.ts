@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import dbConnect from '../../../../lib/mongodb';
 import Pact from '../../../../lib/models/Pact';
+import { NO_SCHOOL_ID } from '../../../../lib/schemas/pact';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';
@@ -28,7 +30,8 @@ export async function GET(request: Request) {
     }
     
     // Exclude "Moje dzieci nie chodzą jeszcze do szkoły" option (schoolId = "0")
-    filter.schoolId = { $ne: "0" };
+    // mongoose.trusted: sanitizeFilter would otherwise turn this operator into a plain value
+    filter.schoolId = mongoose.trusted({ $ne: NO_SCHOOL_ID });
 
     // Get distinct school IDs and count them with optional filtering
     const distinctSchools = await Pact.distinct('schoolId', filter);
