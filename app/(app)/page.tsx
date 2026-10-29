@@ -12,6 +12,7 @@ export default async function Home() {
   const schoolsResult = await payload.find({
     collection: 'schools',
     limit: 0,
+    select: { school_name: true },
   });
   const schoolNames = schoolsResult.docs.map((s) => s.school_name);
   return (

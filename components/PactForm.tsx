@@ -5,25 +5,27 @@ import { useRouter } from 'next/navigation';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { MAX_CHILDREN, NO_SCHOOL_ID, NO_SCHOOL_LABEL, emailField, numberOfChildrenField, GDPR_CONSENT_MESSAGE } from '../lib/schemas/pact';
 
 
 // Define validation schema with Zod
 const schema = z.object({
   firstName: z.string().min(1, 'Proszę podaj Imię'),
   lastName: z.string().min(1, 'Proszę podaj Nazwisko'),
-  email: z.string().email('Proszę wprowadź prawidłowy Email').min(1, 'Proszę podaj Email'),
+  email: emailField,
   voivodship: z.string().min(1, 'Proszę podaj Województwo'),
   district: z.string().min(1, 'Proszę podaj Powiat'),
   county: z.string().min(1, 'Proszę podaj Gminę'),
   schoolName: z.string().min(1, 'Proszę podaj Szkołę'),
-  numberOfChildren: z.number().min(1, 'Minimum 1 dziecko').max(5, 'Maksymalnie 5 dzieci'),
+  numberOfChildren: numberOfChildrenField,
   schoolId: z.string(),
   schoolVoivodship: z.string(),
   schoolDistrict: z.string(),
   schoolCounty: z.string(),
   school: z.string(),
-  gdpr_consent: z.boolean().refine((val) => val === true, 'Proszę wyraź zgodę na przetwarzanie danych osobowych'),
+  gdpr_consent: z.boolean().refine((val) => val === true, GDPR_CONSENT_MESSAGE),
   newsletter_consent: z.boolean().optional(),
+  website: z.string().optional(), // honeypot
 });
 
 type FormData = z.infer<typeof schema>;
@@ -53,6 +55,7 @@ export default function PactForm() {
       school: '',
       gdpr_consent: false,
       newsletter_consent: false,
+      website: '',
     },
   });
 
@@ -119,8 +122,8 @@ export default function PactForm() {
       setValue('school', watchedSchoolName);
 
       // Handle special case for "Moje dzieci nie chodzą jeszcze do szkoły"
-      if (watchedSchoolName === "Moje dzieci nie chodzą jeszcze do szkoły") {
-        setValue('schoolId', '0');
+      if (watchedSchoolName === NO_SCHOOL_LABEL) {
+        setValue('schoolId', NO_SCHOOL_ID);
         setValue('schoolVoivodship', watchedVoivodship);
         setValue('schoolDistrict', watchedDistrict);
         setValue('schoolCounty', watchedCounty);
@@ -156,11 +159,11 @@ export default function PactForm() {
     try {
       // Ensure schoolId is set to '0' if "Moje dzieci nie chodzą jeszcze do szkoły" is selected
       let finalSchoolId = data.schoolId;
-      if (data.schoolName === "Moje dzieci nie chodzą jeszcze do szkoły") {
-        finalSchoolId = '0';
+      if (data.schoolName === NO_SCHOOL_LABEL) {
+        finalSchoolId = NO_SCHOOL_ID;
       }
       
-      const { firstName, lastName, email, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent, newsletter_consent } = data;
+      const { firstName, lastName, email, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent, newsletter_consent, website } = data;
       const response = await fetch('/api/pakty', {
         method: 'POST',
         headers: {
@@ -177,7 +180,8 @@ export default function PactForm() {
           schoolName: school, 
           numberOfChildren, 
           gdpr_consent, 
-          newsletter_consent 
+          newsletter_consent,
+          website,
         }),
       });
       const result = await response.json();
@@ -194,7 +198,13 @@ export default function PactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full p-6 space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="relative w-full p-6 space-y-4">
+      {/* Honeypot: invisible to people and assistive tech, bots fill it in */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="website">Strona WWW</label>
+        <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
+      </div>
+
       {/* Schools Selection */}
       <div className="space-y-2">
 
@@ -272,7 +282,7 @@ export default function PactForm() {
                   className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
                 >
                   <option value="">Wybierz Szkołę</option>
-                  <option value="Moje dzieci nie chodzą jeszcze do szkoły">Moje dzieci nie chodzą jeszcze do szkoły</option>
+                  <option value={NO_SCHOOL_LABEL}>{NO_SCHOOL_LABEL}</option>
                   {schools.map((s) => <option key={s} value={s}>{s}</option>)}
                 </select>
               )}
@@ -294,7 +304,7 @@ export default function PactForm() {
                   onChange={(e) => field.onChange(Number(e.target.value))}
                   className="block bg-white border border-gray-300 rounded-3xl p-4"
                 >
-                  {[1, 2, 3, 4, 5].map((num) => (
+                  {Array.from({ length: MAX_CHILDREN }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num}>
                       {num}
                     </option>

@@ -12,6 +12,7 @@ export default async function DolaczDoSpolecznosci() {
         limit: 0,
         sort: 'school_full_name',
         where: { whatsapp_link: { exists: true } },
+        select: { school_full_name: true, whatsapp_link: true, number_of_members: true },
     });
 
     const schoolsWithGroup = schoolsResult.docs.filter(s => s.whatsapp_link);
