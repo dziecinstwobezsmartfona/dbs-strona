@@ -1,5 +1,8 @@
-import type { CollectionConfig } from 'payload';
+import type { Access, CollectionConfig, FieldAccess } from 'payload';
 import { revalidatePath } from 'next/cache';
+
+const authenticated: Access = ({ req }) => Boolean(req.user);
+const authenticatedField: FieldAccess = ({ req }) => Boolean(req.user);
 
 export const Schools: CollectionConfig = {
     slug: 'schools',
@@ -8,7 +11,7 @@ export const Schools: CollectionConfig = {
         plural: 'Szkoły'
     },
     access: {
-        read: () => true,
+        read: authenticated,
     },
     fields: [
         {
@@ -39,6 +42,9 @@ export const Schools: CollectionConfig = {
             name: 'coordinators',
             label: 'Koordynatorzy',
             type: 'array',
+            access: {
+                read: authenticatedField,
+            },
             labels: {
                 singular: 'Koordynator',
                 plural: 'Koordynatorzy'
