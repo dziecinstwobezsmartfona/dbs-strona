@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 
 setServers(["1.1.1.1", "8.8.8.8"]);
 
+// Query operators ($gt, $ne, ...) coming from user input are treated as plain values
+mongoose.set('sanitizeFilter', true);
+
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
