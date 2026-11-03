@@ -94,7 +94,9 @@ export default async function ArticleShowcase({
         depth: 1,
         limit: 5,
       });
-      specifiedArticles = result.docs as Article[];
+      specifiedArticles = (result.docs as Article[]).sort(
+        (a, b) => providedSlugs.indexOf(a.slug) - providedSlugs.indexOf(b.slug),
+      );
     }
 
     const specifiedIds = specifiedArticles.map((a) => a.id);

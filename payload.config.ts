@@ -15,6 +15,7 @@ import { Media } from "./collections/Media";
 import { Articles } from "./collections/Articles";
 import { Schools } from "./collections/Schools";
 import { Activities } from "./collections/Activities";
+import { SiteSettings } from "./globals/SiteSettings";
 import { YouTubeBlock } from "./blocks/YouTube";
 
 
@@ -44,6 +45,7 @@ export default buildConfig({
     }
   },
   collections: [Users, Media, Articles, Schools, Activities],
+  globals: [SiteSettings],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
