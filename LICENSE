@@ -1,0 +1,145 @@
+DBS Source-Available License
+Licencja Dostępnego Kodu Źródłowego DBS
+
+English version first, Polish version below.
+Wersja angielska poniżej, wersja polska dalej.
+
+If the two versions differ, the Polish version prevails.
+W razie rozbieżności między wersjami rozstrzygająca jest wersja polska.
+
+================================================================================
+ENGLISH VERSION
+================================================================================
+
+Copyright (c) 2026 Fundacja Dzieciństwo Bez Smartfona. All rights reserved.
+
+This is not an open-source license. The source code in this repository is
+published so that it can be read, not so that it can be reused.
+
+1. Permitted without asking
+
+   You may, free of charge:
+
+   a. view and read the source code in this repository;
+   b. fork the repository on GitHub and use GitHub's own features on the
+      fork, as allowed by the GitHub Terms of Service;
+   c. clone the repository locally and run it on your own machine for the
+      sole purpose of evaluating the code (for example, as part of a
+      hiring process or a code review), without making it available to
+      anyone else.
+
+2. Requires prior written permission
+
+   Anything not listed in section 1 requires prior written permission from
+   the copyright holder, including:
+
+   a. deploying or hosting the software, in whole or in part, publicly or
+      privately;
+   b. using the software, in whole or in part, for any purpose other than
+      evaluation as described in section 1(c);
+   c. copying code from this repository into another project;
+   d. distributing, sublicensing, selling or otherwise making the software
+      available to others, whether modified or not;
+   e. creating derivative works other than contributions made under
+      CONTRIBUTING.md;
+   f. using the names "Dzieciństwo Bez Smartfona" or "DBS", the logos,
+      text, images or other content of the movement, which are not part
+      of this license even where they appear in this repository.
+
+   To request permission, contact the maintainers through the contact
+   details published on the project website.
+
+3. Contributions
+
+   Contributions to this repository are governed by CONTRIBUTING.md.
+
+4. Third-party software
+
+   This project depends on third-party software (for example Next.js,
+   Payload CMS and React), which is licensed separately by its authors
+   under its own terms. Nothing in this license changes those terms.
+
+5. No warranty
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES
+   OR OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+   SOFTWARE OR ITS USE.
+
+6. Termination
+
+   Any use that breaches this license automatically ends the permissions
+   granted in section 1.
+
+================================================================================
+WERSJA POLSKA
+================================================================================
+
+Copyright (c) 2026 Fundacja Dzieciństwo Bez Smartfona. Wszelkie prawa
+zastrzeżone.
+
+Nie jest to licencja open source. Kod źródłowy w tym repozytorium został
+udostępniony po to, aby można było go czytać, a nie po to, aby można było
+z niego korzystać w innych celach.
+
+1. Dozwolone bez pytania o zgodę
+
+   Można nieodpłatnie:
+
+   a. przeglądać i czytać kod źródłowy znajdujący się w tym repozytorium;
+   b. utworzyć fork repozytorium na GitHubie i korzystać z funkcji GitHuba
+      na tym forku, w zakresie dozwolonym przez Warunki korzystania z usługi
+      GitHub (GitHub Terms of Service);
+   c. sklonować repozytorium lokalnie i uruchomić je na własnym komputerze
+      wyłącznie w celu oceny kodu (na przykład w ramach rekrutacji lub
+      przeglądu kodu), bez udostępniania go komukolwiek innemu.
+
+2. Wymaga uprzedniej pisemnej zgody
+
+   Wszystko, co nie zostało wymienione w punkcie 1, wymaga uprzedniej
+   pisemnej zgody podmiotu uprawnionego z praw autorskich, w szczególności:
+
+   a. wdrażanie lub hostowanie oprogramowania, w całości lub w części,
+      publicznie lub prywatnie;
+   b. wykorzystywanie oprogramowania, w całości lub w części, w jakimkolwiek
+      celu innym niż ocena opisana w punkcie 1(c);
+   c. kopiowanie kodu z tego repozytorium do innego projektu;
+   d. rozpowszechnianie, udzielanie sublicencji, sprzedaż lub inne
+      udostępnianie oprogramowania osobom trzecim, zarówno zmodyfikowanego,
+      jak i niezmodyfikowanego;
+   e. tworzenie opracowań (utworów zależnych) inne niż wkłady wnoszone na
+      zasadach określonych w CONTRIBUTING.md;
+   f. używanie nazw „Dzieciństwo Bez Smartfona" lub „DBS", logotypów,
+      tekstów, obrazów i innych treści ruchu, które nie są objęte tą licencją,
+      nawet jeśli znajdują się w tym repozytorium.
+
+   Aby uzyskać zgodę, należy skontaktować się z opiekunami projektu, korzystając
+   z danych kontaktowych opublikowanych na stronie internetowej projektu.
+
+3. Wkłady do projektu
+
+   Wkłady do tego repozytorium podlegają zasadom opisanym w CONTRIBUTING.md.
+
+4. Oprogramowanie osób trzecich
+
+   Projekt korzysta z oprogramowania osób trzecich (na przykład Next.js,
+   Payload CMS i React), które jest licencjonowane odrębnie przez jego
+   autorów, na ich własnych warunkach. Niniejsza licencja nie zmienia tych
+   warunków.
+
+5. Brak gwarancji
+
+   OPROGRAMOWANIE JEST DOSTARCZANE W STANIE, W JAKIM JEST („AS IS"), BEZ
+   JAKICHKOLWIEK GWARANCJI, WYRAŹNYCH ANI DOROZUMIANYCH, W TYM, LECZ NIE
+   WYŁĄCZNIE, GWARANCJI PRZYDATNOŚCI HANDLOWEJ, PRZYDATNOŚCI DO OKREŚLONEGO
+   CELU ORAZ NIENARUSZANIA PRAW OSÓB TRZECICH. W ŻADNYM RAZIE PODMIOT
+   UPRAWNIONY Z PRAW AUTORSKICH NIE PONOSI ODPOWIEDZIALNOŚCI ZA ROSZCZENIA,
+   SZKODY LUB INNĄ ODPOWIEDZIALNOŚĆ WYNIKAJĄCĄ Z OPROGRAMOWANIA, JEGO
+   UŻYWANIA LUB ZWIĄZANĄ Z NIM W INNY SPOSÓB.
+
+6. Wygaśnięcie uprawnień
+
+   Każde korzystanie z oprogramowania niezgodne z niniejszą licencją powoduje
+   automatyczne wygaśnięcie uprawnień przyznanych w punkcie 1.

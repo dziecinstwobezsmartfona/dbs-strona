@@ -10,6 +10,7 @@ type Props = {
   seeAllHref?: string;
   seeAllLabel?: string;
   className?: string;
+  category?: string;
 };
 
 type CardArticle = {
@@ -57,54 +58,76 @@ export default async function ArticleShowcase({
   seeAllHref = '/wiedza-i-materialy',
   seeAllLabel = 'Wszystkie materiały',
   className = '',
+  category,
 }: Props) {
   const payload = await getPayload({ config: configPromise });
 
-  const providedSlugs = slugs.slice(0, 5);
+  let articles: Article[];
 
-  let specifiedArticles: Article[] = [];
-  if (providedSlugs.length > 0) {
+  if (category) {
     const result = await payload.find({
       collection: 'articles',
       where: {
         and: [
           { visible: { equals: true } },
-          { slug: { in: providedSlugs } },
+          { category: { in: [category] } },
         ],
       },
       depth: 1,
+      sort: 'order',
       limit: 5,
     });
-    specifiedArticles = result.docs as Article[];
-  }
+    articles = result.docs as Article[];
+  } else {
+    const providedSlugs = slugs.slice(0, 5);
 
-  const specifiedIds = specifiedArticles.map((a) => a.id);
-  const needed = 5 - specifiedArticles.length;
-
-  let fillerArticles: Article[] = [];
-  if (needed > 0) {
-    const andClauses: { [key: string]: unknown }[] = [
-      { visible: { equals: true } },
-    ];
-    if (specifiedIds.length > 0) {
-      andClauses.push({ id: { not_in: specifiedIds } });
+    let specifiedArticles: Article[] = [];
+    if (providedSlugs.length > 0) {
+      const result = await payload.find({
+        collection: 'articles',
+        where: {
+          and: [
+            { visible: { equals: true } },
+            { slug: { in: providedSlugs } },
+          ],
+        },
+        depth: 1,
+        limit: 5,
+      });
+      specifiedArticles = (result.docs as Article[]).sort(
+        (a, b) => providedSlugs.indexOf(a.slug) - providedSlugs.indexOf(b.slug),
+      );
     }
 
-    const result = await payload.find({
-      collection: 'articles',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      where: { and: andClauses } as any,
-      depth: 1,
-      sort: '-createdAt',
-      limit: 50,
-    });
+    const specifiedIds = specifiedArticles.map((a) => a.id);
+    const needed = 5 - specifiedArticles.length;
 
-    fillerArticles = [...result.docs]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, needed) as Article[];
+    let fillerArticles: Article[] = [];
+    if (needed > 0) {
+      const andClauses: { [key: string]: unknown }[] = [
+        { visible: { equals: true } },
+      ];
+      if (specifiedIds.length > 0) {
+        andClauses.push({ id: { not_in: specifiedIds } });
+      }
+
+      const result = await payload.find({
+        collection: 'articles',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        where: { and: andClauses } as any,
+        depth: 1,
+        sort: '-createdAt',
+        limit: 50,
+      });
+
+      fillerArticles = [...result.docs]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, needed) as Article[];
+    }
+
+    articles = [...specifiedArticles, ...fillerArticles].slice(0, 5);
   }
 
-  const articles = [...specifiedArticles, ...fillerArticles].slice(0, 5);
   if (articles.length === 0) return null;
 
   const cards = articles.map(toCardArticle);

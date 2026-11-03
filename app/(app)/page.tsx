@@ -5,16 +5,23 @@ import WheelPicker from '@/components/WheelPicker';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 import ArticleShowcase from '@/components/ArticleShowcase';
+import type { Article } from '@/payload-types';
 //import WebinarPopup from '@/components/WebinarPopup';
 
 export default async function Home() {
   const payload = await getPayload({ config: configPromise });
-  const schoolsResult = await payload.find({
-    collection: 'schools',
-    limit: 0,
-    select: { school_name: true },
-  });
+  const [schoolsResult, siteSettings] = await Promise.all([
+    payload.find({
+      collection: 'schools',
+      limit: 0,
+      select: { school_name: true },
+    }),
+    payload.findGlobal({ slug: 'site-settings', depth: 1 }),
+  ]);
   const schoolNames = schoolsResult.docs.map((s) => s.school_name);
+  const showcaseSlugs = (siteSettings.showcaseArticles ?? [])
+    .filter((a): a is Article => typeof a === 'object' && a !== null)
+    .map((a) => a.slug);
   return (
     <main className="container">
       {/* <WebinarPopup /> */}
@@ -165,7 +172,7 @@ export default async function Home() {
       {/* Podgląd do bazy wiedzy */}
       <section className="relative w-screen bg-white">
         <div className="w-3/4 mx-auto py-24">
-          <ArticleShowcase slugs={['dzieci-nie-moga-czekac-wspolny-list-rodzicow-z-21-organizacji-do-przewodniczacej-von-der-leyen']}/>
+          <ArticleShowcase slugs={showcaseSlugs} />
         </div>
       </section>
       {/* Zostań Koordynatorem Szkolnym */}
