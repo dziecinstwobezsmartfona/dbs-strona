@@ -15,8 +15,10 @@ import { Media } from "./collections/Media";
 import { Articles } from "./collections/Articles";
 import { Schools } from "./collections/Schools";
 import { Activities } from "./collections/Activities";
+import { SearchIndex } from "./collections/SearchIndex";
 import { SiteSettings } from "./globals/SiteSettings";
 import { YouTubeBlock } from "./blocks/YouTube";
+import { syncStaticPages } from "./lib/search/syncStaticPages";
 
 
 const filename = fileURLToPath(import.meta.url);
@@ -44,7 +46,7 @@ export default buildConfig({
       }
     }
   },
-  collections: [Users, Media, Articles, Schools, Activities],
+  collections: [Users, Media, Articles, Schools, Activities, SearchIndex],
   globals: [SiteSettings],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
@@ -52,6 +54,13 @@ export default buildConfig({
       BlocksFeature({ blocks: [YouTubeBlock] }),
     ],
   }),
+  onInit: async (payload) => {
+    try {
+      await syncStaticPages(payload);
+    } catch (error) {
+      console.error('Static page search sync failed:', error);
+    }
+  },
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

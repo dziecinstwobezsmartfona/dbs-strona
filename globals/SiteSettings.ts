@@ -24,6 +24,37 @@ export const SiteSettings: GlobalConfig = {
           'Artykuły wyświetlane w sekcji "Odkrywaj DBS" na stronie głównej (maks. 5, pierwszy jest wyróżniony). Brakujące miejsca zostaną uzupełnione losowymi artykułami.',
       },
     },
+    {
+      name: 'search',
+      label: 'Wyszukiwarka',
+      type: 'group',
+      fields: [
+        {
+          name: 'pageSize',
+          label: 'Liczba wyników ładowanych naraz',
+          type: 'number',
+          defaultValue: 10,
+          min: 1,
+          max: 50,
+          required: true,
+          admin: {
+            description: 'Tyle wyników pojawia się od razu; kolejne porcje doładowują się podczas przewijania strony.',
+          },
+        },
+        {
+          name: 'maxResults',
+          label: 'Maksymalna łączna liczba wyników',
+          type: 'number',
+          defaultValue: 100,
+          min: 1,
+          max: 500,
+          required: true,
+          admin: {
+            description: 'Wyszukiwarka nigdy nie pokaże więcej wyników niż ta liczba.',
+          },
+        },
+      ],
+    },
   ],
   hooks: {
     afterChange: [

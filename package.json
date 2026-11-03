@@ -10,6 +10,7 @@
     "lint": "eslint",
     "generate:importmap": "tsx payload.config.ts payload generate:importmap",
     "generate:types": "tsx payload.config.ts payload generate:types",
+    "search:reindex": "tsx scripts/search-reindex.ts",
     "test": "vitest run"
   },
   "dependencies": {

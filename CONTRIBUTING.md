@@ -112,6 +112,18 @@ o zmiany lub odrzucić wkład, który nie pasuje do projektu.
 - Trzymaj się stylu i nazewnictwa otaczającego kodu.
 - Twórz małe pull requesty, skupione na jednej rzeczy.
 
+## Wyszukiwarka
+
+Wyszukiwarka (`/szukaj`) korzysta z MongoDB Atlas Search i kolekcji `search-index`.
+
+- **Artykuły i działania** trafiają do indeksu automatycznie (hooki w panelu administratora).
+- **Strony statyczne** (pliki `app/(app)/<trasa>/page.tsx`) trzeba dopisać do
+  `lib/search/staticPages.ts` (albo do `EXCLUDED_ROUTES`, jeśli mają nie być
+  wyszukiwane). Test `npm test` zgłosi błąd, jeśli o tym zapomnisz. Zmiany
+  synchronizują się same przy starcie aplikacji.
+- Po zaimportowaniu danych poza panelem lub na nowym środowisku uruchom
+  `npm run search:reindex` (tworzy indeks Atlas Search i odbudowuje wpisy).
+
 ## Bezpieczeństwo i sekrety
 
 - **Nigdy nie commituj sekretów**: kluczy API, adresów URI baz danych, plików

@@ -72,6 +72,7 @@ export interface Config {
     articles: Article;
     schools: School;
     activities: Activity;
+    'search-index': SearchIndex;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     schools: SchoolsSelect<false> | SchoolsSelect<true>;
     activities: ActivitiesSelect<false> | ActivitiesSelect<true>;
+    'search-index': SearchIndexSelect<false> | SearchIndexSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -249,6 +251,21 @@ export interface Activity {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search-index".
+ */
+export interface SearchIndex {
+  id: string;
+  sourceType: 'article' | 'activity' | 'page';
+  sourceId: string;
+  title: string;
+  url: string;
+  excerpt?: string | null;
+  content?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -290,6 +307,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'activities';
         value: string | Activity;
+      } | null)
+    | ({
+        relationTo: 'search-index';
+        value: string | SearchIndex;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -428,6 +449,20 @@ export interface ActivitiesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search-index_select".
+ */
+export interface SearchIndexSelect<T extends boolean = true> {
+  sourceType?: T;
+  sourceId?: T;
+  title?: T;
+  url?: T;
+  excerpt?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -476,6 +511,16 @@ export interface SiteSetting {
    * Artykuły wyświetlane w sekcji "Odkrywaj DBS" na stronie głównej (maks. 5, pierwszy jest wyróżniony). Brakujące miejsca zostaną uzupełnione losowymi artykułami.
    */
   showcaseArticles?: (string | Article)[] | null;
+  search: {
+    /**
+     * Tyle wyników pojawia się od razu; kolejne porcje doładowują się podczas przewijania strony.
+     */
+    pageSize: number;
+    /**
+     * Wyszukiwarka nigdy nie pokaże więcej wyników niż ta liczba.
+     */
+    maxResults: number;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -485,6 +530,12 @@ export interface SiteSetting {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   showcaseArticles?: T;
+  search?:
+    | T
+    | {
+        pageSize?: T;
+        maxResults?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
