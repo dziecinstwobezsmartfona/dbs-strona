@@ -4,6 +4,8 @@ import { slugifypl } from '@/lib/slugifypl';
 import { revalidatePath } from 'next/cache';
 import { BlocksFeature, lexicalEditor, UploadFeature } from '@payloadcms/richtext-lexical';
 import { YouTubeBlock } from '@/blocks/YouTube';
+import { articleToSearchDoc } from '@/lib/search/toSearchDoc';
+import { removeSearchDoc, upsertSearchDoc } from '@/lib/search/sync';
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -138,10 +140,20 @@ export const Articles: CollectionConfig = {
   ],
   hooks: {
     afterChange: [
-      () => revalidatePath('/', 'layout'),
+      async ({ doc, req }) => {
+        if (doc.visible) {
+          await upsertSearchDoc(req.payload, articleToSearchDoc(doc), req);
+        } else {
+          await removeSearchDoc(req.payload, 'article', String(doc.id), req);
+        }
+        revalidatePath('/', 'layout');
+      },
     ],
     afterDelete: [
-      () => revalidatePath('/', 'layout'),
+      async ({ id, req }) => {
+        await removeSearchDoc(req.payload, 'article', String(id), req);
+        revalidatePath('/', 'layout');
+      },
     ],
   }
 }

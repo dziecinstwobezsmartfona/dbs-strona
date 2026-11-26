@@ -139,8 +139,11 @@ const Header: React.FC = () => {
             ))}
           </nav>
           {/* Search Icon */}
-          {/*
-          <button className="p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-[var(--foreground)]/20">
+          <Link
+            href="/szukaj"
+            aria-label="Szukaj"
+            className="p-2 text-gray-500 hover:text-gray-900 transition-colors rounded-lg hover:bg-[var(--foreground)]/20"
+          >
             <svg
               className="w-5 h-5"
               fill="none"
@@ -155,8 +158,7 @@ const Header: React.FC = () => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-          </button>
-          */}
+          </Link>
         </div>
       </div>
 

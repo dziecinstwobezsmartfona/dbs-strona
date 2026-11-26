@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { revalidatePath } from 'next/cache';
+import { activityToSearchDoc } from '@/lib/search/toSearchDoc';
+import { removeSearchDoc, upsertSearchDoc } from '@/lib/search/sync';
 
 export const Activities: CollectionConfig = {
     slug: 'activities',
@@ -62,10 +64,20 @@ export const Activities: CollectionConfig = {
     ],
     hooks: {
         afterChange: [
-            () => revalidatePath('/', 'layout'),
+            async ({ doc, req }) => {
+                if (doc.visible) {
+                    await upsertSearchDoc(req.payload, activityToSearchDoc(doc), req);
+                } else {
+                    await removeSearchDoc(req.payload, 'activity', String(doc.id), req);
+                }
+                revalidatePath('/', 'layout');
+            },
         ],
         afterDelete: [
-            () => revalidatePath('/', 'layout'),
+            async ({ id, req }) => {
+                await removeSearchDoc(req.payload, 'activity', String(id), req);
+                revalidatePath('/', 'layout');
+            },
         ],
     }
 }

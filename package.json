@@ -10,6 +10,7 @@
     "lint": "eslint",
     "generate:importmap": "tsx payload.config.ts payload generate:importmap",
     "generate:types": "tsx payload.config.ts payload generate:types",
+    "search:reindex": "tsx scripts/search-reindex.ts",
     "test": "vitest run"
   },
   "dependencies": {
@@ -18,7 +19,6 @@
     "@payloadcms/next": "3.85.0",
     "@payloadcms/richtext-lexical": "3.85.0",
     "@payloadcms/storage-s3": "^3.85.0",
-    "@payloadcms/storage-uploadthing": "3.85.0",
     "@tailwindcss/typography": "^0.5.19",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
