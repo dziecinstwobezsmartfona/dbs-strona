@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 import { z } from 'zod';
 import dbConnect from '../../../../lib/mongodb';
 import Pact from '../../../../lib/models/Pact';
-import Subscriber from '../../../../lib/models/Subscriber';
 import { isRateLimited } from '../../../../lib/rateLimit';
 import { pactSubmissionSchema } from '../../../../lib/schemas/pact';
+import { clientIp, readJsonObject, tooManyRequests } from '../../../../lib/http';
+import { addSubscriber } from '../../../../lib/subscribers';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';
@@ -16,20 +17,6 @@ const IP_LIMIT = { max: 5, windowSeconds: 10 * 60 };
 const EMAIL_LIMIT = { max: 3, windowSeconds: 60 * 60 };
 // one confirmation email per address per 24 h, so the endpoint cannot be used to mail a third party repeatedly
 const EMAIL_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-
-// Only meaningful when the host overwrites these headers (Vercel does)
-function clientIp(request: NextRequest) {
-  return request.headers.get('x-forwarded-for')?.split(',')[0].trim()
-    || request.headers.get('x-real-ip')
-    || null;
-}
-
-function tooManyRequests(windowSeconds: number) {
-  return NextResponse.json(
-    { success: false, message: 'Zbyt wiele prób. Spróbuj ponownie za kilka minut.' },
-    { status: 429, headers: { 'Retry-After': String(windowSeconds) } },
-  );
-}
 
 // Send transactional email via Brevo API
 async function sendBrevoEmail(firstName: string, lastName: string, email: string) {
@@ -77,12 +64,8 @@ async function sendBrevoEmail(firstName: string, lastName: string, email: string
 }
 
 export async function POST(request: NextRequest) {
-  let body: Record<string, unknown>;
-  try {
-    const parsedBody = await request.json();
-    if (typeof parsedBody !== 'object' || parsedBody === null || Array.isArray(parsedBody)) throw new Error('not an object');
-    body = parsedBody;
-  } catch {
+  const body = await readJsonObject(request);
+  if (!body) {
     return NextResponse.json({ success: false, message: 'Nieprawidłowe dane' }, { status: 400 });
   }
 
@@ -128,13 +111,7 @@ export async function POST(request: NextRequest) {
     await new Pact(data).save();
 
     if (data.newsletter_consent) {
-      const existingSubscriber = await Subscriber.exists({ email: data.email });
-      if (!existingSubscriber) {
-        await new Subscriber({
-          fullName: `${data.firstName} ${data.lastName}`,
-          email: data.email,
-        }).save();
-      }
+      await addSubscriber({ fullName: `${data.firstName} ${data.lastName}`, email: data.email });
     }
 
     if (!recentPactForEmail) {
