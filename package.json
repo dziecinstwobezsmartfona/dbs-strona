@@ -11,7 +11,9 @@
     "generate:importmap": "tsx payload.config.ts payload generate:importmap",
     "generate:types": "tsx payload.config.ts payload generate:types",
     "search:reindex": "tsx scripts/search-reindex.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:unit": "vitest run --exclude 'tests/int/**' --exclude 'node_modules/**'",
+    "test:int": "vitest run tests/int"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -39,6 +41,7 @@
     "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9",
     "eslint-config-next": "^16.2.7",
+    "mongodb-memory-server": "11.4.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.7"
