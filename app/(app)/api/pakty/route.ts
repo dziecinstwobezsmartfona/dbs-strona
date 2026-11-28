@@ -7,6 +7,7 @@ import { isRateLimited } from '../../../../lib/rateLimit';
 import { pactSubmissionSchema } from '../../../../lib/schemas/pact';
 import { clientIp, readJsonObject, tooManyRequests } from '../../../../lib/http';
 import { addSubscriber } from '../../../../lib/subscribers';
+import { brevoErrorCode, errorSummary } from '../../../../lib/log';
 import { getSchoolsRegistry, resolveSchool } from '../../../../lib/schoolsRegistry';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
@@ -52,14 +53,13 @@ async function sendBrevoEmail(firstName: string, lastName: string, email: string
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Brevo API error:', errorData);
+      console.error('Brevo API error:', response.status, await brevoErrorCode(response));
       return false;
     }
 
     return true;
   } catch (error) {
-    console.error('Error sending email via Brevo:', error);
+    console.error('Error sending email via Brevo:', errorSummary(error));
     return false;
   }
 }
@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, message: SUCCESS_MESSAGE });
   } catch (error) {
-    console.error('Error processing pakt:', error);
+    console.error('Error processing pakt:', errorSummary(error));
     return NextResponse.json({ success: false, message: 'Błąd podczas podpisywania paktu' }, { status: 500 });
   }
 }

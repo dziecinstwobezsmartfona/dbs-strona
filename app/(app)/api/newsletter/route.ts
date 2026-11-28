@@ -5,6 +5,7 @@ import { isRateLimited } from '../../../../lib/rateLimit';
 import { clientIp, readJsonObject, tooManyRequests } from '../../../../lib/http';
 import { newsletterSubscriptionSchema } from '../../../../lib/schemas/newsletter';
 import { addSubscriber } from '../../../../lib/subscribers';
+import { errorSummary } from '../../../../lib/log';
 
 export const runtime = 'nodejs';
 
@@ -51,9 +52,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, message: SUCCESS_MESSAGE });
   } catch (error) {
-    // Do not log the error object: Mongo duplicate-key messages contain the email address
-    const { name, code } = error as { name?: string; code?: number };
-    console.error('Error saving subscriber:', name, code);
+    console.error('Error saving subscriber:', errorSummary(error));
     return NextResponse.json(
       { success: false, message: 'Błąd podczas zapisywania na newsletter' },
       { status: 500 },
