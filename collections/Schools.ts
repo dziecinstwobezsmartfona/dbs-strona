@@ -1,8 +1,8 @@
-import type { Access, CollectionConfig, FieldAccess } from 'payload';
+import type { CollectionConfig } from 'payload';
 import { revalidatePath } from 'next/cache';
 
-const authenticated: Access = ({ req }) => Boolean(req.user);
-const authenticatedField: FieldAccess = ({ req }) => Boolean(req.user);
+import editor from '@/collections/users/access/editor';
+import { authenticated, authenticatedField } from '@/collections/users/access/authenticated';
 
 export const Schools: CollectionConfig = {
     slug: 'schools',
@@ -12,6 +12,9 @@ export const Schools: CollectionConfig = {
     },
     access: {
         read: authenticated,
+        create: editor,
+        update: editor,
+        delete: editor,
     },
     fields: [
         {

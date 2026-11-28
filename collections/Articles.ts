@@ -7,11 +7,20 @@ import { YouTubeBlock } from '@/blocks/YouTube';
 import { articleToSearchDoc } from '@/lib/search/toSearchDoc';
 import { removeSearchDoc, upsertSearchDoc } from '@/lib/search/sync';
 
+import editor from '@/collections/users/access/editor';
+import { authenticated } from '@/collections/users/access/authenticated';
+
 export const Articles: CollectionConfig = {
   slug: 'articles',
   labels: {
     singular: 'Artykuł',
     plural: 'Artykuły'
+  },
+  access: {
+    read: authenticated,
+    create: editor,
+    update: editor,
+    delete: editor,
   },
   admin: {
     useAsTitle: 'title',

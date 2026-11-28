@@ -7,8 +7,8 @@ export interface ISubscriber extends Document {
 }
 
 const SubscriberSchema: Schema = new Schema({
-  fullName: { type: String, required: true, trim: true },
-  email: { type: String, required: true, lowercase: true, trim: true },
+  fullName: { type: String, required: true, trim: true, maxlength: 250 },
+  email: { type: String, required: true, lowercase: true, trim: true, maxlength: 254, unique: true },
 }, {
   timestamps: true,
 });

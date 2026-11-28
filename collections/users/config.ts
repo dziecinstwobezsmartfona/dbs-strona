@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
-import { protectRoles } from './hooks/protectRoles';
 import admin from './access/admin';
+import { checkRole } from './access/checkRole';
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -46,8 +46,8 @@ export const Users: CollectionConfig = {
         { label: 'Viewer', value: 'viewer' },
       ],
       access: {
-        create: ({ req }) => Boolean(req.user?.roles?.includes('admin')),
-        update: ({ req }) => Boolean(req.user?.roles?.includes('admin')),
+        create: ({ req }) => checkRole(['admin'], req.user),
+        update: ({ req }) => checkRole(['admin'], req.user),
       },
     }
   ],

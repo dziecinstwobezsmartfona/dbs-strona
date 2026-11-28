@@ -4,7 +4,7 @@ export const MAX_CHILDREN = 5;
 export const NO_SCHOOL_ID = '0';
 export const NO_SCHOOL_LABEL = 'Moje dzieci nie chodzą jeszcze do szkoły';
 
-const text = (label: string, max = 200) =>
+export const textField = (label: string, max = 200) =>
   z.string().trim().min(1, `Proszę podaj ${label}`).max(max, `${label}: maksymalnie ${max} znaków`);
 
 export const emailField = z
@@ -23,14 +23,14 @@ export const numberOfChildrenField = z
 export const GDPR_CONSENT_MESSAGE = 'Proszę wyraź zgodę na przetwarzanie danych osobowych';
 
 export const pactSubmissionSchema = z.object({
-  firstName: text('Imię', 100),
-  lastName: text('Nazwisko', 100),
+  firstName: textField('Imię', 100),
+  lastName: textField('Nazwisko', 100),
   email: emailField,
   schoolId: z.string().regex(/^\d{1,12}$/, 'Nieprawidłowy numer szkoły'),
-  schoolVoivodship: text('Województwo'),
-  schoolDistrict: text('Powiat'),
-  schoolCounty: text('Gminę'),
-  schoolName: text('Szkołę', 300), // the longest name in lista_szkol.json has 253 characters
+  // only needed for the "no school yet" option; otherwise the server takes the region from the registry
+  voivodship: textField('Województwo').optional(),
+  district: textField('Powiat').optional(),
+  county: textField('Gminę').optional(),
   numberOfChildren: numberOfChildrenField,
   gdpr_consent: z.literal(true, { error: GDPR_CONSENT_MESSAGE }),
   newsletter_consent: z.boolean().default(false),

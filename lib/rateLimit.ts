@@ -1,4 +1,5 @@
 import RateLimit from './models/RateLimit';
+import { errorSummary } from './log';
 
 const DUPLICATE_KEY = 11000;
 
@@ -27,7 +28,8 @@ export async function isRateLimited(key: string, limit: number, windowSeconds: n
       }
     }
   } catch (error) {
-    console.error('Rate limit check failed, letting the request through:', error);
+    // the key can contain an email address, and Mongo errors quote it
+    console.error('Rate limit check failed, letting the request through:', errorSummary(error));
     return false;
   }
 }

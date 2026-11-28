@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Lint
+        # Non-blocking until the existing lint errors are fixed (review LOW-4 / LOW-10)
+        run: npm run lint
+        continue-on-error: true
+      - name: Tests (unit + integration with in-memory MongoDB)
+        run: npm test
+      # `next build` is not run here: pages are prerendered from the database,
+      # so it needs a real DATABASE_URL.

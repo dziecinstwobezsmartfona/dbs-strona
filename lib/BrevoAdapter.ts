@@ -1,4 +1,5 @@
 import type { EmailAdapter } from 'payload'
+import { brevoErrorCode } from './log'
 
 interface BrevoAdapterArgs {
   apiKey: string
@@ -57,11 +58,9 @@ export const brevoAdapter = ({
         }),
       })
 
-      console.log(res);
-
       if (!res.ok) {
-        const detail = await res.text()
-        throw new Error(`Brevo API error ${res.status}: ${detail}`)
+        // Payload logs this error, so it must not carry the response body
+        throw new Error(`Brevo API error ${res.status}: ${await brevoErrorCode(res)}`)
       }
 
       return res.json()

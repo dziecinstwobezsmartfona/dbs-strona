@@ -4,14 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-
-const schema = z.object({
-  fullName: z.string().min(1, 'Proszę podaj Imię i Nazwisko'),
-  email: z.email({ error: 'Proszę wprowadź prawidłowy Email' }),
-});
-
-type FormData = z.infer<typeof schema>;
+import { newsletterSubscriptionSchema as schema, type NewsletterSubscription as FormData } from '../lib/schemas/newsletter';
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -37,6 +30,7 @@ export default function NewsletterForm() {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: { fullName: '', email: '', website: '' },
   });
 
   useEffect(() => {
@@ -117,6 +111,10 @@ export default function NewsletterForm() {
                   className="w-full bg-background placeholder-foreground/60 text-foreground px-6 py-3 rounded-2xl"
                 />
                 {errors.email && <p className="text-red-700 text-sm mt-1">{errors.email.message}</p>}
+              </div>
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="newsletter-website">Strona WWW</label>
+                <input id="newsletter-website" type="text" tabIndex={-1} autoComplete="off" {...register('website')} />
               </div>
               <button type="submit" className="bg-foreground text-background py-3 rounded-3xl font-medium mt-2 hover:bg-(--secondary-accent) hover:text-foreground transition-colors">
                 Zapisz się*

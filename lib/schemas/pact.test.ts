@@ -6,10 +6,6 @@ const valid = {
   lastName: 'Rodzic',
   email: 'test+crit2@example.com',
   schoolId: '123456',
-  schoolVoivodship: 'MAZOWIECKIE',
-  schoolDistrict: 'warszawski',
-  schoolCounty: 'Warszawa',
-  schoolName: 'Szkoła Testowa',
   numberOfChildren: 1,
   gdpr_consent: true,
   newsletter_consent: false,
@@ -49,7 +45,7 @@ describe('pactSubmissionSchema', () => {
     expect(result.email).toBe('test+crit2@example.com');
   });
 
-  it.each(['firstName', 'lastName', 'schoolVoivodship', 'schoolDistrict', 'schoolCounty', 'schoolName'])(
+  it.each(['firstName', 'lastName', 'voivodship', 'district', 'county'])(
     'rejects non-string, empty and overlong %s',
     (field) => {
       expect(fails({ [field]: { a: 1 } })).toBe(true);
@@ -59,8 +55,11 @@ describe('pactSubmissionSchema', () => {
     },
   );
 
-  it('allows the longest real school name (253 characters)', () => {
-    expect(fails({ schoolName: 'x'.repeat(253) })).toBe(false);
+  it('treats the region fields as optional and drops the old client-computed school fields', () => {
+    expect(fails({})).toBe(false);
+    const result = pactSubmissionSchema.parse({ ...valid, schoolName: 'Fake', schoolVoivodship: 'Fake' });
+    expect(result).not.toHaveProperty('schoolName');
+    expect(result).not.toHaveProperty('schoolVoivodship');
   });
 
   it.each(['abc', '1 OR 1', '', '12 34', '-1', '1'.repeat(13), 123456])('rejects schoolId %j', (schoolId) => {

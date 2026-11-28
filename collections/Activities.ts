@@ -2,6 +2,8 @@ import type { CollectionConfig } from 'payload'
 import { revalidatePath } from 'next/cache';
 import { activityToSearchDoc } from '@/lib/search/toSearchDoc';
 import { removeSearchDoc, upsertSearchDoc } from '@/lib/search/sync';
+import editor from '@/collections/users/access/editor';
+import { anyone } from '@/collections/users/access/anyone';
 
 export const Activities: CollectionConfig = {
     slug: 'activities',
@@ -10,7 +12,10 @@ export const Activities: CollectionConfig = {
         plural: 'Działania'
     },
     access: {
-        read: () => true,
+        read: anyone,
+        create: editor,
+        update: editor,
+        delete: editor,
     },
     fields: [
         {

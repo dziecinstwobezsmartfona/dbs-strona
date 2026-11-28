@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload';
 import { revalidatePath } from 'next/cache';
+import editor from '@/collections/users/access/editor';
+import { anyone } from '@/collections/users/access/anyone';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -8,7 +10,10 @@ export const Media: CollectionConfig = {
     plural: 'Media'
   },
   access: {
-    read: () => true,
+    read: anyone,
+    create: editor,
+    update: editor,
+    delete: editor,
   },
   fields: [
     {
