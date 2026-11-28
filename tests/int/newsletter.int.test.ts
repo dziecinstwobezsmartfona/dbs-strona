@@ -101,6 +101,14 @@ describe('POST /api/newsletter', () => {
     expect(await count()).toBe(1)
   })
 
+  it('sanitizeFilter is enforced on find and countDocuments (mongoose advisories)', async () => {
+    await Subscriber.create(valid)
+    const inject = { email: { $ne: 'nobody@example.com' } } as never
+    // the operator is treated as a plain value: the query is rejected instead of matching every document
+    await expect(Subscriber.countDocuments(inject)).rejects.toThrow(/Cast to string failed/)
+    await expect(Subscriber.find(inject)).rejects.toThrow(/Cast to string failed/)
+  })
+
   it('answers a filled honeypot with 200 and stores nothing', async () => {
     const res = await post({ ...valid, website: 'http://spam' })
     expect(res.status).toBe(200)
