@@ -30,8 +30,8 @@
     "mongoose": "^9.13.1",
     "next": "^16.4.6",
     "payload": "3.94.2",
-    "react": "19.2.9",
-    "react-dom": "19.2.9",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-hook-form": "^7.71.1",
     "sharp": "^0.35.5",
     "zod": "^4.6.7"
@@ -39,8 +39,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.3.3",
+    "@types/react-dom": "19.3.0",
     "baseline-browser-mapping": "^2.11.40",
     "eslint": "^9",
     "eslint-config-next": "^16.4.6",
@@ -50,8 +50,8 @@
     "vitest": "^3.2.7"
   },
   "overrides": {
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.3.3",
+    "@types/react-dom": "19.3.0",
     "happy-dom": "^21.0.4",
     "postcss-selector-parser": "^6.1.5"
   }
