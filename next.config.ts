@@ -2,6 +2,10 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    '/api/schools-registry': ['./data/schools-registry.json'],
+    '/api/pakty': ['./data/schools-registry.json'],
+  },
   images: {
     remotePatterns: [
       {

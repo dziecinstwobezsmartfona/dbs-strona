@@ -157,9 +157,7 @@ describe('POST /api/pakty newsletter branch', () => {
   it('does not duplicate an existing subscriber whose email differs by case', async () => {
     await Subscriber.create({ fullName: 'Old', email: 'a@x.pl' })
     const res = await post({
-      firstName: 'Ala', lastName: 'Kot', email: 'A@X.pl', schoolId: '123456',
-      schoolVoivodship: 'MAZOWIECKIE', schoolDistrict: 'warszawski', schoolCounty: 'Warszawa',
-      schoolName: 'Szkoła', numberOfChildren: 1, gdpr_consent: true, newsletter_consent: true,
+      firstName: 'Ala', lastName: 'Kot', email: 'A@X.pl', schoolId: '22477', numberOfChildren: 1, gdpr_consent: true, newsletter_consent: true,
     }, freshIp(), paktyPOST)
     expect(res.status).toBe(200)
     const docs = await Subscriber.find({}).lean<any[]>()
@@ -170,9 +168,7 @@ describe('POST /api/pakty newsletter branch', () => {
 
   it('creates a subscriber when none exists', async () => {
     const res = await post({
-      firstName: 'Ala', lastName: 'Kot', email: 'new@x.pl', schoolId: '123456',
-      schoolVoivodship: 'MAZOWIECKIE', schoolDistrict: 'warszawski', schoolCounty: 'Warszawa',
-      schoolName: 'Szkoła', numberOfChildren: 1, gdpr_consent: true, newsletter_consent: true,
+      firstName: 'Ala', lastName: 'Kot', email: 'new@x.pl', schoolId: '22477', numberOfChildren: 1, gdpr_consent: true, newsletter_consent: true,
     }, freshIp(), paktyPOST)
     expect(res.status).toBe(200)
     const docs = await Subscriber.find({}).lean<any[]>()

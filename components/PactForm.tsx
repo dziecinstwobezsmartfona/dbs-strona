@@ -1,12 +1,11 @@
 'use client'; // Mark as client-side for interactivity
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { MAX_CHILDREN, NO_SCHOOL_ID, NO_SCHOOL_LABEL, emailField, numberOfChildrenField, GDPR_CONSENT_MESSAGE } from '../lib/schemas/pact';
-
 
 // Define validation schema with Zod
 const schema = z.object({
@@ -16,13 +15,8 @@ const schema = z.object({
   voivodship: z.string().min(1, 'Proszę podaj Województwo'),
   district: z.string().min(1, 'Proszę podaj Powiat'),
   county: z.string().min(1, 'Proszę podaj Gminę'),
-  schoolName: z.string().min(1, 'Proszę podaj Szkołę'),
+  schoolId: z.string().min(1, 'Proszę podaj Szkołę'),
   numberOfChildren: numberOfChildrenField,
-  schoolId: z.string(),
-  schoolVoivodship: z.string(),
-  schoolDistrict: z.string(),
-  schoolCounty: z.string(),
-  school: z.string(),
   gdpr_consent: z.boolean().refine((val) => val === true, GDPR_CONSENT_MESSAGE),
   newsletter_consent: z.boolean().optional(),
   website: z.string().optional(), // honeypot
@@ -30,13 +24,51 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
+interface SchoolOption {
+  id: string;
+  name: string;
+  detail?: string;
+}
+
+interface RegistryResponse {
+  voivodships?: string[];
+  districts?: string[];
+  counties?: string[];
+  schools?: SchoolOption[];
+}
+
+// Loads the options for one level of the cascade from the server. `params === null` means "don't load".
+function useRegistry(params: Record<string, string> | null) {
+  const [state, setState] = useState<{ key: string; data?: RegistryResponse; error?: boolean }>({ key: '' });
+  const key = params ? new URLSearchParams(params).toString() : '';
+
+  useEffect(() => {
+    if (!params) return;
+    const controller = new AbortController();
+    fetch(`/api/schools-registry?${key}`, { signal: controller.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(String(res.status));
+        return res.json() as Promise<RegistryResponse>;
+      })
+      .then((data) => setState({ key, data }))
+      .catch((err) => {
+        if (err.name !== 'AbortError') setState({ key, error: true });
+      });
+    return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  if (!params) return { data: undefined, loading: false, error: false };
+  const current = state.key === key;
+  return { data: current ? state.data : undefined, loading: !current, error: current && Boolean(state.error) };
+}
+
 export default function PactForm() {
   const router = useRouter();
-  const [schoolsData, setSchoolsData] = useState<any[]>([]); // Raw data from JSON
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  const { register, handleSubmit, control, formState: { errors }, setValue, watch, trigger } = useForm<FormData>({
+  const { register, handleSubmit, control, formState: { errors }, setValue, watch } = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: 'onChange',
     defaultValues: {
@@ -46,13 +78,8 @@ export default function PactForm() {
       voivodship: '',
       district: '',
       county: '',
-      schoolName: '',
-      numberOfChildren: 1,
       schoolId: '',
-      schoolVoivodship: '',
-      schoolDistrict: '',
-      schoolCounty: '',
-      school: '',
+      numberOfChildren: 1,
       gdpr_consent: false,
       newsletter_consent: false,
       website: '',
@@ -61,125 +88,66 @@ export default function PactForm() {
 
   // Watch fields for submit button and cascading
   const gdpr_consent = watch('gdpr_consent');
-  const selectedSchool = watch('school');
   const firstName = watch('firstName');
   const lastName = watch('lastName');
   const email = watch('email');
   const watchedVoivodship = watch('voivodship');
   const watchedDistrict = watch('district');
   const watchedCounty = watch('county');
-  const watchedSchoolName = watch('schoolName');
+  const watchedSchoolId = watch('schoolId');
 
-  // Fetch schools data
-  useEffect(() => {
-    fetch('/data/lista_szkol.json') // Adjust path if needed
-      .then((res) => res.json())
-      .then(setSchoolsData)
-      .catch((err) => console.error('Error fetching schools:', err));
-  }, []);
+  // Each level is fetched from the server only when its parent is chosen
+  const voivodshipsQ = useRegistry({});
+  const districtsQ = useRegistry(watchedVoivodship ? { voivodship: watchedVoivodship } : null);
+  const countiesQ = useRegistry(watchedDistrict ? { voivodship: watchedVoivodship, district: watchedDistrict } : null);
+  const schoolsQ = useRegistry(watchedCounty ? { voivodship: watchedVoivodship, district: watchedDistrict, county: watchedCounty } : null);
 
-  // Memoized options for dropdowns
-  const voivodships = useMemo(() => [...new Set(schoolsData.map((item) => item['Województwo']))].sort(), [schoolsData]);
-
-  const districts = useMemo(() => {
-    if (!watchedVoivodship) return [];
-    return [...new Set(schoolsData.filter((item) => item['Województwo'] === watchedVoivodship).map((item) => item['Powiat']))].sort();
-  }, [watchedVoivodship, schoolsData]);
-
-  const counties = useMemo(() => {
-    if (!watchedDistrict) return [];
-    return [...new Set(schoolsData.filter((item) => item['Województwo'] === watchedVoivodship && item['Powiat'] === watchedDistrict).map((item) => item['Gmina']))].sort();
-  }, [watchedVoivodship, watchedDistrict, schoolsData]);
-
-  const schools = useMemo(() => {
-    if (!watchedCounty) return [];
-    return schoolsData.filter((item) => item['Województwo'] === watchedVoivodship && item['Powiat'] === watchedDistrict && item['Gmina'] === watchedCounty).map((item) => item['Nazwa']).sort();
-  }, [watchedVoivodship, watchedDistrict, watchedCounty, schoolsData]);
+  const voivodships = voivodshipsQ.data?.voivodships ?? [];
+  const districts = districtsQ.data?.districts ?? [];
+  const counties = countiesQ.data?.counties ?? [];
+  const schools = schoolsQ.data?.schools ?? [];
+  const loadFailed = voivodshipsQ.error || districtsQ.error || countiesQ.error || schoolsQ.error;
 
   // Reset lower levels on change
   useEffect(() => {
     setValue('district', '');
     setValue('county', '');
-    setValue('schoolName', '');
-    setValue('school', '');
-  }, [watchedVoivodship]);
+    setValue('schoolId', '');
+  }, [watchedVoivodship, setValue]);
 
   useEffect(() => {
     setValue('county', '');
-    setValue('schoolName', '');
-    setValue('school', '');
-  }, [watchedDistrict]);
+    setValue('schoolId', '');
+  }, [watchedDistrict, setValue]);
 
   useEffect(() => {
-    setValue('schoolName', '');
-    setValue('school', '');
-  }, [watchedCounty]);
+    setValue('schoolId', '');
+  }, [watchedCounty, setValue]);
 
-  // Set school fields in form when fully selected
-  useEffect(() => {
-    if (watchedVoivodship && watchedDistrict && watchedCounty) {
-      // Always set 'school' to match 'schoolName' (empty string when placeholder selected)
-      setValue('school', watchedSchoolName);
-
-      // Handle special case for "Moje dzieci nie chodzą jeszcze do szkoły"
-      if (watchedSchoolName === NO_SCHOOL_LABEL) {
-        setValue('schoolId', NO_SCHOOL_ID);
-        setValue('schoolVoivodship', watchedVoivodship);
-        setValue('schoolDistrict', watchedDistrict);
-        setValue('schoolCounty', watchedCounty);
-      } else if (watchedSchoolName) {
-        // Find the selected school object from schoolsData only if a school is actually selected
-        const selectedSchoolData = schoolsData.find((item) =>
-          item['Województwo'] === watchedVoivodship &&
-          item['Powiat'] === watchedDistrict &&
-          item['Gmina'] === watchedCounty &&
-          item['Nazwa'] === watchedSchoolName
-        );
-
-        setValue('schoolId', selectedSchoolData ? selectedSchoolData['Numer RSPO'] : '');
-        setValue('schoolVoivodship', watchedVoivodship);
-        setValue('schoolDistrict', watchedDistrict);
-        setValue('schoolCounty', watchedCounty);
-      } else {
-        // Reset school fields when placeholder is selected
-        setValue('schoolId', '');
-        setValue('schoolVoivodship', '');
-        setValue('schoolDistrict', '');
-        setValue('schoolCounty', '');
-      }
-    }
-  }, [watchedVoivodship, watchedDistrict, watchedCounty, watchedSchoolName, setValue, schoolsData]);
-
-  const isDisabled = !gdpr_consent || !selectedSchool || !firstName || !lastName || !email;
+  const isDisabled = !gdpr_consent || !watchedSchoolId || !firstName || !lastName || !email;
 
   // Handle form submission
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitMessage('');
     try {
-      // Ensure schoolId is set to '0' if "Moje dzieci nie chodzą jeszcze do szkoły" is selected
-      let finalSchoolId = data.schoolId;
-      if (data.schoolName === NO_SCHOOL_LABEL) {
-        finalSchoolId = NO_SCHOOL_ID;
-      }
-      
-      const { firstName, lastName, email, schoolVoivodship, schoolDistrict, schoolCounty, school, numberOfChildren, gdpr_consent, newsletter_consent, website } = data;
+      const { firstName, lastName, email, schoolId, voivodship, district, county, numberOfChildren, gdpr_consent, newsletter_consent, website } = data;
       const response = await fetch('/api/pakty', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          firstName, 
-          lastName, 
-          email, 
-          schoolId: finalSchoolId, 
-          schoolVoivodship, 
-          schoolDistrict, 
-          schoolCounty, 
-          schoolName: school, 
-          numberOfChildren, 
-          gdpr_consent, 
+        // the server looks up the school name and region from schoolId
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          schoolId,
+          voivodship,
+          district,
+          county,
+          numberOfChildren,
+          gdpr_consent,
           newsletter_consent,
           website,
         }),
@@ -209,6 +177,7 @@ export default function PactForm() {
       <div className="space-y-2">
 
         <h3 className="text-sm md:text-lg font-semibold">1. Wybierz szkołę (lub gminę, jeśli żadne z Twoich dzieci jeszcze nie uczęszcza do szkoły)</h3>
+        {loadFailed && <p className="text-red-500 text-xs md:text-sm">Nie udało się wczytać listy, odśwież stronę</p>}
 
         <div className="flex flex-col lg:flex-row gap-2">
           {/* Voivodship */}
@@ -221,7 +190,7 @@ export default function PactForm() {
                   {...field}
                   className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
                 >
-                  <option value="">Wybierz Województwo</option>
+                  <option value="">{voivodshipsQ.loading ? 'Ładowanie…' : 'Wybierz Województwo'}</option>
                   {voivodships.map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
               )}
@@ -240,7 +209,7 @@ export default function PactForm() {
                     {...field}
                     className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
                   >
-                    <option value="">Wybierz Powiat</option>
+                    <option value="">{districtsQ.loading ? 'Ładowanie…' : 'Wybierz Powiat'}</option>
                     {districts.map((d) => <option key={d} value={d}>{d}</option>)}
                   </select>
                 )}
@@ -260,7 +229,7 @@ export default function PactForm() {
                     {...field}
                     className="flex-1 bg-white border border-gray-300 rounded-3xl p-4"
                   >
-                    <option value="">Wybierz Gminę</option>
+                    <option value="">{countiesQ.loading ? 'Ładowanie…' : 'Wybierz Gminę'}</option>
                     {counties.map((c) => <option key={c} value={c}>{c}</option>)}
                   </select>
                 )}
@@ -274,25 +243,25 @@ export default function PactForm() {
         {watchedCounty && (
           <div>
             <Controller
-              name="schoolName"
+              name="schoolId"
               control={control}
               render={({ field }) => (
                 <select
                   {...field}
                   className="block w-full bg-white border border-gray-300 rounded-3xl p-4"
                 >
-                  <option value="">Wybierz Szkołę</option>
-                  <option value={NO_SCHOOL_LABEL}>{NO_SCHOOL_LABEL}</option>
-                  {schools.map((s) => <option key={s} value={s}>{s}</option>)}
+                  <option value="">{schoolsQ.loading ? 'Ładowanie…' : 'Wybierz Szkołę'}</option>
+                  <option value={NO_SCHOOL_ID}>{NO_SCHOOL_LABEL}</option>
+                  {schools.map((s) => <option key={s.id} value={s.id}>{s.detail ? `${s.name} — ${s.detail}` : s.name}</option>)}
                 </select>
               )}
             />
-            {errors.schoolName && <p className="text-red-500 text-xs md:text-sm">{errors.schoolName.message}</p>}
+            {errors.schoolId && <p className="text-red-500 text-xs md:text-sm">{errors.schoolId.message}</p>}
           </div>
         )}
 
         {/* Number of Children (show if school selected) */}
-        {watchedSchoolName && (
+        {watchedSchoolId && (
           <div>
             <label className="block text-xs md:text-sm font-medium mb-1">Liczba Twoich dzieci, dla których podpisujesz Pakt:</label>
             <Controller

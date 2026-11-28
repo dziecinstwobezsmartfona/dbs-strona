@@ -7,6 +7,7 @@ import { isRateLimited } from '../../../../lib/rateLimit';
 import { pactSubmissionSchema } from '../../../../lib/schemas/pact';
 import { clientIp, readJsonObject, tooManyRequests } from '../../../../lib/http';
 import { addSubscriber } from '../../../../lib/subscribers';
+import { getSchoolsRegistry, resolveSchool } from '../../../../lib/schoolsRegistry';
 
 // Required for Netlify deployment - ensures this route runs as a Node.js function
 export const runtime = 'nodejs';
@@ -82,8 +83,15 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   }
-  const data = { ...parsed.data };
-  delete data.website;
+  const { voivodship, district, county, website, ...person } = parsed.data;
+  void website;
+
+  // The server decides the school name and region; whatever the client sent is only used to look them up
+  const school = resolveSchool(await getSchoolsRegistry(), { schoolId: person.schoolId, voivodship, district, county });
+  if (!school) {
+    return NextResponse.json({ success: false, message: 'Nieprawidłowa szkoła' }, { status: 400 });
+  }
+  const data = { ...person, ...school };
 
   try {
     await dbConnect();

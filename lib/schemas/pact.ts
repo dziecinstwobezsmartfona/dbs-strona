@@ -27,10 +27,10 @@ export const pactSubmissionSchema = z.object({
   lastName: textField('Nazwisko', 100),
   email: emailField,
   schoolId: z.string().regex(/^\d{1,12}$/, 'Nieprawidłowy numer szkoły'),
-  schoolVoivodship: textField('Województwo'),
-  schoolDistrict: textField('Powiat'),
-  schoolCounty: textField('Gminę'),
-  schoolName: textField('Szkołę', 300), // the longest name in lista_szkol.json has 253 characters
+  // only needed for the "no school yet" option; otherwise the server takes the region from the registry
+  voivodship: textField('Województwo').optional(),
+  district: textField('Powiat').optional(),
+  county: textField('Gminę').optional(),
   numberOfChildren: numberOfChildrenField,
   gdpr_consent: z.literal(true, { error: GDPR_CONSENT_MESSAGE }),
   newsletter_consent: z.boolean().default(false),

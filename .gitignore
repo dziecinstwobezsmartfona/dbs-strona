@@ -42,3 +42,6 @@ next-env.d.ts
 
 # code reviews
 /reviews
+
+# raw RSPO export (input for scripts/build-schools-registry.ts)
+/data/raw/
